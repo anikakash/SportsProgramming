@@ -45,14 +45,12 @@ int main()
     #endif
    int t;
    cin>>t;
+   flush;
    while(t--)
    {
-        int n;
-        cin>>n;
-        int k = 100-n;
-        int w = gcd(k,n);
-        n/=w; k/=w;
-        cout<<k+n<<endl;
+      string s;
+      getline(cin,s);
+      cout<<s.size()<<endl;
    }
        
     #ifdef EXTRA_8
