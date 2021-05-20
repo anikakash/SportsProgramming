@@ -61,6 +61,7 @@ int main()
               n--;
             }
           }
+          
             else if(n%2==0 && n%3!=0)
                ans = n*(n-1)*(n-3);
             else 
