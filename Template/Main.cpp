@@ -40,26 +40,32 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("ans.txt","w",stdout);
     #endif
-        ll t;
-        scanf("%lld",&t);
-        for(int j=1; j<=t; j++)
-        {
-            ll n;
-           scanf("%lld",&n);
-            ll digit = log2(n);
-            //cout<<n<<" "<<digit<<endl;
-           // digit--;
-           ll ans = pow(2,digit)-1;
-           printf("%lld\n", ans);
-        }
 
+        int n;
+       cin>>n;
+    int arr[1001]={0};
+      int sum=0, x=0;
+      
+      for(int i=1; i<=n; i++)
+      {
+          x++;
+          n-=i;
+          arr[i]=i;
+      }
+        arr[x]+=n;
+
+        cout<<x<<endl;
+        for(int i=1; i<x; i++)
+            cout<<arr[i]<<" ";
+          cout<<arr[x]<<endl;
+         
+     
+        
     #ifdef EXTRA_8
         fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif
     return 0;
 }
-
-
 
 
 //  _____            _   _            _                      ___   __ 
