@@ -38,45 +38,21 @@ int main()
     #ifdef EXTRA_8
         clock_t tStart = clock();
         freopen("input.txt","r",stdin);
-        freopen("out.txt","w",stdout);
-    #endif 
-        /*
-          we know that if there is two odd series number then we can not devide those by
-          any number. so here i use this concept. if n is odd then simply do n*(n-1)*(n-2) cause find 
-          2 odd in this process and those multiple are greatest other wise if any of those get devides with any number then the lcm is not greatest. 
-          so when is even i try to apply same process.
-        */
-        ll n, x=3;
-        cin>>n;
-        ll ans=1;
-        if(n<3)ans=n;
-        else
+        freopen("ans.txt","w",stdout);
+    #endif
+        ll t;
+        scanf("%lld",&t);
+        for(int j=1; j<=t; j++)
         {
-          if(n%2==0 && n%3==0)
-          {
-            n--;
-            while(x--)
-            {
-              ans*=n;
-              n--;
-            }
-          }
-          
-            else if(n%2==0 && n%3!=0)
-               ans = n*(n-1)*(n-3);
-            else 
-            {
-              while(x--)
-              {
-                ans*=n;
-                n--;
-              }
-            }
+            ll n;
+           scanf("%lld",&n);
+            ll digit = log2(n);
+            //cout<<n<<" "<<digit<<endl;
+           // digit--;
+           ll ans = pow(2,digit)-1;
+           printf("%lld\n", ans);
         }
-        
-        cout<<ans<<endl;
-       
-       
+
     #ifdef EXTRA_8
         fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif
