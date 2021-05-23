@@ -54,7 +54,7 @@ void sieve()
 
 ll big_mod(ll base, ll power, ll mod)
 {
-    if(power==0)    return 1;
+    if(power==0)  return 1;
     
     else if(power%2==1) 
     {
@@ -62,11 +62,12 @@ ll big_mod(ll base, ll power, ll mod)
         ll p2 = (big_mod(base,power-1,mod))%mod;
         return (p1*p2)%mod;
     }
-    else if(power%2==0)
+    else 
     {
         ll p1 = (big_mod(base,power/2,mod))%mod;
         return (p1*p1)%mod;
     }
+
 }
 
 
@@ -83,7 +84,6 @@ int main()
       while(cin>>n)
       {
          if(n==0)return 0;
-        // if(n==1)cout<<1<<endl;
         ll res = 1;
         ll two=0, five=0;
 
@@ -99,15 +99,13 @@ int main()
             }
             if(prime[i]==2) two = pow;
             else if(prime[i]==5) five = pow;
-            else res*= big_mod(prime[i],pow, 10);
-            
+            else res = ((res%10)*(big_mod(prime[i],pow, 10)))%10;
          }
-         res = res%10;
+
          two = two-five;
          two = big_mod(2,two,10);
          res = (res*two)%10;
          cout<<res<<endl;
-        // five = big_mod(5,five,10);
       }
        
     #ifdef EXTRA_8
