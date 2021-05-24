@@ -1,3 +1,6 @@
+
+//is Prime 
+//Time Complexity O(sqrt(n))
 int is_prime(ll n)
 {
     ll i, root;
