@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 using namespace    std;
 
-#define flush        cin.ignore(numeric_limits<streamsize>::max(),'\n')
-#define fasterio     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define pb           push_back
 #define mx           10000007
 
@@ -24,8 +22,6 @@ void sieve() {
         if(vis[i]==0)
             prime.pb(i);
 }
-
-
 
 int main()
 {
