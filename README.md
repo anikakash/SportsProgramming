@@ -10,7 +10,7 @@
 	<p>Easy Access From Here</p>
 	<div>
 		<ol Type = "1">
-		  <li href="Sports-Programming\AtCoder">At Code</li>
+		  <li href="Sports-Programming/tree/main/AtCoder">At Code</li>
 		  <li href="Sports-Programming\CodeChef">Code Chef</li>
 		  <li>Code Forces</li>
 		  <li>Dimik Oj</li>
