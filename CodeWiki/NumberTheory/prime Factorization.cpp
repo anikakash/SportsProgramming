@@ -1,6 +1,6 @@
 
 //Need to Generate prime numbers
-
+//Time Complexity O(sqrt(n))
 vector<int>prime_factor;
 void primeFactorization(int n)
 {
