@@ -1,3 +1,4 @@
+
 //Need to Generate prime numbers
 
 vector<int>prime_factor;

@@ -1,3 +1,4 @@
+//Euler's Phi
 void Luphi( int n)
 {
     int ans = n;
