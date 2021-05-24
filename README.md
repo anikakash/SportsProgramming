@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Competitive Programming" content="UVA Solve">
 	<link rel="stylesheet" href="">
 </head>
 <body>
@@ -24,7 +24,7 @@
 		  <li><a href="https://github.com/anikakash/Sports-Programming/tree/main/UVa">UVA Online Judge</a></li>
 		</ol>
 	</div>
-
+	<h2>MY WiKi</h2>
 	
 </body>
 </html>
