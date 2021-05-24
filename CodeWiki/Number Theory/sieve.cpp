@@ -9,8 +9,6 @@ using namespace    std;
 typedef long long int       ll;
 
 
-
- 
 vector<ll>prime;
 bool vis[mx];  //mx is define in above of the code;
 void sieve() {
