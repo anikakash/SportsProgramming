@@ -32,6 +32,24 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+ll big_mod(ll base, ll power, ll mod)
+{
+    if(power==0)  return 1;
+    
+    else if(power%2==1) 
+    {
+        ll p1 = base % mod;
+        ll p2 = (big_mod(base,power-1,mod))%mod;
+        return (p1*p2)%mod;
+    }
+    else 
+    {
+        ll p1 = (big_mod(base,power/2,mod))%mod;
+        return (p1*p1)%mod;
+    }
+
+}
+
 
 int main()
 {
@@ -40,13 +58,17 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("ans.txt","w",stdout);
     #endif
-        
+       ll b,p,m;
+       while(cin>>b>>p>>m)
+       {
+          ll ans = big_mod(b,p,m);
+          cout<<ans<<endl; 
+       }
        
     #ifdef EXTRA_8
         fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
     #endif
     return 0;
-      
 }
 
 
