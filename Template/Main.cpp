@@ -32,24 +32,18 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-ll big_mod(ll base, ll power, ll mod)
+
+ll intTobinary (string n)
 {
-    if(power==0)  return 1;
-    
-    else if(power%2==1) 
-    {
-        ll p1 = base % mod;
-        ll p2 = (big_mod(base,power-1,mod))%mod;
-        return (p1*p2)%mod;
-    }
-    else 
-    {
-        ll p1 = (big_mod(base,power/2,mod))%mod;
-        return (p1*p1)%mod;
-    }
+  ll base = 1, dec_value = 0, ln = n.size();
 
+  for(ll i = ln-1; i>=0; i--)
+  {
+      if(n[i] == '1') dec_value += base;
+      base*=2;
+  }
+  return dec_value;
 }
-
 
 int main()
 {
@@ -58,12 +52,22 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("ans.txt","w",stdout);
     #endif
-       ll b,p,m;
-       while(cin>>b>>p>>m)
-       {
-          ll ans = big_mod(b,p,m);
-          cout<<ans<<endl; 
-       }
+       
+    char ch;
+    
+    while(cin>>ch)
+    { string s;
+           s+=ch;
+           while(cin>>ch && ch!='#')
+           {
+              s+=ch;
+           }
+           ll x = intTobinary(s);
+           //cout<<s<<" "<<x<<endl;
+           if(x%131071==0)cout<<"YES"<<endl;
+           else cout<<"NO"<<endl;
+    }
+    //cout<<0%131071<<endl;
        
     #ifdef EXTRA_8
         fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
