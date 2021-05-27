@@ -1,4 +1,4 @@
-//             _   _                
+//              _   _                
 //   __ _ _   _| |_| |__   ___  _ __ 
 //  / _` | | | | __| '_ \ / _ \| '__|
 // | (_| | |_| | |_| | | | (_) | |   
@@ -21,7 +21,7 @@ using namespace    std;
 // #define gcd(a, b)            __gcd(a, b)
 // #define lcm(a, b)            ((a)*((b)/gcd(a,b)))
 #define pb                      push_back
-#define mx                      1000006
+#define mx                      10000007
 
 typedef long long int           ll;
 typedef double                  dl;
@@ -32,42 +32,44 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-
-ll intTobinary (string n)
+vector<ll>prime;
+bool vis[mx];
+void sieve()
 {
-  ll base = 1, dec_value = 0, ln = n.size();
-
-  for(ll i = ln-1; i>=0; i--)
-  {
-      if(n[i] == '1') dec_value += base;
-      base*=2;
-  }
-  return dec_value;
+    for(ll i = 3; i*i<=mx; i+=2)
+    {
+        if(!vis[i])
+        {
+          for(ll j = i*i; j<mx; j+=2*i)
+            vis[j]=1;
+        }
+    }
+    prime.pb(2);
+    for(ll i = 3; i<mx; i+=2) if(!vis[i]) prime.pb(i);
 }
+
 
 int main()
 {
     #ifdef EXTRA_8
         clock_t tStart = clock();
         freopen("input.txt","r",stdin);
-        freopen("ans.txt","w",stdout);
+        freopen("out.txt","w",stdout);
     #endif
-       
-    char ch;
-    
-    while(cin>>ch)
-    { string s;
-           s+=ch;
-           while(cin>>ch && ch!='#')
-           {
-              s+=ch;
-           }
-           ll x = intTobinary(s);
-           //cout<<s<<" "<<x<<endl;
-           if(x%131071==0)cout<<"YES"<<endl;
-           else cout<<"NO"<<endl;
-    }
-    //cout<<0%131071<<endl;
+      sieve();
+        
+      ll n, m;
+      while(cin>>n>>m)
+      {
+        ll ans = 1;
+         for(ll i = (n-m)+1; i<=n; i++)
+         {
+            ans*=i;
+            while(ans%10==0)ans/=10;
+            
+         }
+         cout<<ans<<endl;
+      }
        
     #ifdef EXTRA_8
         fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
