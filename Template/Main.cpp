@@ -66,7 +66,7 @@ int main()
          {
             ans*=i;
             while(ans%10==0)ans/=10;
-            
+            ans%=10;
          }
          cout<<ans<<endl;
       }
