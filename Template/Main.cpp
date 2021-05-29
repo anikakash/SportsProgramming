@@ -32,48 +32,31 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-vector<ll>prime;
-bool vis[mx];
-void sieve()
-{
-    for(ll i = 3; i*i<=mx; i+=2)
-    {
-        if(!vis[i])
-        {
-          for(ll j = i*i; j<mx; j+=2*i)
-            vis[j]=1;
-        }
-    }
-    prime.pb(2);
-    for(ll i = 3; i<mx; i+=2) if(!vis[i]) prime.pb(i);
-}
-
 
 int main()
 {
-    #ifdef EXTRA_8
+   #ifdef anikakash
         clock_t tStart = clock();
         freopen("input.txt","r",stdin);
         freopen("out.txt","w",stdout);
-    #endif
-      sieve();
-        
-      ll n, m;
+   #endif
+     
+       ll n, m;
       while(cin>>n>>m)
       {
-        ll ans = 1;
-         for(ll i = (n-m)+1; i<=n; i++)
+        ll ans = 1, l = (n-m)+1;
+         for(ll i = n; i>=l; i--)
          {
             ans*=i;
             while(ans%10==0)ans/=10;
-            ans%=10;
+            ans%=10000000000;
          }
-         cout<<ans<<endl;
+         cout<<ans%10<<endl;
       }
        
-    #ifdef EXTRA_8
-        fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-    #endif
+   #ifdef anikakash
+      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+   #endif
     return 0;
 }
 
