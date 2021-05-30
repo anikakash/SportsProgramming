@@ -41,18 +41,7 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-       ll n, m;
-      while(cin>>n>>m)
-      {
-        ll ans = 1, l = (n-m)+1;
-         for(ll i = n; i>=l; i--)
-         {
-            ans*=i;
-            while(ans%10==0)ans/=10;
-            ans%=10000000000;
-         }
-         cout<<ans%10<<endl;
-      }
+       
        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
