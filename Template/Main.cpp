@@ -32,7 +32,6 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-
 int main()
 {
    #ifdef anikakash
@@ -41,7 +40,20 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-       
+     ll n,m, x, res=1;
+     cin>>n>>m;
+
+        x = (n-m )+1;
+        
+         for(ll i = n; i>=x; i--)
+         {
+            res *=i;
+            while(res%10==0)res/=10;
+
+            res%=10;
+
+         }
+         cout<<res<<endl;
        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
@@ -61,3 +73,18 @@ int main()
 // | |___|  __/ 
 //  \____|_|    
 //            
+
+
+// nPr = n!/(n-r)!
+// 10P5 = 10*9*8*7*6
+//          (10-5)+1 -> x= (n-r )+1
+//          ll res = 1;
+//          for(int i = n; i>=x; i--)
+//          {
+//             res * =i;
+//             while(res%10==0)res/=10;
+
+//             res%=10;
+
+//          }
+//          cout<<res<<endl;

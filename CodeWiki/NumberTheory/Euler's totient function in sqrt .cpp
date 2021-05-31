@@ -1,6 +1,6 @@
 
 //Euler's Phi
-void Luphi( int n)
+void EulerPhi( int n)
 {
     int ans = n;
     for(int i=2; i*i<=n; i++)

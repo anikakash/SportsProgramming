@@ -1,4 +1,1 @@
-Enter Test Case : 
-54 is a Digit
-A is an Alphabet : It is an Vowel
-@ is a special character
+2
