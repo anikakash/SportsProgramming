@@ -32,6 +32,35 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+void firstthree(ll n, ll m)
+{
+  dl x = m*log10(n);
+  x = x - (ll)x;
+  dl ans = pow(10,x);
+  int res = ans*100;
+
+  cout<<res<<"...";
+
+}
+ll big_mod(ll base, ll power, ll mod)
+{
+    if(power==0)  return 1;
+    
+    else if(power%2==1) 
+    {
+        ll p1 = base % mod;
+        ll p2 = (big_mod(base,power-1,mod))%mod;
+        return (p1*p2)%mod;
+    }
+    else 
+    {
+        ll p1 = (big_mod(base,power/2,mod))%mod;
+        return (p1*p1)%mod;
+    }
+
+}
+
+
 int main()
 {
    #ifdef anikakash
@@ -40,20 +69,24 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-     ll n,m, x, res=1;
-     cin>>n>>m;
+           int t;
+      cin>>t;
+      while(t--)
+      {
+             ll n, m;
+           while(cin>>n>>m)
+           {
+             firstthree(n,m);
+             n = big_mod(n,m,1000);
+             //m = big_mod(n,m,1000);
+             //ll ans =pow(n, m)%1000;
+             if(n<=0)cout<<"000"<<endl;
+             else if(n<10)cout<<"00"<<n<<endl;
+             else if(n<100)cout<<"0"<<n<<endl;
+             else cout<<n<<endl;
+           }
+      }
 
-        x = (n-m )+1;
-        
-         for(ll i = n; i>=x; i--)
-         {
-            res *=i;
-            while(res%10==0)res/=10;
-
-            res%=10;
-
-         }
-         cout<<res<<endl;
        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
