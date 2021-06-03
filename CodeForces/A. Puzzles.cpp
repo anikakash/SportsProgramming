@@ -41,7 +41,7 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-    int n,q, cas=1;
+     int n,q, cas=1;
     cin>>n>>q;
     vector<int> arr;
     for(int i=0; i<q; i++)
@@ -51,7 +51,6 @@ int main()
       arr.pb(x);
     }
     sort(arr.begin(), arr.end());
-    
     int sm = INT_MAX;
     for(int i=0; i<q; i++)
     {
