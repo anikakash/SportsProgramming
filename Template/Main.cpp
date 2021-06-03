@@ -70,6 +70,24 @@ int BinarySrc(int low, int high, int key)
     else return -1;
 }
 
+ll big_mod(ll base, ll power, ll mod)
+{
+    if(power==0)  return 1;
+    
+    else if(power%2==1) 
+    {
+        ll p1 = base % mod;
+        ll p2 = (big_mod(base,power-1,mod))%mod;
+        return (p1*p2)%mod;
+    }
+    else 
+    {
+        ll p1 = (big_mod(base,power/2,mod))%mod;
+        return (p1*p1)%mod;
+    }
+
+}
+
 int main()
 {
    #ifdef anikakash
@@ -78,28 +96,12 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-    int n,q, cas=1;
-    cin>>n>>q;
-    vector<int> arr;
-    for(int i=0; i<q; i++)
-    {
-      int x;
-      cin>>x;
-      arr.pb(x);
-    }
-    sort(arr.begin(), arr.end());
-    //for(int i=0; i<q; i++)cout<<arr[i]<<" ";
-    int sm = INT_MAX;
-    for(int i=0; i<q; i++)
-    {
-      if(i+(n-1)<q)
-      {
-         if(arr[i+(n-1)]-arr[i]<sm)sm=arr[i+(n-1)]-arr[i];
-      }
-      else break;
-     //cout<<sm<<endl;
-    }
-    cout<<sm<<endl;
+   ll w, h;
+   cin>>w>>h;
+      ll x = ((w%998244353)+(h%998244353 ))%998244353;
+      ll ans = big_mod(2,x,998244353);
+      cout<<ans<<endl;
+
        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
