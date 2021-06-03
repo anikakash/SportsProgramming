@@ -28,45 +28,64 @@ typedef double                  dl;
 typedef unsigned long long      ul;
 
 
-ll intTobinary (string n)
-{
-  ll base = 1, dec_value = 0, ln = n.size();
-
-  for(ll i = ln-1; i>=0; i--)
-  {
-      if(n[i] == '1') dec_value += base;
-      base*=2;
-  }
-  return dec_value;
-}
-
+int BinarySrc(int low, int high, int key);
+ 
+vector<int>arr;
 int main()
 {
-    #ifdef EXTRA_8
-        clock_t tStart = clock();
-        freopen("input.txt","r",stdin);
-        freopen("ans.txt","w",stdout);
-    #endif
-       
-    char ch;
+   #ifndef ONLINE_JUDGE
+       freopen("input.txt","r",stdin);
+       freopen("out.txt","w",stdout);
+   #endif
+   
+  int t, cnt=1; cin >> t;
+  for(int i=0; i<t; i++)
+  {
+      int x;
+      cin>>x;
+      arr.push_back(x);
+  }
+  sort(arr.begin(),arr.end());
+  int n;
+  cin>>n;
+  for(int i=0; i<n; i++)
+  {
+      int x, ans=0;
+      cin>>x;
+      int low, high;
+      low = 0;
+      //cout<<low<<endl;
+      high = t-1;
+       //cout<<x<<endl;
+      ans = BinarySrc(low, high, x);
+      cout<<ans+1<<endl;
+  }
     
-    while(cin>>ch)
-    {      string s;
-           s+=ch;
-           while(cin>>ch && ch!='#')
-           {
-              s+=ch;
-           }
-           ll x = intTobinary(s);
-           //cout<<s<<" "<<x<<endl;
-           if(x%131071==0)cout<<"YES"<<endl;
-           else cout<<"NO"<<endl;
-    }
-    //cout<<0%131071<<endl;
-       
-    #ifdef EXTRA_8
-        fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-    #endif
     return 0;
 }
-          
+/// ----------------------------Funaction Descriptions----------------------------------//
+ 
+int BinarySrc(int low, int high, int key)
+{
+    int index;
+    while(low<=high)
+    {
+       int mid = low + (high-low)/2;; //if work with indx;
+       //int 
+        if(arr[mid]<key)
+        {
+            low = mid+1;
+        }
+        else if(arr[mid]>key)
+        {
+            high = mid-1;
+        }
+        else
+        {
+             index = mid;
+             high = mid-1;
+            
+        } 
+    }
+    return index; //key not find;
+}
