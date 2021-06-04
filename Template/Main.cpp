@@ -70,23 +70,6 @@ int BinarySrc(int low, int high, int key)
     else return -1;
 }
 
-ll big_mod(ll base, ll power, ll mod)
-{
-    if(power==0)  return 1;
-    
-    else if(power%2==1) 
-    {
-        ll p1 = base % mod;
-        ll p2 = (big_mod(base,power-1,mod))%mod;
-        return (p1*p2)%mod;
-    }
-    else 
-    {
-        ll p1 = (big_mod(base,power/2,mod))%mod;
-        return (p1*p1)%mod;
-    }
-
-}
 
 int main()
 {
@@ -96,11 +79,18 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
      
-   ll w, h;
-   cin>>w>>h;
-      ll x = ((w%998244353)+(h%998244353 ))%998244353;
-      ll ans = big_mod(2,x,998244353);
-      cout<<ans<<endl;
+   int t;
+   cin>>t;
+   while(t--)
+   {
+      ll a,b,c;
+      cin>>a>>b>>c;
+      
+      dl x = c*1.0/b*1.0;
+      if(a>=c && a>x)cout<<"-1 "<<b<<endl;
+      else if(a<c && a<=x) cout<<"1 -1"<<endl;
+      else if(a<c && a>x)cout<<1<<" "<<b<<endl;
+   }
 
        
    #ifdef anikakash
