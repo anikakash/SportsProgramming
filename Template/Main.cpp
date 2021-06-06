@@ -42,13 +42,13 @@ void firstthree(ll n, ll m)
   cout<<res<<"...";
 
 }
-vector<int>arr;
-int BinarySrc(int low, int high, int key)
+vector<ll>arr;
+int BinarySrc(ll low, ll high, ll key)
 {
-    int index;
+    ll index;
     while(low<=high)
     {
-       int mid = low + (high-low)/2;; //if work with indx;
+       ll mid = low + (high-low)/2; //if work with indx;
        //int 
         if(arr[mid]<key)
         {
@@ -78,20 +78,64 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("out.txt","w",stdout);
    #endif
-     
-   int t;
-   cin>>t;
-   while(t--)
-   {
-      ll a,b,c;
-      cin>>a>>b>>c;
-      
-      dl x = c*1.0/b*1.0;
-      if(a>=c && a>x)cout<<"-1 "<<b<<endl;
-      else if(a<c && a<=x) cout<<"1 -1"<<endl;
-      else if(a<c && a>x)cout<<1<<" "<<b<<endl;
-   }
+   
+      int arr[31][31];
+      int t;
 
+      cin>>t;
+      for(int a=1; a<=t;a++)
+      {
+         memset(arr,0,sizeof(arr));
+         int n,m,k;
+         cin>>n>>m>>k;
+         for(int i=0; i<n; i++)
+         {
+            for(int j=0; j<k; j++)
+            {
+               cin>>arr[i][j];
+            }
+         }
+
+         vector<int>vec;
+
+         int pt, query;
+         cin>>pt;
+         while(pt--)
+         {
+            cin>>query;
+            vec.pb(query);
+         }
+
+         bool ok = true;
+         for(int i=0; i<n; i++)
+         {
+            for(int j=0; j<k; j++)
+            {
+               if(arr[i][j]<0)
+               {
+                  for(int x=0; x<vec.size();x++)
+                  {
+                     if(arr[i][j] == vec[x]*-1)ok = false;
+                     else {ok = true;break;}
+                  }  
+               }
+               else
+               {
+                  for(int x=0; x<vec.size();x++)
+                  {
+                     if(arr[i][j] != vec[x])ok = false;
+                     else {ok = true;break;}
+                  }  
+               }
+            }
+            if(!ok)break;
+         }
+         if(!ok)cout<<"Case "<<a<<": No"<<endl;
+         else cout<<"Case "<<a<<": Yes"<<endl;
+
+      }
+
+   
        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

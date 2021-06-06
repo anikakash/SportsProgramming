@@ -1,4 +1,13 @@
--1 10
-1 -1
-1 2
--1 1000000000
+1 Pos
+
+-2 Neg
+
+Case 1: Yes
+1 Pos
+
+-2 Neg
+
+Case 2: Yes
+1 Pos
+
+Case 3: Yes
