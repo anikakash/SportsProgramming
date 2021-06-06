@@ -79,60 +79,13 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
    
-      int arr[31][31];
-      int t;
-
-      cin>>t;
-      for(int a=1; a<=t;a++)
+      int x1, x2, y1, y2;
+      while(cin>>x1>>y1>>x2>>y2 && x1!=0 && x2!=0 && y1!=0 && y2!=0)
       {
-         memset(arr,0,sizeof(arr));
-         int n,m,k;
-         cin>>n>>m>>k;
-         for(int i=0; i<n; i++)
-         {
-            for(int j=0; j<k; j++)
-            {
-               cin>>arr[i][j];
-            }
-         }
-
-         vector<int>vec;
-
-         int pt, query;
-         cin>>pt;
-         while(pt--)
-         {
-            cin>>query;
-            vec.pb(query);
-         }
-
-         bool ok = true;
-         for(int i=0; i<n; i++)
-         {
-            for(int j=0; j<k; j++)
-            {
-               if(arr[i][j]<0)
-               {
-                  for(int x=0; x<vec.size();x++)
-                  {
-                     if(arr[i][j] == vec[x]*-1)ok = false;
-                     else {ok = true;break;}
-                  }  
-               }
-               else
-               {
-                  for(int x=0; x<vec.size();x++)
-                  {
-                     if(arr[i][j] != vec[x])ok = false;
-                     else {ok = true;break;}
-                  }  
-               }
-            }
-            if(!ok)break;
-         }
-         if(!ok)cout<<"Case "<<a<<": No"<<endl;
-         else cout<<"Case "<<a<<": Yes"<<endl;
-
+         if(x1 == x2 && y1 == y2)cout<<0<<endl;
+         else if((x1 == x2) || (y1==y2))cout<<1<<endl;
+         else if(abs(x1-x2) == abs(y1-y2))cout<<1<<endl;
+         else cout<<2<<endl;
       }
 
    
