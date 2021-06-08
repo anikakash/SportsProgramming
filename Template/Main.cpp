@@ -22,7 +22,7 @@ using namespace    std;
 // #define lcm(a, b)            ((a)*((b)/gcd(a,b)))
 #define pb                      push_back
 #define mx                      10000007
-
+#define EPS                     1e-9
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
@@ -31,44 +31,6 @@ typedef unsigned long long      ul;
 template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
-
-void firstthree(ll n, ll m)
-{
-  dl x = m*log10(n);
-  x = x - (ll)x;
-  dl ans = pow(10,x);
-  int res = ans*100;
-
-  cout<<res<<"...";
-
-}
-vector<ll>arr;
-int BinarySrc(ll low, ll high, ll key)
-{
-    ll index;
-    while(low<=high)
-    {
-       ll mid = low + (high-low)/2; //if work with indx;
-       //int 
-        if(arr[mid]<key)
-        {
-            low = mid+1;
-        }
-        else if(arr[mid]>key)
-        {
-            high = mid-1;
-        }
-        else
-        {
-             index = mid;
-             high = mid-1;
-            
-        } 
-    }
-    //index = -1; 
-    if(arr[index]==key)return index;
-    else return -1;
-}
 
 
 int main()
@@ -79,15 +41,31 @@ int main()
         freopen("out.txt","w",stdout);
    #endif
    
-      int x1, x2, y1, y2;
-      while(cin>>x1>>y1>>x2>>y2 && x1!=0 && x2!=0 && y1!=0 && y2!=0)
+      ll t;
+      scanf("%lld",&t);
+      for(ll x=1; x<=t; x++)
       {
-         if(x1 == x2 && y1 == y2)cout<<0<<endl;
-         else if((x1 == x2) || (y1==y2))cout<<1<<endl;
-         else if(abs(x1-x2) == abs(y1-y2))cout<<1<<endl;
-         else cout<<2<<endl;
-      }
+         ll n,q;
+         vector<int>arr;
+         scanf("%lld %lld",&n,&q);
+         for(ll i=0; i<n; i++)
+         {
+            ll x;
+            scanf("%lld",&x);
+            arr.pb(x);
+         }
 
+         printf("Case %lld:\n",x);
+         while(q--)
+         {
+            ll a,b, cnt=0;
+            scanf("%lld %lld",&a,&b);
+            ll lb = lower_bound(arr.begin(), arr.end(),a)-arr.begin();
+            ll ub = upper_bound(arr.begin(), arr.end(),b)-arr.begin();
+            printf("%lld\n",ub-lb);
+         }
+
+      }
    
        
    #ifdef anikakash
