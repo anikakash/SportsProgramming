@@ -18,8 +18,6 @@ using namespace    std;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define dpoint(x)               fixed<<setprecision(x)
 #define debug(x)                cout<<x<<endl;
-// #define gcd(a, b)            __gcd(a, b)
-// #define lcm(a, b)            ((a)*((b)/gcd(a,b)))
 #define pb                      push_back
 #define mx                      10000007
 #define EPS                     1e-9
@@ -66,8 +64,6 @@ int main()
          }
 
       }
-   
-       
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
