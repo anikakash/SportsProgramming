@@ -2,25 +2,21 @@
 using namespace    std;
 
 #define pb                      push_back
-
+#define EPS                     1e-9
 typedef long long int           ll;
 typedef double                  dl;
 
-vector<int>arr; //declear the vector globally for easy access;
-int upperBound(int key)
+
+double biset_method()
 {
-   int l=0, r = arr.size()-1, ans=-1;
-   while(l<=r)
+   double right=1, left=0;
+   while(left+EPS <right)    //ESP for handel precision error handel;
    {
-      int mid = l+(r-l)/2;
-      if(arr[mid]>key)
-      {
-         ans = mid;
-         r = mid-1;
-      }
-      else l = mid+1;
+      double x = (left+right)/2;
+      if(fun(left) * fun(x) <=0)right = x;
+      else left = x;
    }
-   return ans;
+   return (left+right)/2;
 }
 
 
@@ -31,21 +27,7 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("out.txt","w",stdout);
    #endif
-       int n,key;
-        cin>>n>>key; //vector length and search key;
-        while(n--)
-        {
-            int x;
-            cin>>x;
-            arr.pb(x);
-        }
-
-        sort(arr.begin(), arr.end()); //B.Search works only on sorted array;
-        
-        int tmp = upperBound(key);
-
-        if(tmp==-1)cout<<"NOT Found The Value"<<endl;
-        else cout<<"Found The lowerBound of "<<key<<" : is "<<tmp<<endl; // 0 base indexing;
+       
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
