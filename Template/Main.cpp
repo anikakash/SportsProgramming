@@ -30,30 +30,30 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-vector<int>arr;
 
+vector<ll>arr; //declear the vector globally for easy access;
 ll upperBound(ll key)
 {
-   ll l=0, r = arr.size()-1, ans=-1;
+   ll l=0, r = arr.size()-1, ans=arr.size();
    while(l<=r)
    {
       ll mid = l+(r-l)/2;
-      if(arr[mid]<=key)
+      if(arr[mid]>key)
       {
          ans = mid;
-         l = mid+1;
+         r = mid-1;
       }
-      else r = mid-1;
+      else l = mid+1;
    }
    return ans;
 }
 
-int lowerBound(int key)
+ll lowerBound(ll key)
 {
-   int l=0, r = arr.size()-1, ans=-1;
+   ll l=0, r = arr.size()-1, ans=arr.size();
    while(l<=r)
    {
-      int mid = l+(r-l)/2;
+      ll mid = l+(r-l)/2;
       if(arr[mid]>=key)
       {
          ans = mid;
@@ -64,38 +64,42 @@ int lowerBound(int key)
    return ans;
 }
 
+
 int main()
 {
    #ifdef anikakash
         clock_t tStart = clock();
         freopen("input.txt","r",stdin);
-        freopen("out.txt","w",stdout);
+        freopen("ot.txt","w",stdout);
    #endif
-   
-      ll t;
-      scanf("%lld",&t);
-      for(ll x=1; x<=t; x++)
-      {
-         ll n,q;
-         scanf("%lld %lld",&n,&q);
-         for(ll i=0; i<n; i++)
+        
+         int t;
+         scanf("%d",&t);
+         for(int c=1; c<=t; c++)
          {
-            ll x;
-            scanf("%lld",&x);
-            arr.pb(x);
+            ll n,q;
+            scanf("%lld %lld",&n,&q);
+            for(ll i=0; i<n; i++)
+            {
+               ll x;
+               scanf("%lld",&x);
+               arr.pb(x);
+            }
+            printf("Case %d:\n",c);
+            while(q--)
+            {
+               ll a,b, cnt=0;
+               scanf("%lld %lld",&a,&b);
+               ll lb = lowerBound(a);
+               ll ub = upperBound(b);
+               //printf("%lld\n",ub-lb);
+               cout<<lb <<" "<<ub<<endl;
+            }
+            arr.clear();
          }
+         
 
-         printf("Case %lld:\n",x);
-         while(q--)
-         {
-            ll a,b, cnt=0;
-            scanf("%lld %lld",&a,&b);
-            ll lb = lowerBound(a);
-            ll ub = upperBound(b);
-            printf("%lld\n",(ub-lb));
-         }
-
-      }
+      
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif

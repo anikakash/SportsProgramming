@@ -9,26 +9,29 @@ typedef double                  dl;
 vector<int>arr; //declear the vector globally for easy access;
 ll upperBound(ll key)
 {
-   ll l=0, r = arr.size()-1, ans=-1;
+   ll l=0, r = arr.size()-1, ans=arr.size();  
    while(l<=r)
    {
       ll mid = l+(r-l)/2;
-      if(arr[mid]<=key)
+      if(arr[mid]>key)
       {
          ans = mid;
-         l = mid+1;
+         r = mid-1;
       }
-      else r = mid-1;
+      else l = mid+1;
    }
    return ans;
 }
-
-int lowerBound(int key)
+/*
+   return the next index of key 
+   OR, if it is not in array then retrun -1 or size;
+*/
+ll lowerBound(ll key)
 {
-   int l=0, r = arr.size()-1, ans=-1;
+   ll l=0, r = arr.size()-1, ans=arr.size();
    while(l<=r)
    {
-      int mid = l+(r-l)/2;
+      ll mid = l+(r-l)/2;
       if(arr[mid]>=key)
       {
          ans = mid;
@@ -38,6 +41,12 @@ int lowerBound(int key)
    }
    return ans;
 }
+/*
+return the kay index if it is aviable there. 
+OR, if the the key is not present then return the next big number index;
+OR, if the key is of out array the return -1 or the size of arry cause every thing is between the key.
+the stl lowerBound also work like this;
+*/
 
 int main()
 {
