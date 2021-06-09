@@ -12,7 +12,7 @@ int BinarySrc(int key)
    int l=0, r = arr.size()-1;
    while(l<=r)
    {
-      int mid = l+(r-l)/2;             // over flow chnace if use (l+r)/2;
+      int mid = l+(r-l)/2;             // over flow chance if use (l+r)/2;
       if(arr[mid]==key) return mid;   // return the key index;
       if(arr[mid]<key) l = mid+1;    //update the left range cause our search value up to arr[mid]
       else r = mid-1;               //update the right range cause our search value down to arr[mid]
