@@ -46,21 +46,7 @@ int main()
         freopen("input.txt","r",stdin);
         freopen("out.txt","w",stdout);
    #endif
-       int n,key;
-        cin>>n>>key; //vector length and search key;
-        while(n--)
-        {
-            int x;
-            cin>>x;
-            arr.pb(x);
-        }
-
-        sort(arr.begin(), arr.end()); //B.Search works only on sorted array;
-        
-        int tmp = upperBound(key);
-
-        if(tmp==-1)cout<<"NOT Found The Value"<<endl;
-        else cout<<"Found The lowerBound of "<<key<<" : is "<<tmp<<endl; // 0 base indexing;
+       
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
