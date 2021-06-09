@@ -30,6 +30,39 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+vector<int>arr;
+
+ll upperBound(ll key)
+{
+   ll l=0, r = arr.size()-1, ans=-1;
+   while(l<=r)
+   {
+      ll mid = l+(r-l)/2;
+      if(arr[mid]<=key)
+      {
+         ans = mid;
+         l = mid+1;
+      }
+      else r = mid-1;
+   }
+   return ans;
+}
+
+int lowerBound(int key)
+{
+   int l=0, r = arr.size()-1, ans=-1;
+   while(l<=r)
+   {
+      int mid = l+(r-l)/2;
+      if(arr[mid]>=key)
+      {
+         ans = mid;
+         r = mid-1;
+      }
+      else l = mid+1;
+   }
+   return ans;
+}
 
 int main()
 {
@@ -44,7 +77,6 @@ int main()
       for(ll x=1; x<=t; x++)
       {
          ll n,q;
-         vector<int>arr;
          scanf("%lld %lld",&n,&q);
          for(ll i=0; i<n; i++)
          {
@@ -58,9 +90,9 @@ int main()
          {
             ll a,b, cnt=0;
             scanf("%lld %lld",&a,&b);
-            ll lb = lower_bound(arr.begin(), arr.end(),a)-arr.begin();
-            ll ub = upper_bound(arr.begin(), arr.end(),b)-arr.begin();
-            printf("%lld\n",ub-lb);
+            ll lb = lowerBound(a);
+            ll ub = upperBound(b);
+            printf("%lld\n",(ub-lb));
          }
 
       }

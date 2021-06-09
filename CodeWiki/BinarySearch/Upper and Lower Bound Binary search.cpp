@@ -7,18 +7,18 @@ typedef long long int           ll;
 typedef double                  dl;
 
 vector<int>arr; //declear the vector globally for easy access;
-int upperBound(int key)
+ll upperBound(ll key)
 {
-   int l=0, r = arr.size()-1, ans=-1;
+   ll l=0, r = arr.size()-1, ans=-1;
    while(l<=r)
    {
-      int mid = l+(r-l)/2;
-      if(arr[mid]>key)
+      ll mid = l+(r-l)/2;
+      if(arr[mid]<=key)
       {
          ans = mid;
-         r = mid-1;
+         l = mid+1;
       }
-      else l = mid+1;
+      else r = mid-1;
    }
    return ans;
 }
