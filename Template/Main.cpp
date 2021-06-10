@@ -31,40 +31,6 @@ int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
 
-vector<ll>arr; //declear the vector globally for easy access;
-ll upperBound(ll key)
-{
-   ll l=0, r = arr.size()-1, ans=arr.size();
-   while(l<=r)
-   {
-      ll mid = l+(r-l)/2;
-      if(arr[mid]>key)
-      {
-         ans = mid;
-         r = mid-1;
-      }
-      else l = mid+1;
-   }
-   return ans;
-}
-
-ll lowerBound(ll key)
-{
-   ll l=0, r = arr.size()-1, ans=arr.size();
-   while(l<=r)
-   {
-      ll mid = l+(r-l)/2;
-      if(arr[mid]>=key)
-      {
-         ans = mid;
-         r = mid-1;
-      }
-      else l = mid+1;
-   }
-   return ans;
-}
-
-
 int main()
 {
    #ifdef anikakash
@@ -73,32 +39,72 @@ int main()
         freopen("ot.txt","w",stdout);
    #endif
         
-         int t;
-         scanf("%d",&t);
-         for(int c=1; c<=t; c++)
+      int arr[31][31];
+      int t;
+
+      cin>>t;
+      for(int a=1; a<=t;a++)
+      {
+         memset(arr,0,sizeof(arr));
+         int n,m,k;
+         cin>>n>>m>>k;
+         for(int i=0; i<n; i++)
          {
-            ll n,q;
-            scanf("%lld %lld",&n,&q);
-            for(ll i=0; i<n; i++)
+            for(int j=0; j<k; j++)
             {
-               ll x;
-               scanf("%lld",&x);
-               arr.pb(x);
+               cin>>arr[i][j];
             }
-            printf("Case %d:\n",c);
-            while(q--)
+         }
+
+         vector<int>vec;
+
+         int pt, query;
+         cin>>pt;
+         while(pt--)
+         {
+            cin>>query;
+            vec.pb(query);
+         }
+
+         int cnt=0;
+         for(int i=0; i<n; i++)
+         {
+            for(int j=0; j<k; j++)
             {
-               ll a,b, cnt=0;
-               scanf("%lld %lld",&a,&b);
-               ll lb = lowerBound(a);
-               ll ub = upperBound(b);
-               //printf("%lld\n",ub-lb);
-               cout<<lb <<" "<<ub<<endl;
+               int tmp = arr[i][j];
+               int ok = 0, flg = 0;
+               if(tmp>0)
+               {
+                  for(int c=0; c<vec.size(); c++)
+                  {
+                     if(tmp==vec[c])
+                     {  
+                        ok=1;
+                        break;
+                     }
+                  }
+               }
+               else
+               {
+                  for(int c=0; c<vec.size(); c++)
+                  {
+                     if(tmp==vec[c]*-1)
+                     {  
+                        flg=1;
+                        break;
+                     }
+                  }
+
+               }
+               if(flg ==1 || ok ==1) break;
             }
-            arr.clear();
+
          }
          
+         if(cnt==n)cout<<"Case "<<a<<": No"<<endl;
+         else cout<<"Case "<<a<<": Yes"<<endl;
 
+      }
       
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
