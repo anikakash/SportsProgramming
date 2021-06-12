@@ -46,6 +46,7 @@ int main()
          int x;
          cin>x;
          vec.pb(x);
+         
       }
       sort(vec.begin(), vec.end());
       int lo = 0, hi = t;
