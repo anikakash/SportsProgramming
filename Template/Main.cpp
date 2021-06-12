@@ -19,7 +19,14 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-
+ int t;
+ dl fun(int mid)
+ {
+   dl ans = 0.0;
+      for(int i=1; i<=t; i++)
+         ans+= vce[i]/pow((1+mid),i);
+      return ans-vec[0];
+ }
 int main()
 {
    #ifdef anikakash
@@ -28,63 +35,26 @@ int main()
         freopen("ot.txt","w",stdout);
    #endif
         
-   int arr[31][31];
-      int t;
-      cin>>t;
-      for(int a=1; a<=t;a++)
+  
+   cin>>t;
+   for(int i=1; i<=t; i++)
+   {
+      int x = t+1;
+      vector<int>vec;
+      while(x--)
       {
-         memset(arr,0,sizeof(arr));
-         int n,m,k;
-         cin>>n>>m>>k;
-            for(int i=0; i<n; i++)
-            {
-               for(int j=0; j<k; j++)
-               {
-                  cin>>arr[i][j];
-               }
-            }
-
-            vector<int>vec;
-
-            int pt;
-            cin>>pt;
-            while(pt--)
-            {
-               int query;
-               cin>>query;
-               vec.pb(query);
-            }
-            int cnt=0;
-           for(int i=0; i<n; i++)
-           {
-               int wish=0;
-               for(int j=0; j<k; j++)
-               {
-                     int tmp = arr[i][j];
-                     int ok=0, ok2=0;
-                     if(tmp<0)
-                     {
-                        for(int x=0; x<vec.size(); x++)
-                        {
-                           if(abs(tmp)==vec[x])ok=1;
-                        }
-                     }
-                     else{
-                        for(int x=0; x<vec.size(); x++)
-                        {
-                           if(tmp==vec[x])ok2=1;
-                        }
-                     }
-
-                     if(tmp<0 && ok==0){wish=1;break;}
-                     if(tmp>0 && ok2==1){wish=1;break;}
-               }
-               if(wish==1)cnt++;
-           }
-         if(cnt!=n)cout<<"Case "<<a<<": No"<<endl;
-         else cout<<"Case "<<a<<": Yes"<<endl;
+         int x;
+         cin>x;
+         vec.pb(x);
+      }
+      sort(vec.begin(), vec.end());
+      int lo = 0, hi = t;
+      while(vec[lo]+EPS < vec[hi])
+      {
+         int mid = vec[lo]+(vec[hi]-vec[lo])/2;
 
       }
+   }
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
