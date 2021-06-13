@@ -9,7 +9,7 @@ using namespace    std;
 #define debug(x)                cout<<x<<endl;
 #define pb                      push_back
 #define mx                      10000007
-#define EPS                     1e-9
+#define EPS                     1e-10
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
@@ -34,22 +34,26 @@ int main()
 {
    #ifdef anikakash
         clock_t tStart = clock();
-        freopen("in.txt","r",stdin);
-        freopen("ot.txt","w",stdout);
+        freopen("input.txt","r",stdin);
+        freopen("ans.txt","w",stdout);
    #endif
         
-  while(scanf("%lf %lf %lf",&x, &y, &c)!=EOF)
-        {
-            dl lo = 0.0, hi = max(x,y), mid, tmp;
-           while(hi - lo >EPS)
-            {
-               mid = lo+(hi-lo)/2.0;
-               tmp = rang(mid);
-               if(tmp>c)lo = mid;
-               else hi = mid;
-            }
-            printf("%.3lf\n",mid);
-        }
+  
+    int test;
+    scanf("%d",&test);
+    for(int caseno = 1; caseno<=test; caseno++)
+    {
+         scanf("%lf %lf %lf",&x, &y, &c);
+         dl lo = 0.0, hi = max(x,y), mid, tmp;
+        while(hi - lo >EPS)
+         {
+            mid = lo+(hi-lo)/2.0;
+            tmp = rang(mid);
+            if(tmp>c)lo = mid;
+            else hi = mid;
+         }
+         printf("Case %d: %0.10lf\n",caseno,mid);
+    }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
@@ -57,4 +61,3 @@ int main()
 
     return 0;
 }
-
