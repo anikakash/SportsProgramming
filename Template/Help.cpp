@@ -1,14 +1,3 @@
-//              _   _                
-//   __ _ _   _| |_| |__   ___  _ __ 
-//  / _` | | | | __| '_ \ / _ \| '__|
-// | (_| | |_| | |_| | | | (_) | |   
-//  \__,_|\__,_|\__|_| |_|\___/|_|   
-//              _ _            _             _     
-//   __ _ _ __ (_) | __   __ _| | ____ _ ___| |__  
-//  / _` | '_ \| | |/ /  / _` | |/ / _` / __| '_ \ 
-// | (_| | | | | |   <  | (_| |   < (_| \__ \ | | |
-//  \__,_|_| |_|_|_|\_\  \__,_|_|\_\__,_|___/_| |_|
-
 #include<bits/stdc++.h>
 using namespace    std;
 
@@ -18,8 +7,6 @@ using namespace    std;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define dpoint(x)               fixed<<setprecision(x)
 #define debug(x)                cout<<x<<endl;
-// #define gcd(a, b)            __gcd(a, b)
-// #define lcm(a, b)            ((a)*((b)/gcd(a,b)))
 #define pb                      push_back
 #define mx                      10000007
 #define EPS                     1e-9
@@ -32,57 +19,56 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+ int t;
+ vector<int>vec;
 
-void firstthree(ll n, ll m)
-{
-  dl x = m*log10(n);
-  x = x - (ll)x;
-  dl ans = pow(10,x);
-  int res = ans*100;
+ dl NPV(dl mid)
+ {
+   dl ans = vec[0];
+      for(int i=1; i<=t; i++)
+         ans+= vec[i]/pow((1+mid),i);
+      //ans+=vec[0];
+      return ans;
+ }
 
-  cout<<res<<"...";
-
-}
-
-ll sum(ll mid)
-{
-    return mid*(mid+1)/2;
-}
-
-ll binary_src(ll x)
-{
-    ll mid = x;
-    while(1)
-    {
-          mid/=2;
-        if(sum(mid) > x)mid--;
-        else if(sum(mid) <x) mid++;
-        else if(sum(mid) == x) return mid;
-    }
-}
- 
-vector<int>arr;
 int main()
 {
    #ifdef anikakash
         clock_t tStart = clock();
         freopen("input.txt","r",stdin);
-        freopen("out.txt","w",stdout);
+        freopen("ot.txt","w",stdout);
    #endif
-   
-        ll t;
-        scanf("%lld",&t);
-        while(t--)
-        {
-            ll n;
-            scanf("%lld",&n);
-            printf("%lld\n",binary_src(n));
+        
+  
+    while(cin>>t && t!=0)
+    {
+         int x = t+1;
+         while(x--)
+         {
+            int x;
+            cin>>x;
+            vec.pb(x);
 
-        }
+         }
+
+         int lo = vec[0], hi = vec[t];
+         
+         dl mid, ans, IRR=0.0;
+         
+         while(lo+EPS<=hi)
+         {
+            mid = lo+(hi-lo)/2.0;
+            ans = NPV(mid);
+            
+         }
+
+        cout<<dpoint(2)<<IRR<<endl;
+    }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
+
     return 0;
 }
- 
+

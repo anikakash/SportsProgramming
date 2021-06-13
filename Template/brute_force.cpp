@@ -26,16 +26,15 @@ dl x, y, c;
    dl la = sqrt((x*x)-(mid*mid));
    dl lb = sqrt((y*y)-(mid*mid));
 
-   return (la*lb)/(la+lb); // 1/c = 1/la + 1/lb;
-
+   return (1/lb)+(1/lb);
  }
 
 int main()
 {
    #ifdef anikakash
         clock_t tStart = clock();
-        freopen("input.txt","r",stdin);
-        freopen("ans.txt","w",stdout);
+        freopen("bruteInput.txt","r",stdin);
+        freopen("bruteOut.txt","w",stdout);
    #endif
         
   
@@ -44,17 +43,28 @@ int main()
     for(int caseno = 1; caseno<=test; caseno++)
     {
          scanf("%lf %lf %lf",&x, &y, &c);
-         dl lo = 0.0, hi = max(x,y), mid, tmp;
-
-         while(lo<=hi)
-         {
-            mid = lo+(hi-lo)/2.0;
-            tmp = rang(mid);
-            if(tmp>=c)lo = mid;
-            else hi = mid;
-         }
-         printf("Case %d: %0.10lf\n",caseno,lo);
+         dl lo = min(x,y), hi = max(x,y), mid, ans;
+         // while(lo<=hi)
+         // {
+         //    mid = lo+(hi-lo)/2.0;
+         //    if(rang(mid)<=c)
+         //    {
+         //       ans = mid;
+         //       hi = mid;
+         //    }
+         //    else lo = mid;
+         // }
+         // printf("Case %d: %0.10lf\n",caseno,ans);
+         int t;
+         cin>>t;
+         while(t--)
+            {
+               int x;
+               cin>>x;
+               cout<<rang(x)<<endl;
+            }
     }
+
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
