@@ -54,7 +54,7 @@ int main()
    {
       cin>>n>>m;
        int total=0;
-      for(int i=0; i<n; i++)
+      for(int i=0; i<n; i++) 
       {
          int x;
          cin>>x;
