@@ -6,10 +6,11 @@ using namespace    std;
 #define NL                      cout<<endl;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define dpoint(x)               fixed<<setprecision(x)
-#define debug(x)                cout<<x<<endl;
+#define debug1(a)                cout<<" "<<a<<" = ";
+#define debug2(b)                cout<<b<<endl;
 #define pb                      push_back
 #define mx                      10000007
-#define EPS                     1e-9
+#define EPS                     1e-10
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
@@ -19,17 +20,27 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+//----------------------------Global Variable----------------------------------------//
 
-dl x, y, c;
- dl rang(dl mid)
- {
-   dl la = sqrt((x*x)-(mid*mid));
-   dl lb = sqrt((y*y)-(mid*mid));
+int n,m;
+vector<int>arr;
+//-----------------------------------Functions--------------------------------------//
 
-   return (la*lb)/(la+lb); // 1/c = 1/la + 1/lb;
+bool check(int maxsize)
+{
+   int sum = 0, cnt=0;
+   for(int i=0; i<n; i++)
+   {
+      if(arr[i]>maxsize)return false;
+      if(arr[i] + sum>maxsize) sum=0;
+      if(sum==0)cnt++;
+      sum+=arr[i];
+      if(cnt>m)return false;
+   }
+   return true;
+}
 
- }
-
+//------------------------------------MAIN FUNCTION-------------------------------//
 int main()
 {
    #ifdef anikakash
@@ -37,20 +48,36 @@ int main()
         freopen("in.txt","r",stdin);
         freopen("ot.txt","w",stdout);
    #endif
-        
-  while(scanf("%lf %lf %lf",&x, &y, &c)!=EOF)
-        {
-            dl lo = 0.0, hi = max(x,y), mid, tmp;
-           while(hi - lo >EPS)
-            {
-               mid = lo+(hi-lo)/2.0;
-               tmp = rang(mid);
-               if(tmp>c)lo = mid;
-               else hi = mid;
-            }
-            printf("%.3lf\n",mid);
-        }
-
+        int t;
+        cin>>t;
+   for(int caseno=1; caseno<=t; caseno++)
+   {
+      cin>>n>>m;
+       int total=0;
+      for(int i=0; i<n; i++)
+      {
+         int x;
+         cin>>x;
+         arr.pb(x);
+         total+=x;
+      }
+   //   debug1("total");
+     // debug2(total);
+      int lo = 1, hi = total, mid, ans=0;
+      while(lo<=hi)
+      {
+         mid = lo+(hi-lo)/2;
+       //  debug1("MID");
+        // debug2(mid);
+        // debug1("Checker");
+        // debug2(check(mid));
+         if(check(mid)){ans = mid;hi=mid-1;}
+         else lo = mid+1;
+      }
+     // debug1("Answer is");
+      cout<<"Case "<<caseno<<": "<<ans<<endl;
+      arr.clear();
+   }
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif

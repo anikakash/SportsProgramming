@@ -9,7 +9,7 @@ using namespace    std;
 #define debug(x)                cout<<x<<endl;
 #define pb                      push_back
 #define mx                      10000007
-#define EPS                     1e-9
+#define EPS                     1e-10
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
@@ -19,51 +19,69 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
- int t;
- vector<int>vec;
 
- dl NPV(dl mid)
- {
-   dl ans = vec[0];
-      for(int i=1; i<=t; i++)
-         ans+= vec[i]/pow((1+mid),i);
-      //ans+=vec[0];
-      return ans;
- }
-
+vector<int>arr; //declear the vector globally for easy access;
+ll upperBound(ll key)
+{
+   ll l=0, r = arr.size()-1, ans=arr.size();  
+   while(l<=r)
+   {
+      ll mid = l+(r-l)/2;
+      if(arr[mid]>key)
+      {
+         ans = mid;
+         r = mid-1;
+      }
+      else l = mid+1;
+   }
+   return ans;
+}
+/*
+   return the next index of key 
+   OR, if it is not in array then retrun -1 or size;
+*/
+ll lowerBound(ll key)
+{
+   ll l=0, r = arr.size()-1, ans=arr.size();
+   while(l<=r)
+   {
+      ll mid = l+(r-l)/2;
+      if(arr[mid]>=key)
+      {
+         ans = mid;
+         r = mid-1;
+      }
+      else l = mid+1;
+   }
+   return ans;
+}
 int main()
 {
    #ifdef anikakash
         clock_t tStart = clock();
-        freopen("input.txt","r",stdin);
+        freopen("in.txt","r",stdin);
         freopen("ot.txt","w",stdout);
    #endif
         
-  
-    while(cin>>t && t!=0)
-    {
-         int x = t+1;
-         while(x--)
-         {
-            int x;
-            cin>>x;
-            vec.pb(x);
+  int n;
+  cin>>n;
+  for(int i=0; i<n; i++)
+  {
+      int x;
+      cin>>x;
+      arr.pb(x);
+  }
+  sort(arr.begin(), arr.end());
+  int key;
+  cin>>key;
+  int lo = lowerBound(key);
+  int up = upperBound(key);
 
-         }
-
-         int lo = vec[0], hi = vec[t];
-         
-         dl mid, ans, IRR=0.0;
-         
-         while(lo+EPS<=hi)
-         {
-            mid = lo+(hi-lo)/2.0;
-            ans = NPV(mid);
-            
-         }
-
-        cout<<dpoint(2)<<IRR<<endl;
-    }
+  cout<<lo<<" "<<up<<endl;
+  for(int i=0; i<n; i++)
+  {
+      cout<<arr[i]<<" ";
+  }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
@@ -71,4 +89,3 @@ int main()
 
     return 0;
 }
-

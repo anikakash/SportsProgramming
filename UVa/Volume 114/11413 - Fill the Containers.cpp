@@ -6,7 +6,8 @@ using namespace    std;
 #define NL                      cout<<endl;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define dpoint(x)               fixed<<setprecision(x)
-#define debug(x)                cout<<x<<endl;
+#define debug1(a)                cout<<" "<<a<<" = ";
+#define debug2(b)                cout<<b<<endl;
 #define pb                      push_back
 #define mx                      10000007
 #define EPS                     1e-10
@@ -58,14 +59,22 @@ int main()
          arr.pb(x);
          total+=x;
       }
-      int lo = 0, hi = total, mid, ans=0;
+   //   debug1("total");
+     // debug2(total);
+      int lo = 1, hi = total, mid, ans=0;
       while(lo<=hi)
       {
          mid = lo+(hi-lo)/2;
+       //  debug1("MID");
+        // debug2(mid);
+        // debug1("Checker");
+        // debug2(check(mid));
          if(check(mid)){ans = mid;hi=mid-1;}
          else lo = mid+1;
       }
+     // debug1("Answer is");
       cout<<ans<<endl;
+      arr.clear();
    }
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
