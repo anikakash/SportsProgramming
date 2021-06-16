@@ -5,11 +5,12 @@ using namespace    std;
 #define fasterio                ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define NL                      cout<<endl;
 #define pi                      acos(-1.0) //3.1415926535897932384626
-#define dpoint(x)               fixed<<setprecision(x)
-#define debug(x)                cout<<x<<endl;
 #define pb                      push_back
 #define mx                      10000007
 #define EPS                     1e-10
+#define dpoint(x)               fixed<<setprecision(x)
+#define debug1(a)               cout<<" "<<a<<" = ";
+#define debug2(b)               cout<<b<<endl;
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
@@ -19,42 +20,23 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+//----------------------------Global Variable----------------------------------------//
 
-vector<int>arr; //declear the vector globally for easy access;
-ll upperBound(ll key)
-{
-   ll l=0, r = arr.size()-1, ans=arr.size();  
-   while(l<=r)
+
+vector<double>arr;
+
+//-----------------------------------Functions--------------------------------------//
+double fun(double mid){
+   dl sum=arr[0];
+   for(int i=1; i<arr.size(); i++)
    {
-      ll mid = l+(r-l)/2;
-      if(arr[mid]>key)
-      {
-         ans = mid;
-         r = mid-1;
-      }
-      else l = mid+1;
+      sum+=arr[i]/pow((1+mid),i);
    }
-   return ans;
+   return sum;
 }
-/*
-   return the next index of key 
-   OR, if it is not in array then retrun -1 or size;
-*/
-ll lowerBound(ll key)
-{
-   ll l=0, r = arr.size()-1, ans=arr.size();
-   while(l<=r)
-   {
-      ll mid = l+(r-l)/2;
-      if(arr[mid]>=key)
-      {
-         ans = mid;
-         r = mid-1;
-      }
-      else l = mid+1;
-   }
-   return ans;
-}
+
+
+//------------------------------------MAIN FUNCTION-------------------------------//
 int main()
 {
    #ifdef anikakash
@@ -62,26 +44,30 @@ int main()
         freopen("in.txt","r",stdin);
         freopen("ot.txt","w",stdout);
    #endif
-        
-  int n;
-  cin>>n;
-  for(int i=0; i<n; i++)
-  {
-      int x;
-      cin>>x;
-      arr.pb(x);
-  }
-  sort(arr.begin(), arr.end());
-  int key;
-  cin>>key;
-  int lo = lowerBound(key);
-  int up = upperBound(key);
+        int t;
+    while(cin>>t && t){
+        double l = -0.9,h = 0;
 
-  cout<<lo<<" "<<up<<endl;
-  for(int i=0; i<n; i++)
-  {
-      cout<<arr[i]<<" ";
-  }
+        arr.clear();
+        for(int i=0;i<=t;i++){
+            double x;
+            cin>>x;
+            arr.push_back(x);
+            h+=abs(x);
+        }
+       
+        while(l+EPS < h){
+            double x = l+(h-l)/2;
+            double k = fun(x);
+            if(k >= 0 && k <= EPS){
+                l = x;
+                break;
+            }
+            else if(k > EPS)l = x;
+            else if(k < 0)h = x;
+        }
+        printf("%.2lf\n",l);
+    }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
@@ -89,3 +75,4 @@ int main()
 
     return 0;
 }
+
