@@ -44,35 +44,10 @@ int main()
         freopen("in.txt","r",stdin);
         freopen("ot.txt","w",stdout);
    #endif
-        int t;
-    while(cin>>t && t){
-        double l = -0.9,h = 0;
-
-        arr.clear();
-        for(int i=0;i<=t;i++){
-            double x;
-            cin>>x;
-            arr.push_back(x);
-            h+=abs(x);
-        }
-       
-        while(l+EPS < h){
-            double x = l+(h-l)/2;
-            double k = fun(x);
-            if(k >= 0 && k <= EPS){
-                l = x;
-                break;
-            }
-            else if(k > EPS)l = x;
-            else if(k < 0)h = x;
-        }
-        printf("%.2lf\n",l);
-    }
-
+   
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
 
     return 0;
 }
-
