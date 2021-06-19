@@ -31,10 +31,10 @@ int isPrime(int n);
 
 int main()
 {
-//    #ifndef Brain_FUCK
-//         freopen("input.txt","r",stdin);
-//         freopen("out.txt","w",stdout);
-//    #endif
+   #ifdef anikakash
+        freopen("input.txt","r",stdin);
+        freopen("out.txt","w",stdout);
+   #endif
    int n;
    while(cin>>n)
    {

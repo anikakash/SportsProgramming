@@ -33,18 +33,13 @@ int main(){
             string s;
             vector<char>arr;
             cin>>s;
+            
             int n = s.size();
-           // if(s.size()==1)arr.pb(s[0]);
- 
-            for(int i=0; i<n; i++)
-            {
+
+            for(int i=0; i<n; i++){
                if(s[i]==s[i+1]) i++;
                else arr.pb(s[i]);
             }
-
-            // if(s[n-1]!=s[n-2])
-            //   arr.pb(s[n-1]);
-
            sort(arr.begin(), arr.end());
 
            
@@ -52,7 +47,7 @@ int main(){
                if(i==0)cout<<arr[0];
                if(i>0 && arr[i]!=arr[i-1])cout<<arr[i];
            }
-         NL;
+             NL;
          }
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
