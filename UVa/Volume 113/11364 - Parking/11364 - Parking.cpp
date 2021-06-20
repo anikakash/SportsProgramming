@@ -38,7 +38,6 @@ int main()
                 //for(int i=0; i<n; i++)cout<<arr[i]<<" ";
                 sort(arr.begin(), arr.end());
             cout<<2*(arr[arr.size()-1]-arr[0])<<endl;
-            
         }
         
     #ifdef EXTRA_8

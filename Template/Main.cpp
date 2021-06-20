@@ -18,6 +18,20 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
+void bubble_sort(ll list[], ll n)
+{
+    ll i,j,temp;
+    int count =0;
+    for(i=0; i<n;i++){
+        for(j=0; j<n-i-1; j++){
+            if(list[j]>list[j+1]){ // use < to sort in descending order//;
+                temp = list[j];
+                list[j] = list[j+1];
+                list[j+1] = temp;
+            }
+        }
+    }
+}
 
 int main(){
    #ifdef anikakash
@@ -25,14 +39,20 @@ int main(){
         freopen("in.txt","r",stdin);
         freopen("ot.txt","w",stdout);
    #endif
-        FASTERIO;
-        ll a,b,x,y;
-        cin>>a>>b>>x>>y;
-       ll cm = __gcd(x,y);
-       x/=cm;
-       y/=cm;
-       ll ans = min(floor(a/x),floor(b/y));
-       cout<<ans<<endl;
+        int t;
+        scanf("%d",&t);
+        for(int j=0; j<t; j++)
+        {
+            int n;
+            scanf("%d",&n);
+            ll arr[n+2]={0};
+               for(int i=0; i<n; i++)
+                  scanf("%d",&arr[i]);
+
+            bubble_sort(arr,n);
+
+            printf("%lld\n",2*(arr[n-1]-arr[0]));
+        }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
