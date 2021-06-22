@@ -26,7 +26,26 @@ int main(){
         freopen("output.txt","w",stdout);
    #endif
 
-       
+        int t;
+        while(cin>>t){
+
+         if(t==0)return 0;
+         int tmp = t, cnt=0;
+         vector<pair<int,int>> in;
+         vector<pair<int,int>> out;
+            while(t--){
+               int a, b;
+               cin>>a>>b;
+               in.pb(make_pair(a,b));
+               out.pb(make_pair(b,a));
+            }
+         sort(in.begin(), in.end());
+         sort(out.begin(), out.end());
+
+            if(in==out)cout<<"YES"<<endl;
+            else cout<<"NO"<<endl;
+
+        }
 
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
