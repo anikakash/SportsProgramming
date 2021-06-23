@@ -26,11 +26,29 @@ int main(){
         freopen("output.txt","w",stdout);
    #endif
 
-        ll n;
-        cin>>n;
-        for(ll i=1; i<=n; i++)
-         cout<<i<<" ";
-      NL;
+        int t;
+        cin>>t;
+        for(int caseno=1; caseno<=t; caseno++){
+            int n,k;
+            cin>>n>>k;
+            vector<int>arr;
+            arr.clear();
+
+            for(int i=0; i<n; i++){
+               int x;
+               cin>>x;
+               arr.pb(x);
+            }
+
+            sort(arr.begin(), arr.end());
+
+            int cnt=1;
+            for(int i=1; i<n; i++){
+               if(arr[i]-arr[i-1]<=k)continue;
+               else cnt++;
+            }
+            cout<<"Case #"<<caseno<<": "<<cnt<<endl;
+        }
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
