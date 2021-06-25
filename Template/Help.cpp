@@ -1,48 +1,43 @@
 #include<bits/stdc++.h>
 using namespace    std;
 
-long c, N;
-long A[N];
- 
-long P(long l, long r)
-{
-    long x=A[l], i=l-1, j=r+1, t;
-    while(1)
-    {
-        do{--j; ++c;}while(A[j]>x);
- 
-        do{++i; ++c;}while(A[i]<x);
- 
-        if(i<j){
-            t=A[i];
-            A[i]=A[j];
-            A[j]=t;
-        }
-        else return j;
+#define flush                   cin.ignore(numeric_limits<streamsize>::max(),'\n')
+#define FASTERIO                ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define NL                      cout<<endl;
+#define pi                      acos(-1.0) //3.1415926535897932384626
+#define pb                      push_back
+#define mx                      10000007
+#define EPS                     1e-10
+#define dpoint(x)               fixed<<setprecision(x)
+#define debug1(a)               cout<<" "<<a<<" = ";
+#define debug2(b)               cout<<b<<endl;
+typedef long long int           ll;
+typedef double                  dl;
+typedef unsigned long long      ul;
+template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
+int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
+int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
+
+vector<int> arr;
+void num(){
+    int x = 1;
+    for(int i=0; i<100; i++){
+        arr.pb(x);
+        x++;
     }
- }
- 
- void Q(long l, long r)
- {
-    long n;
-    if(l<r){
-        n=P(l,r);
-        Q(l,n);
-        Q(n+1,r);
-    }
- }
- 
-int main(void)
-{
-    c=0;
- 
-    for(long i=0; i<N; ++i) scanf("%ld", &A[i]);
- 
-    Q(0,N-1);
- 
-    if(c==(N*N+3*N-4)/2) printf("Beutiful Vasilisa");
- 
-    else printf("Immortal Koshcei");
- 
-    return 0;
- }
+}
+int main(){
+   #ifdef anikakash
+        clock_t tStart = clock();
+        freopen("in.txt","r",stdin);
+        freopen("output.txt","w",stdout);
+   #endif
+
+        for(int i=1; i<=1000000; i++)
+            cout<<i<<" ";
+        
+   #ifdef anikakash
+      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+   #endif
+   return 0;
+}

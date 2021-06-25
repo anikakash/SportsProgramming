@@ -25,12 +25,32 @@ int main(){
         freopen("in.txt","r",stdin);
         freopen("output.txt","w",stdout);
    #endif
+     
+        int t;
+        cin>>t;
+        while(t--){
+           int n;
+           cin>>n;
+           vector<int> arr;
+           while(n--){
+            int x;cin>>x;
+            arr.pb(x);
+           }
+           int cnt=0;
+           for(int i=0; i<arr.size(); i++){
+               for(int j=i; j<arr.size(); j++){
+                  if((arr[i]*arr[j])==((i+1)+(j+1))){
+                       // cout<<"arr["<<i<<"] arr["<<j<<"]"<<" ";
+                       // cout<<arr[i]<<" "<< arr[j]<<endl;
+                     cnt++;
+                     //if((arr[j]==arr[i])&&((arr[i]==arr[j])))cnt--;
+                  }
+               }
+           }
+           cout<<cnt<<endl;
+        }
 
-        ll n;
-        cin>>n;
-        for(ll i=1; i<=n; i++)
-         cout<<i<<" ";
-      NL;
+        
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
    #endif
