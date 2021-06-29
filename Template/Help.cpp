@@ -18,23 +18,58 @@ template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return s
 int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
-vector<int> arr;
-void num(){
-    int x = 1;
-    for(int i=0; i<100; i++){
-        arr.pb(x);
-        x++;
-    }
-}
+
 int main(){
    #ifdef anikakash
         clock_t tStart = clock();
         freopen("in.txt","r",stdin);
         freopen("output.txt","w",stdout);
    #endif
+     int t;
+        cin>>t;
+        for(int i=1; i<=t; i++)
+        {
+          vector<string>main,f;
+          main.push_back("http://www.lightoj.com/");
 
-        for(int i=1; i<=1000000; i++)
-            cout<<i<<" ";
+              string value; 
+              cout<<"Case "<<i<<":"<<endl;
+              while(cin>>value)
+              {
+                  if(value=="VISIT")
+                  {
+                    string url;
+                      cin>>url;
+                      cout<<url<<endl;
+                      main.push_back(url);
+                      f.clear();
+                  }
+                  else if(value=="BACK")
+                  {
+                      if(main.size()<=1)
+                        cout<<"Ignored"<<endl;
+
+                      else
+                      {
+                        f.push_back(main[main.size()-1]);
+                        main.pop_back();
+                        cout<<main[main.size()-1]<<endl;
+                      }
+                  }
+                  else if(value=="FORWARD")
+                  {
+                      if(f.size()==0)cout<<"Ignored"<<endl;
+                      else
+                      {
+                        cout<<f[f.size()-1]<<endl;
+                        main.push_back(f[f.size()-1]);
+                        f.pop_back();
+                      }
+                  }
+                  else break;
+                   
+              }
+        }
         
    #ifdef anikakash
       fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
