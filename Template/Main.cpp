@@ -20,29 +20,45 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
+vector<int>arr;
+int tmp=0;
 
+int BinaryToDecimal(){
+    int ln = arr.size();
+    int ans = 0;
+    for(int i=0; i<ln; i++){
+        ans+=arr[i]*(pow(2,i));
+    }
+    return ans;
+}
+void DecimalToBinary(int num){
+
+    while(num!=0){
+        int rem = num%2;
+        arr.pb(rem);
+        num/=2;
+    } 
+}
 
 int main(){
+   
   #ifdef anikakash
        clock_t tStart = clock();
-       freopen("in.txt","r",stdin);
-       freopen("output.txt","w",stdout);
+       freopen("INPUT.txt","r",stdin);
+       freopen("OUTPUT.txt","w",stdout);
   #endif
+    
+       int t;
+       cin>>t;
+       for(int caseno=1; caseno<=t; caseno++){
+            int n;
+            cin>>n;
+            DecimalToBinary(n);
+             next_permutation(arr.begin(), arr.end());
+            cout<<"Case "<<caseno<<": "<<BinaryToDecimal()<<endl;
+            arr.clear();
+       }
 
-     int t;
-     cin>>t;
-     for(int caseno=1; caseno<=t; caseno++){
-         int x, big = 0, tmp=0;
-         cin>>x;
-         tmp = x;
-         if(x>big)big = x;
-         while(tmp--){
-            cin>>x;
-            if(x>big)big = x;
-         }
-         cout<<"Case "<<caseno<<": "<<big<<endl;
-     }
-     
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
