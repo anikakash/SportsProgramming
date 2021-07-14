@@ -20,24 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-vector<int>arr;
-void DecimalToBinary(int num){
-
-   // int cnt=0, ans=0;
-    while(num!=0){
-        int rem = num%2;
-        arr.pb(rem);
-
-        /*
-          //if want to store whole Binary in a Number;
-          ans +=rem*(pow(10,cnt));
-          cnt++;
-        */
-
-        num/=2;
-    }
-    //return ans;
-}
 
 int main(){
    
@@ -46,9 +28,31 @@ int main(){
        freopen("INPUT.txt","r",stdin);
        freopen("OUTPUT.txt","w",stdout);
   #endif
-    string s;
-    cin>>s; 
-    
+   FASTERIO;
+  int t;
+  cin>>t;
+  while(t--){
+    int a, b, n;
+    cin>>n>>a>>b;
+    if(a==1){
+        if((n-1)%b==0)cout<<"Yes";
+        else cout<<"No";
+    }
+    else{
+        ll y=1;
+        bool flg = false;
+        while(y<=n){
+            if((n-y)%b==0){
+                cout<<"Yes";
+                flg = true;
+                break;
+            }
+            y*=a;
+        }
+        if(!flg)cout<<"No";
+    }
+    NL;
+  }
       
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

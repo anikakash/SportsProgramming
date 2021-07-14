@@ -20,40 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-vector<int>arr;
-int tmp=0;
-
-int BinaryToDecimal(){
-    int ln = arr.size();
-    int ans = 0;
-    for(int i=ln-1; i>=0; i--){
-        ans+=arr[i]*(pow(2,i));
-    }
-    return ans;
-}
-void DecimalToBinary(int num){
-
-    while(num!=0){
-        int rem = num%2;
-        arr.pb(rem);
-        num/=2;
-    } 
-}
-vector<ll>prime;
-bool vis[mx];  //mx is define in above of the code;
-void sieve() {
-    ll x=sqrt((int)mx);
-    for(ll i=3; i<=x; i+=2) {
-        if(vis[i]==0) {
-            for(ll j=i*i; j<mx; j+=2*i)
-                vis[j]=1;
-        }
-    }
-    prime.pb(2);
-    for(ll i=3; i<mx; i+=2)
-        if(vis[i]==0)
-            prime.pb(i);
-}
 
 int main(){
    
@@ -62,18 +28,32 @@ int main(){
        freopen("INPUT.txt","r",stdin);
        freopen("OUTPUT.txt","w",stdout);
   #endif
-    
-       int t;
-       cin>>t;
-       for(int caseno=1; caseno<=t; caseno++){
-            int n;
-            cin>>n;
-            DecimalToBinary(n);
-             next_permutation(arr.begin(), arr.end());
-           // cout<<"Case "<<caseno<<": "<<BinaryToDecimal()<<endl;
-            arr.clear();
-       }
-
+   FASTERIO;
+  int t;
+  cin>>t;
+  while(t--){
+    int a, b, n;
+    cin>>n>>a>>b;
+    if(a==1){
+        if((n-1)%b==0)cout<<"Yes";
+        else cout<<"No";
+    }
+    else{
+        ll y=1;
+        bool flg = false;
+        while(y<=n){
+            if((n-y)%b==0){
+                cout<<"Yes";
+                flg = true;
+                break;
+            }
+            y*=a;
+        }
+        if(!flg)cout<<"No";
+    }
+    NL;
+  }
+      
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
