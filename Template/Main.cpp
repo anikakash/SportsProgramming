@@ -39,21 +39,7 @@ void DecimalToBinary(int num){
         num/=2;
     } 
 }
-vector<ll>prime;
-bool vis[mx];  //mx is define in above of the code;
-void sieve() {
-    ll x=sqrt((int)mx);
-    for(ll i=3; i<=x; i+=2) {
-        if(vis[i]==0) {
-            for(ll j=i*i; j<mx; j+=2*i)
-                vis[j]=1;
-        }
-    }
-    prime.pb(2);
-    for(ll i=3; i<mx; i+=2)
-        if(vis[i]==0)
-            prime.pb(i);
-}
+
 
 int main(){
    
@@ -70,7 +56,7 @@ int main(){
             cin>>n;
             DecimalToBinary(n);
              next_permutation(arr.begin(), arr.end());
-           // cout<<"Case "<<caseno<<": "<<BinaryToDecimal()<<endl;
+           cout<<"Case "<<caseno<<": "<<BinaryToDecimal()<<endl;
             arr.clear();
        }
 

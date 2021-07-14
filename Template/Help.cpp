@@ -29,29 +29,20 @@ int main(){
        freopen("OUTPUT.txt","w",stdout);
   #endif
    FASTERIO;
+  
   int t;
-  cin>>t;
+  cin>>t; 
   while(t--){
-    int a, b, n;
-    cin>>n>>a>>b;
-    if(a==1){
-        if((n-1)%b==0)cout<<"Yes";
-        else cout<<"No";
+    int n;
+    cin>>n;
+    int x=1, cnt=0;
+    while(n-x>0){
+        n-=x;
+        x+=2;
+        cnt++;
     }
-    else{
-        ll y=1;
-        bool flg = false;
-        while(y<=n){
-            if((n-y)%b==0){
-                cout<<"Yes";
-                flg = true;
-                break;
-            }
-            y*=a;
-        }
-        if(!flg)cout<<"No";
-    }
-    NL;
+    if(n!=0)cnt++;
+    cout<<cnt<<endl;
   }
       
   #ifdef anikakash
