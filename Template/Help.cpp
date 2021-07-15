@@ -20,6 +20,23 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
+struct students{
+    string str;
+    string gender;
+    string dept;
+    int id;
+    int age;
+    double cgpa;
+
+    students(str_, gender_, dept_, id_, age_, cgpa_){
+        str = str_;
+        gender = gender_;
+        dept = dept_;
+        id = id_;
+        age = age_;
+        cgpa = cgpa_;
+    }
+};
 
 int main(){
    
@@ -30,20 +47,8 @@ int main(){
   #endif
    FASTERIO;
   
-  int t;
-  cin>>t; 
-  while(t--){
-    int n;
-    cin>>n;
-    int x=1, cnt=0;
-    while(n-x>0){
-        n-=x;
-        x+=2;
-        cnt++;
-    }
-    if(n!=0)cnt++;
-    cout<<cnt<<endl;
-  }
+  students anik = new students ("Anik", "Male", "CSE", 14210, 21, 3.79);
+ 
       
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
