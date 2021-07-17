@@ -28,7 +28,7 @@ struct students{
     int age;
     double cgpa;
 
-    students(str_, gender_, dept_, id_, age_, cgpa_){
+    students(string str_, string gender_, string dept_, int id_, int age_, double cgpa_){
         str = str_;
         gender = gender_;
         dept = dept_;
@@ -47,8 +47,8 @@ int main(){
   #endif
    FASTERIO;
   
-  students anik = new students ("Anik", "Male", "CSE", 14210, 21, 3.79);
- 
+    int n=5555;
+    cout<<log10(n)<<endl;
       
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

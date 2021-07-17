@@ -47,17 +47,14 @@ int main(){
   #endif
     FASTERIO;
        int t;
-      while(cin>>t){
+       cin>>t;
        for(int caseno=1; caseno<=t; caseno++){
-            int n,k,p,d=0;
-            cin>>n>>k>>p;
-            d = k+p;
-            while(d>n){
-                d-=n;
-            }
-            cout<<"Case "<<caseno<<": "<<d<<endl;
+            int n;
+            cin>>n;
+         string ans = DecimalToBinary(n);
+         next_permutation(ans.begin(), ans.end());
+         cout<<"Case "<<caseno<<": "<<BinaryToDecimal(ans)<<endl;
        }
-   }
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
