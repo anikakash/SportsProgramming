@@ -3,7 +3,7 @@ using namespace    std;
 
 #define flush                   cin.ignore(numeric_limits<streamsize>::max(),'\n')
 #define FASTERIO                ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-#define NL                      cout<<endl;
+#define NL                      cout<<'\n';
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define pb                      push_back
 #define mx                      10000007
@@ -20,22 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = 1<<i;
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<32; i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
 
 
 int main(){
@@ -46,18 +30,30 @@ int main(){
        freopen("OUTPUT.txt","w",stdout);
   #endif
     FASTERIO;
-     int t;
-     cin>>t;
-     while(t--){
-        long int n;
-        cin>>n; 
-        int tmp1 = n/3;
-        int tmp2 = (n-tmp1)/2;
-        int ext = tmp1+(tmp2*2);
-        int x = n-ext;
-        tmp1+=x;
-        cout<<tmp1<<" "<<tmp2<<endl;
-    }
+     int n, cnt=0;
+     while(cin>>n){
+        if(n==0)return 0;
+        vector<int>arr(n);
+
+        for(int i=0; i<n; i++) cin>>arr[i];
+        
+       
+        if(cnt>0)NL;
+        for(int a = 0; a<n-5; a++){
+            for(int b = a+1; b<n-4; b++){
+                for(int c = b+1; c<n-3; c++){
+                    for(int d = c+1; d<n-2; d++){
+                        for(int e = d+1; e<n-1; e++){
+                            for(int f = e+1; f<n; f++){
+                                cout<<arr[a]<<" "<<arr[b]<<" "<<arr[c]<<" "<<arr[d]<<" "<<arr[e]<<" "<<arr[f]<<endl;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        cnt++;
+     }
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

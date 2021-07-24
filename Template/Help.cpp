@@ -39,19 +39,18 @@ struct students{
 };
 
 int main(){
-   
-  #ifdef anikakash
-       clock_t tStart = clock();
-       freopen("INPUT.txt","r",stdin);
-       freopen("OUTPUT.txt","w",stdout);
-  #endif
-   FASTERIO;
-  
-    int n=5555;
-    cout<<log10(n)<<endl;
-      
-  #ifdef anikakash
-     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-  #endif
+
+//  #ifdef anikakash
+//       clock_t tStart = clock();
+//       freopen("INPUT.txt","r",stdin);
+//       freopen("OUTPUT.txt","w",stdout);
+//  #endif
+   //FASTERIO;
+
+    cout<<"Hello World"<<endl;
+
+//  #ifdef anikakash
+//     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+//  #endif
    return 0;
 }
