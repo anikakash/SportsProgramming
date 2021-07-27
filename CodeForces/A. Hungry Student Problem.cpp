@@ -20,24 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<32; i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
-
 int main(){
    
   #ifdef anikakash
@@ -48,14 +30,18 @@ int main(){
 
     FASTERIO;
     
-   int n, cnt=0;
-   cin>>n;
-   string s = DecimalToBinary(n);
-   for(int i=0; i<s.size(); i++)
-    if(s[i]=='1')cnt++;
+    int t;
+    cin>>t; 
+    while(t--){
+        int n;
+        cin>>n;
+        if(n<12){
+            if(n%3==0 || n%7==0 || n%10==0)cout<<"YES"<<endl;
+            else cout<<"NO"<<endl;
+        }
+        else cout<<"YES"<<endl;
+    }
 
-
-        cout<<cnt<<endl;
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

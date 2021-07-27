@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
+#include<iostream>
 using namespace    std;
 
 #define flush                   cin.ignore(numeric_limits<streamsize>::max(),'\n')
@@ -12,9 +13,6 @@ using namespace    std;
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
-template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
-int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
-int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
 // Debugger
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
@@ -29,14 +27,6 @@ string DecimalToBinary(int n){
     }
     return res;
 }
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<32; i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
 
 int main(){
    
@@ -45,17 +35,20 @@ int main(){
        freopen("INPUT.txt","r",stdin);
        freopen("OUTPUT.txt","w",stdout);
   #endif
-
     FASTERIO;
     
-   int n, cnt=0;
-   cin>>n;
-   string s = DecimalToBinary(n);
-   for(int i=0; i<s.size(); i++)
-    if(s[i]=='1')cnt++;
+     ll n, cnt=0;
+     cin>>n; 
+     while(n){
+        if(n&1)cnt++;
+        n>>=1;
+     }
+     //Another Implementation
+        // string s = DecimalToBinary(n); // the function is define up;
+        // for(int i=0; i<s.size(); i++)
+        // if(s[i]=='1')cnt++;
+     cout<<cnt<<endl;
 
-
-        cout<<cnt<<endl;
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

@@ -36,7 +36,17 @@ int BinaryToDecimal(string s){
     }
     return ans;
 }
-
+bool toBinary(int n)
+{
+    int count=0;
+    while(n!=0){
+        int a = n%2;
+        n /= 2;
+        if(a) count++;
+    }
+    if(count%2) return false;
+    else return true;
+}
 
 int main(){
    
@@ -48,14 +58,19 @@ int main(){
 
     FASTERIO;
     
-   int n, cnt=0;
-   cin>>n;
-   string s = DecimalToBinary(n);
-   for(int i=0; i<s.size(); i++)
-    if(s[i]=='1')cnt++;
+    int n, big=0;
+   cin>>n; 
+   map<int, int> mp;
+   for(int i=0; i<n; i++) {
+        int x; cin>>x;
+        mp[x]++;
+        big = max(big,mp[x]);
+   }
+    cout<<big<<endl;
+    cout<<"------"<<endl;
+    for(auto pr : mp)
+        cout<<pr.first<<" "<<pr.second<<endl;
 
-
-        cout<<cnt<<endl;
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

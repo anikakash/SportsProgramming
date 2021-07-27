@@ -20,23 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<32; i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
 
 int main(){
    
@@ -48,14 +31,25 @@ int main(){
 
     FASTERIO;
     
-   int n, cnt=0;
-   cin>>n;
-   string s = DecimalToBinary(n);
-   for(int i=0; i<s.size(); i++)
-    if(s[i]=='1')cnt++;
+    int t;
+    cin>>t; 
+    vector<long int> arr(t);
+    for(int i=0; i<t; i++) cin>>arr[i];
 
+        map<int, int> mp;
+        for(int i=0; i<t; i++) mp[arr[i]]++;
 
-        cout<<cnt<<endl;
+            int ans = 0;
+            for(auto idx : mp){
+                if(idx.first < idx.second){
+                    ans+=idx.second-idx.first;
+                }
+                else if(idx.first > idx.second){
+                    ans+=idx.second;
+                }
+            }
+        cout<<ans<<endl;
+
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
