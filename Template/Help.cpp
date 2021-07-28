@@ -1,5 +1,4 @@
-//#include<bits/stdc++.h>
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace    std;
 
 #define flush                   cin.ignore(numeric_limits<streamsize>::max(),'\n')
@@ -29,13 +28,27 @@ int main(){
   #endif
     FASTERIO;
     
-     ll n, cnt=0;
-     cin>>n; 
-     while(n){
-        if(n&1)cnt++;
-        n>>=1;
-     }
-  cout<<cnt<<endl;
+     int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        priority_queue<ll , vector<ll>, greater<ll> > pq;
+        for(int i=0; i<n; i++){
+          ll x; cin>>x;
+          pq.push(x);
+        }
+        ll sum=0;
+        while(pq.size()>1){
+          ll a = pq.top();
+          pq.pop();
+          ll b = pq.top();
+          pq.pop();
+          pq.push(a+b);
+          sum+=(a+b);
+        }
+        cout<<sum<<endl;
+    }
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

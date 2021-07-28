@@ -59,22 +59,22 @@ int main(){
             arr.pb(x);
         }
             ll sum=0, t = 0;
-            
         sort(arr.begin(), arr.end());
            
-        if(n==1)cout<<arr[0]<<endl;
-        else{
-            sum = arr[0]+arr[1];
-            t = sum;
-            for(int i=2; i<n; i++){
-                t +=arr[i];
-                sum+=t;
-                //debugN(sum);
-            }
-            //cout<<t<<endl;
-           // debugNS("ans",sum);
-            cout<<sum<<endl;
-        }
+        // if(n==1)cout<<arr[0]<<endl;
+        // else{
+        //     sum = arr[0]+arr[1];
+        //     t = sum;
+        //     for(int i=2; i<n; i++){
+        //         t +=arr[i];
+        //         sum+=t;
+        //         //debugN(sum);
+        //     }
+        //     //cout<<t<<endl;
+        //    // debugNS("ans",sum);
+        //     cout<<sum<<endl;
+        // }
+        for(auto i : arr)debugN(i);
     }
 
 
