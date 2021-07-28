@@ -59,6 +59,7 @@ int main(){
             arr.pb(x);
         }
             ll sum=0, t = 0;
+            
         sort(arr.begin(), arr.end());
            
         if(n==1)cout<<arr[0]<<endl;
