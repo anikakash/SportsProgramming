@@ -31,23 +31,29 @@ int main(){
      int t;
     cin>>t;
     while(t--){
-        int n;
+        ll n;
         cin>>n;
-        priority_queue<ll , vector<ll>, greater<ll> > pq;
+        vector<ll>arr;
         for(int i=0; i<n; i++){
-          ll x; cin>>x;
-          pq.push(x);
+            ll x; cin>>x;
+            arr.pb(x);
         }
-        ll sum=0;
-        while(pq.size()>1){
-          ll a = pq.top();
-          pq.pop();
-          ll b = pq.top();
-          pq.pop();
-          pq.push(a+b);
-          sum+=(a+b);
+            ll sum=0, t = 0;
+        sort(arr.begin(), arr.end());
+           
+        if(n==1)cout<<arr[0]<<endl;
+        else{
+            sum = arr[0]+arr[1];
+            t = sum;
+            for(int i=2; i<n; i++){
+                t +=arr[i];
+                sum+=t;
+                //debugN(sum);
+            }
+            //cout<<t<<endl;
+           // debugNS("ans",sum);
+            cout<<sum<<endl;
         }
-        cout<<sum<<endl;
     }
 
   #ifdef anikakash
