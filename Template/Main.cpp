@@ -48,14 +48,37 @@ int main(){
 
     FASTERIO;
     
-   int n, cnt=0;
-   cin>>n;
-   string s = DecimalToBinary(n);
-   for(int i=0; i<s.size(); i++)
-    if(s[i]=='1')cnt++;
+    int t;
+    cin>>t;
+    while(t--){
+        ll n;
+        cin>>n;
+        vector<ll>arr;
+        for(int i=0; i<n; i++){
+            ll x; cin>>x;
+            arr.pb(x);
+        }
+
+            ll sum=0, t = 0;
+           
+        sort(arr.begin(), arr.end());
+           
+        if(n==1)cout<<arr[0]<<endl;
+        else{
+            sum = arr[0]+arr[1];
+            t = sum;
+            for(int i=2; i<n; i++){
+                t +=arr[i];
+                sum+=t;
+                //debugN(sum);
+            }
+            //cout<<t<<endl;
+           // debugNS("ans",sum);
+            cout<<sum<<endl;
+        }
+    }
 
 
-        cout<<cnt<<endl;
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
