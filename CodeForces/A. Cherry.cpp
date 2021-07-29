@@ -20,35 +20,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<32; i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
-int is_prime(ll n)
-{
-    ll i, root;
-    if(n==2) return 1;
-    if(n%2==0 || n==1) return 0;
-
-    root = sqrt(n);
-    
-    for(i=3; i<=root; i = i+2)if(n%i==0)  return 0;
-    
-    return 1;
-}
 int main(){
    
   #ifdef anikakash
