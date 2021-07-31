@@ -28,34 +28,21 @@ int main(){
   #endif
     FASTERIO;
     
-     int t;
-    cin>>t;
-    while(t--){
-        ll n;
-        cin>>n;
-        vector<ll>arr;
-        for(int i=0; i<n; i++){
-            ll x; cin>>x;
-            arr.pb(x);
-        }
-            ll sum=0, t = 0;
-        sort(arr.begin(), arr.end());
-           
-        if(n==1)cout<<arr[0]<<endl;
-        else{
-            sum = arr[0]+arr[1];
-            t = sum;
-            for(int i=2; i<n; i++){
-                t +=arr[i];
-                sum+=t;
-                //debugN(sum);
-            }
-            //cout<<t<<endl;
-           // debugNS("ans",sum);
-            cout<<sum<<endl;
-        }
-    }
+     int t;cin>>t;
+       for(int caseno=1; caseno<=t; caseno++){
+            int n;cin>>n;
+            vector<int>arr(n);
+            for(int i=0; i<n; i++)cin>>arr[i];
 
+                int cnt=0;
+            for(int i=1; i<n; i++)
+                if(arr[i]<arr[i-1])cnt++;
+            
+            if(cnt>0)cnt--;
+            cout<<"Case "<<caseno<<": "<<cnt<<endl;
+            bubble_sort(arr,arr.size());
+            debugNS("anik",anik);NL;
+       }
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

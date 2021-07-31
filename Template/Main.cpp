@@ -7,6 +7,7 @@ using namespace    std;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define pb                      push_back
 #define mx                      10000007
+#define AC                      int
 #define EPS                     1e-10
 #define dpoint(x)               fixed<<setprecision(x)
 typedef long long int           ll;
@@ -29,25 +30,28 @@ string DecimalToBinary(int n){
     }
     return res;
 }
-int BinaryToDecimal(string s){
+bool BinaryToDecimal(string s){
     int ans = 0;
     for(int i=0; i<32; i++){
         ans = (2*ans)+s[i]-'0';
     }
     return ans;
 }
+int UniqueChecker(int a, int b){
+    map<int,int>mark;
+    while(a){
+        mark[a%10]++;
+        a/=10;
+    }
+    while(b){
+        mark[b%10]++;
+        b/=10;
+    }
+    if(mark.size()!=10)return false;
+    for(map<int,int>::iterator it = mark.begin(); it!=mark.end(); it++)
+        if(it->second !=1) return false;
 
-int is_prime(ll n)
-{
-    ll i, root;
-    if(n==2) return 1;
-    if(n%2==0 || n==1) return 0;
-
-    root = sqrt(n);
-    
-    for(i=3; i<=root; i = i+2)if(n%i==0)  return 0;
-    
-    return 1;
+    return true;
 }
 int main(){
    
@@ -58,20 +62,30 @@ int main(){
   #endif
 
     FASTERIO;
-    
-   int t;cin>>t;
-   while(t--){
+        
+        int a,n,af,bf, cnt=0;
+        while(cin>>n){
+            if(n==0)break;
+            bool hasans = false;
+            if(cnt++)NL;
+            for(int i=1234; i<=99999; i++){
+               a = i*n;
+               if(a>99999)break;
+               if(a<10000)af=a*10;
+               else af = a;
 
-    ll n;cin>>n;
-   vector<ll>arr(n);
-   for(int i=0; i<n; i++)cin>>arr[i];
-   ll big=0;
-       for(int i=0; i<n-1; i++){
-            ll x = arr[i]*arr[i+1];
-            if(x>big)big = x;
-       }
-    cout<<big<<endl;
-   }
+               if(i<10000)bf=i*10;
+               else bf = i;
+              if(UniqueChecker(af,bf)){
+                    if(a<10000)cout<<"0"<<a<<" / "<<i<<" = "<<n<<endl;
+                    else if(i<10000)cout<<a<<" / "<<"0"<<i<<" = "<<n<<endl;
+                    else cout<<a<<" / "<<i<<" = "<<n<<endl;
+                hasans = true;
+              }
+               
+            }
+           if(!hasans)cout<<"There are no solutions for "<<n<<"."<<endl;
+        }
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
@@ -79,15 +93,6 @@ int main(){
    return 0;
 }
 /*
-
-    4 1 1000 500 2 3 600
-
-    0 1  2   3   4 5 6
-
-    1 2  3   4 500 600 1000
-
-    ar[n-1]*ar[n-2]
-
-    1 4 500 600 1000
+    1, 4, 5, 9
 
 */
