@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h1>My All Competitive Programming Solve</h1> 
+	[![GitHub stars](https://img.shields.io/github/stars/anikakash/Sports-Programming.svg?style=social&label=Stars)](https://github.com/anikakash/Sports-Programming)
 	<p>Easy Access From Here</p>
 	<div>
 		<ol Type = "1">
