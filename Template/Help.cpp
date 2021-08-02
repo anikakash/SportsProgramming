@@ -28,21 +28,49 @@ int main(){
   #endif
     FASTERIO;
     
-     int t;cin>>t;
-       for(int caseno=1; caseno<=t; caseno++){
+    int t;cin>>t; 
+        while(t--){
             int n;cin>>n;
-            vector<int>arr(n);
-            for(int i=0; i<n; i++)cin>>arr[i];
-
-                int cnt=0;
-            for(int i=1; i<n; i++)
-                if(arr[i]<arr[i-1])cnt++;
-            
-            if(cnt>0)cnt--;
-            cout<<"Case "<<caseno<<": "<<cnt<<endl;
-            bubble_sort(arr,arr.size());
-            debugNS("anik",anik);NL;
-       }
+            string s1, s2;
+            cin>>s1;
+            cin>>s2; 
+            int cnt=0; 
+            for(int i=0; i<n; i++){
+                    if(s1[i]=='0'){
+                        if(s2[i]=='1')cnt++;
+                    }
+                    else if(s1[i]=='1'){
+                       if(s2[i]=='1'){
+                            if(s2[i+1]=='1' && i<n-1){
+                                cnt++;
+                                s2[i+1]='x';
+                               // debugNS(i,cnt);
+                            }
+                       }
+                       else if(s2[i]=='0'){
+                            if(s2[i+1]=='1' && i<n-1){
+                                cnt++;
+                                s2[i+1]='x';
+                                //debugNS(i,cnt);
+                            }
+                            if(s2[i-1]=='1' && i>0){
+                                cnt++;
+                                s2[i-1]='x';
+                                //debugNS(i,cnt);
+                            }
+                       }
+                       else if(s2[i-1]=='1' && i>0){
+                                cnt++;
+                                s2[i-1]='x';
+                               // debugNS(i,cnt);
+                            }
+                    }
+                    //cout<<i<<" = "<<s1[i]<<" "<<s2[i]<<endl;
+                    //cout<<cnt<<endl;
+            }
+            cout<<cnt<<endl;
+        }
+        
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif

@@ -48,9 +48,29 @@ int main(){
 
     FASTERIO;
         
-         float c = 5.0;
-    float far = (9/5)*c + 32;
-    cout << fixed << "Temperature in Fahrenheit is "<< setprecision(2) << far;
+         int t;cin>>t; 
+        while(t--){
+            int n;cin>>n;
+            string s1, s2;
+            cin>>s1;
+            cin>>s2; 
+            int cnt=0; 
+            for(int i=0; i<n; i++){
+                  if(s2[i]=='1'){
+                    if(s1[i]=='1'){
+                        if(s1[i-1]=='1' && i-1>=0){
+                            cnt++; s1[i-1]='x';
+                        }
+                        else if(s1[i+1]=='1' && i<n-1){
+                            cnt++; s1[i+1]='x';
+                        }
+                    }
+                    else cnt++;
+
+                  }
+            }
+            cout<<cnt<<endl;
+        }
      
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
