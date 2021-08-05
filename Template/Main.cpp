@@ -38,6 +38,22 @@ int BinaryToDecimal(string s){
     return ans;
 }
 
+void An(int i,int n){
+    if(i==n+1)return;
+    cout<<"sin("<<i;
+    if(i%2==1 && i!=n)cout<<"-";
+    else if(i%2==0 && i!=n) cout<<"+";
+    An(i+1, n);
+    cout<<")";
+}
+void Sn(int i, int n){
+    if(n==0)return;
+    An(1,i);
+    //cout<<")";
+    cout<<"+"<<n;
+    if(n>1)cout<<")";
+    Sn(i+1,n-1);
+}
 int main(){
    
   #ifdef anikakash
@@ -47,11 +63,40 @@ int main(){
   #endif
 
     FASTERIO;
-        
-         float c = 5.0;
-    float far = (9/5)*c + 32;
-    cout << fixed << "Temperature in Fahrenheit is "<< setprecision(2) << far;
-     
+        int MatrixSize,caseno = 0;
+        while(cin>>MatrixSize){
+            if(!MatrixSize)break;
+
+            caseno++;
+            int Matrix[11][11]; bool mark[11][11];
+
+            for(int i=0; i<MatrixSize; i++){
+                for(int j=0; j<MatrixSize; j++){
+                    cin>>Matrix[i][j];
+                    mark[i][j] = true;
+                }
+            }
+
+            int left = 0, right = MatrixSize-1, sum=0;
+            vector<int>ans;
+            while(left<=right){
+                for(int i=0; i<MatrixSize; i++){
+                    for(int j=0; j<MatrixSize; j++){
+                        if((i == left || i == right || j == right || j == left)&&(mark[i][j] == true)){
+                            sum+=Matrix[i][j];
+                            mark[i][j]=false;
+                        }
+                    }
+                }
+                ans.pb(sum); sum = 0; left++; right--;
+            }
+            cout<<"Case "<<caseno<<": ";
+            for(int i=0; i<ans.size(); i++){
+                if(i==ans.size()-1)cout<<ans[i]<<endl;
+                else cout<<ans[i]<<" ";
+            }
+        }
+
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
