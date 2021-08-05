@@ -21,39 +21,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<s.size(); i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
-void An(int i,int n){
-    if(i==n+1)return;
-    cout<<"sin("<<i;
-    if(i%2==1 && i!=n)cout<<"-";
-    else if(i%2==0 && i!=n) cout<<"+";
-    An(i+1, n);
-    cout<<")";
-}
-void Sn(int i, int n){
-    if(n==0)return;
-    An(1,i);
-    //cout<<")";
-    cout<<"+"<<n;
-    if(n>1)cout<<")";
-    Sn(i+1,n-1);
-}
 int main(){
    
   #ifdef anikakash
