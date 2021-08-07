@@ -21,9 +21,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
-int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
-
 string DecimalToBinary(int n){
 
     string res="";
@@ -41,63 +38,54 @@ int BinaryToDecimal(string s){
     return ans;
 }
 
-vector<string>v;
-int n;
-
-void dfs(int i, int j){
-    
-    if(v[i][j]=='1'){
-        v[i][j]='0';
-        if(j<n-1)dfs(i,j+1); // right
-        if(j>0)dfs(i,j-1); // left
-        if(i>0)dfs(i-1,j); // upper
-        if(i<n-1)dfs(i+1, j); // Down
-        if(i>0 && j>0)dfs(i-1, j-1); // upper left
-        if(i>0 && j<n-1)dfs(i-1, j+1); // upper right
-        if(i<n-1 && j>0)dfs(i+1, j-1); // down left
-        if(i<n-1 && j<n-1)dfs(i+1, j+1); // dwon right
-    }
-    else return;
-    
-}
 
 int main(){
    
   #ifdef anikakash
        clock_t tStart = clock();
        freopen("INPUT.txt","r",stdin);
-       freopen("OUTPUT.txt","w",stdout); 
+       freopen("OUTPUT.txt","w",stdout);
   #endif
 
-   FASTERIO; //cmt when use scanf & printf ;
+    FASTERIO;
+       int NumberofNode, NumberofEdge;
+       cin>>NumberofNode>>NumberofEdge;
 
-   int caseno=0;
-   while(cin>>n){
-    caseno++;
-        for(int i=0; i<n; i++){
-            string s; cin>>s;
-            v.pb(s);
+       vector<int>Edge[11];
+       vector<int>cost[11];
+
+
+       for(int i=0; i<NumberofEdge; i++){
+            int x,y,c; cin>>x>>y>>c;
+            Edge[x].pb(y); cost[x].pb(c);
+            Edge[y].pb(x); cost[y].pb(c);
        }
-       int cnt=0;
-       for (int i = 0; i<n; i++){
-           for(int j=0; j<n; j++){
-                if(v[i][j]=='1'){
-                    cnt++;
-                    dfs(i,j);
-                }
-             }
-          }
-        cout<<"Image number "<<caseno<<" contains "<<cnt<<" war eagles."<<endl;
-        v.clear();
-   }
-   
-      
+       
+        for(int i=1; i<=NumberofNode; i++){
+            cout<<i<<" -> ";
+            for(int j=0; j<Edge[i].size(); j++){
+                cout<<Edge[i][j]<<" ";
+            }
+            NL;
+            cout<<"Cost ";
+            for(int j=0; j<cost[i].size(); j++){
+                cout<<cost[i][j]<<" ";
+            }
+            NL;
+        }
 
-  
+       int a,b; cin>>a>>b;
+       bool flg = false;
+       for(int i=0; i<Edge[a].size(); i++){
+            if(Edge[a][i]==b){
+                cout<<"Coast IS : "<<cost[a][i]<<endl;
+                flg = true; break;
+            }
+       }
+       if(!flg)cout<<-1<<endl;
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
-
    return 0;
 }

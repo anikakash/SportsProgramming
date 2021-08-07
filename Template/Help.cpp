@@ -17,7 +17,8 @@ typedef unsigned long long      ul;
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-
+int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
+int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
 
 int main(){
    
@@ -26,19 +27,13 @@ int main(){
        freopen("INPUT.txt","r",stdin);
        freopen("OUTPUT.txt","w",stdout);
   #endif
+
     FASTERIO;
+       
+    
     
 
-            bool m[5][5]={true};
-            for(int i=0; i<5; i++){
-                for(int j=0; j<5; j++){
-
-                    cout<<m[i][j]<<" ";
-                }
-                NL;
-            }
-        
-        
+       
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
