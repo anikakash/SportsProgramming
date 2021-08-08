@@ -30,7 +30,16 @@ int main(){
 
     FASTERIO;
        
-    
+     int t;
+     cin>>t;
+     while(t--){
+        long int n;
+        cin>>n;
+        int tmp = n%10;
+        n/=10;
+        if(tmp==9)n++;
+        cout<<n<<endl;
+    }
     
 
        
