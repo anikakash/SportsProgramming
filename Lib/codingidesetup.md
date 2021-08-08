@@ -25,7 +25,7 @@ sublime is the best text editor for `Competitive Programming`.  Also it is a lit
 ```
 `Al most done!`
 
-3 . Now Save this fila and remember the name of file it will need in step 7 . and the file extension will be `.sublime-build`
+3 . Now Save this file and remember the name of file it will need in step 7 . and the file extension will be `.sublime-build`
 
 4 . Now Creat a Folder. And Make `.cpp` file and two `.txt` file. Make sure that those three file in a directory.
 
