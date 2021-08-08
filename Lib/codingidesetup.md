@@ -22,5 +22,44 @@ sublime is the best text editor for `Competitive Programming`.  Also it is a lit
 	]
 }
 
+```
+`Al most done!`
 
-``` 
+3 . Now Save this fila and remember the name of file in future you need to this file. and the file extension will be `.sublime-build`
+
+4 . Now Creat a Folder. And Make `.cpp` file and two `.txt` file. Make sure that those three file in a directory.
+
+5 . Now add your Folder in sublime. Click `File > Open Folder` and select your folder.
+
+![Folder adding](https://raw.githubusercontent.com/anikakash/Sports-Programming/main/Lib/pic/fileadd.gif)
+##### When your adding a file in a stection then instantly save this file in that section by clicking `ctr+s`
+
+ 6 .  Now Past this is in your `.cpp` file
+
+ ```cpp
+ #include<bits/stdc++.h>
+using namespace    std;
+
+int main(){
+
+   #ifdef ONLINEJUDGE
+       clock_t tStart = clock();
+       freopen("input.txt","r",stdin); //can need to change file . this one for taking input
+       freopen("output.txt","w",stdout); // this one for output
+  #endif
+
+       //Your Code
+
+  #ifdef ONLINEJUDGE
+     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC); // this line gives your code runtime
+  #endif
+
+   return 0;
+}
+ ```
+
+ 7 . now click `Tools > Build System > select file which is create in step 3`. Now write a input and output code and save input in input file.
+
+8 . press `ctrl + shift + B` and a pop up will bring your sublime click one which has `-Run` part. `WOW` See you can successfully Generate your output.
+
+9 . Now when every you need to compile your code just click `ctrl + B` and your will complie and generate output corresponding your input.
