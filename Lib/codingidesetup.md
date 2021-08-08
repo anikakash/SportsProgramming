@@ -25,7 +25,7 @@ sublime is the best text editor for `Competitive Programming`.  Also it is a lit
 ```
 `Al most done!`
 
-3 . Now Save this fila and remember the name of file in future you need to this file. and the file extension will be `.sublime-build`
+3 . Now Save this fila and remember the name of file it will need in step 7 . and the file extension will be `.sublime-build`
 
 4 . Now Creat a Folder. And Make `.cpp` file and two `.txt` file. Make sure that those three file in a directory.
 
@@ -58,7 +58,7 @@ int main(){
 }
  ```
 
- 7 . now click `Tools > Build System > select file which is create in step 3`. Now write a input and output code and save input in input file.
+7 . now click `Tools > Build System > select file which is create in step 3`. Now write a input and output code and save input in input file.
 
 8 . press `ctrl + shift + B` and a pop up will bring your sublime click one which has `-Run` part. `WOW` See you can successfully Generate your output.
 
