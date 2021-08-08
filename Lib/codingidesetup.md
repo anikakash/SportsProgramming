@@ -17,7 +17,7 @@ sublime is the best text editor for `Competitive Programming`.  Also it is a lit
 	[
 		{
 			"name": "Run",
-			"shell_cmd": "g++ -O2 -static -Wno-unused-result -std=c++17 -Danikakash \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
+			"shell_cmd": "g++ -O2 -static -Wno-unused-result -std=c++17 -DONLINEJUDGE \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
 		}
 	]
 }
