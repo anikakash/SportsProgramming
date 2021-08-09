@@ -6,6 +6,9 @@ So, for setup sublime before you need to prepar your computer for compile C/C++ 
  ## Install C/C++ compiler :
 
 - [windows](https://youtu.be/hCLIDph7-mU)
+- For linux run this command. pacman is my packeg manager. Here you can use your packeg manager command. It's for arch based Distro.
+    ```sudo pacman -Syu gcc```
+- [Mac os](https://youtu.be/0z-fCNNqfEg)
 
 1 . First Do partition your sublime screen in to 3 part. one is for your code and other two is for input and output section.
 
