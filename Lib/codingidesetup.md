@@ -2,6 +2,10 @@
 
 sublime is the best text editor for `Competitive Programming`.  Also it is a lite weight text edito and You can use file input output so easily handel big input output.
 
+So, for setup sublime before you need to prepar your computer for compile C/C++ code.
+ ## Install C/C++ compiler :
+    - [windows](https://www.youtube.com/watch?v=hCLIDph7-mU&t=342s&ab_channel=SavvyNik)
+
 1 . First Do partition your sublime screen in to 3 part. one is for your code and other two is for input and output section.
 
 ![Image of Sublime partition](https://raw.githubusercontent.com/anikakash/Sports-Programming/9e5cf4aee0fe33c4ef09d9b924baff67d1b7bc9d/Lib/pic/sbset.gif)
