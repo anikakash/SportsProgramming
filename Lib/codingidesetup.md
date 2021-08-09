@@ -2,13 +2,15 @@
 
 sublime is the best text editor for `Competitive Programming`.  Also it is a lite weight text edito and You can use file input output so easily handel big input output.
 
-So, for setup sublime before you need to prepar your computer for compile C/C++ code.
+So, for setup sublime before you need to prepar your computer.
  ## Install C/C++ compiler :
 
 - [windows](https://youtu.be/hCLIDph7-mU)
 - For linux run this command. pacman is my package manager. Here you can use your package manager command. It's for arch based Distro.
     ```sudo pacman -Syu gcc```
 - [Mac os](https://youtu.be/0z-fCNNqfEg)
+
+## Install Sublime
 
  Now it's time to install Sublime on your Computer. [Goto Sublime Offical Site](https://www.sublimetext.com/download) and download sublime for your current Operating System.
 
