@@ -10,7 +10,7 @@ So, for setup sublime before you need to prepar your computer for compile C/C++ 
     ```sudo pacman -Syu gcc```
 - [Mac os](https://youtu.be/0z-fCNNqfEg)
 
-# Now it's time to install Sublime on your Computer. [Goto Sublime Offical Site](https://www.sublimetext.com/download) and download sublime for your current Operating System.
+ Now it's time to install Sublime on your Computer. [Goto Sublime Offical Site](https://www.sublimetext.com/download) and download sublime for your current Operating System.
 
 1 . First Do partition your sublime screen in to 3 part. one is for your code and other two is for input and output section.
 
