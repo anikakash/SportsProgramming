@@ -7,11 +7,15 @@ using namespace    std;
 #define pi                      acos(-1.0) //3.1415926535897932384626
 #define pb                      push_back
 #define mx                      10000007
+#define AC                      int
 #define EPS                     1e-10
 #define dpoint(x)               fixed<<setprecision(x)
 typedef long long int           ll;
 typedef double                  dl;
 typedef unsigned long long      ul;
+template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
+int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
+int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
 // Debugger
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
@@ -20,31 +24,38 @@ typedef unsigned long long      ul;
 int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
 int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
 
+
+
+
 int main(){
    
   #ifdef anikakash
        clock_t tStart = clock();
        freopen("INPUT.txt","r",stdin);
-       freopen("OUTPUT.txt","w",stdout);
+       freopen("OUTPUT.txt","w",stdout); 
   #endif
 
-    FASTERIO;
-       
-     int t;
-     cin>>t;
-     while(t--){
-        long int n;
-        cin>>n;
-        int tmp = n%10;
-        n/=10;
-        if(tmp==9)n++;
-        cout<<n<<endl;
-    }
-    
+   FASTERIO; //cmt when use scanf & printf ;
 
-       
+   x = sum(12,1);
+
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
+
    return 0;
 }
+
+
+
+/*
+
+how to write a function ->
+
+"return type" "name of function" ("data type" "parameter"){
+    //function body 
+
+    return your ans;
+}
+
+*/

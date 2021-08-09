@@ -24,22 +24,6 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
 int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
 
-string DecimalToBinary(int n){
-
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<s.size(); i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
 
 vector<string>v;
 int cnt=0, n, m;
@@ -104,11 +88,3 @@ int main(){
 
    return 0;
 }
-
-
-
-
-
-
-
-

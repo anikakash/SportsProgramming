@@ -24,42 +24,18 @@ int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
 int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
 
-string DecimalToBinary(int n){
 
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
+vector<int>v[101];
+bool vis[101];
+int n;
+void dfs(int a){
+    for(int i=0; i<v[a].size(); i++){
+        int x = v[a][i];
+        if(!vis[x]){
+            vis[x]=true;
+            dfs(x);
+        }
     }
-    return res;
-}
-int BinaryToDecimal(string s){
-    int ans = 0;
-    for(int i=0; i<s.size(); i++){
-        ans = (2*ans)+s[i]-'0';
-    }
-    return ans;
-}
-
-vector<string>v;
-int cnt=0, n, m;
-
-void dfs(int i, int j){
-    
-    if(v[i][j]=='1'){
-        cnt++;
-        v[i][j]='0';
-        if(j<n-1)dfs(i,j+1); // right
-        if(j>0)dfs(i,j-1);      // left
-        if(i>0)dfs(i-1,j);      // upper
-        if(i<m-1)dfs(i+1, j);    // Down
-        if(i>0 && j>0)dfs(i-1, j-1);        // upper left
-        if(i>0 && j<n-1)dfs(i-1, j+1); // upper right
-        if(i<m-1 && j>0)dfs(i+1, j-1);      // down left
-        if(i<m-1 && j<n-1)dfs(i+1, j+1); // dwon right
-    }
-    else return;
-    
 }
 
 int main(){
@@ -72,29 +48,26 @@ int main(){
 
    FASTERIO; //cmt when use scanf & printf ;
 
-   int tt, caseno=0; 
-   cin>>tt; 
-   flush;
-   flush;
-   while(tt--){
-        string s;
-        while(getline(cin,s)){if(s=="")break; v.pb(s);}
-
-        m = v.size(); n = v[0].size();
-        //cout<<v.size()<<" "<<n<<endl;
-        int  ans=0, ans_count=0;
-
-        for (int i = 0; i < m; i++){
-            for(int j=0; j<n; j++){
-                dfs(i,j);
-                ans = max(cnt,ans);
-                cnt=0;
-            }
+   while(cin>>n && n!=0){
+        for(int i=1; i<=n; i++) v[i].clear();
+        
+        int node;
+        while(cin>>node && node!=0){
+            int vertx;
+            while(cin>>vertx && vertx!=0)
+                v[node].pb(vertx);
         }
-        if(caseno)NL;
-        cout<<ans<<endl;
-        caseno=1;
-        v.clear();
+        
+        int tt; cin>>tt;
+        while(tt--){
+            int x, cnt=0; cin>>x;
+            memset(vis,false,sizeof(vis));
+            dfs(x);
+            for(int i=1; i<=n; i++)if(!vis[i])cnt++;
+            cout<<cnt;
+            for(int i=1; i<=n; i++)if(!vis[i])cout<<" "<<i;
+                NL;
+        }
    }
       
 
