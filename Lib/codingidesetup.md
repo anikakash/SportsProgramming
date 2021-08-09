@@ -4,7 +4,7 @@ sublime is the best text editor for `Competitive Programming`.  Also it is a lit
 
 So, for setup sublime before you need to prepar your computer for compile C/C++ code.
  ## Install C/C++ compiler :
-    - [windows](https://www.youtube.com/watch?v=hCLIDph7-mU&t=342s&ab_channel=SavvyNik)
+     -[windows](https://www.youtube.com/watch?v=hCLIDph7-mU&t=342s&ab_channel=SavvyNik)
 
 1 . First Do partition your sublime screen in to 3 part. one is for your code and other two is for input and output section.
 
