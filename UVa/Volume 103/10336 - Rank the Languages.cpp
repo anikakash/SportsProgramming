@@ -42,21 +42,26 @@ int BinaryToDecimal(string s){
     return ans;
 }
 
+vector<string>v;
 int cnt=0, r,c;
 
+void dfs(int i, int j, char c){
+    
+    if(v[i][j]==c){
+        v[i][j]='0';
+        if(j<c-1)dfs(i,j+1,c); // right
+        if(j>0)dfs(i,j-1,c);      // left
+        if(i>0)dfs(i-1,j,c);      // upper
+        if(i<r-1)dfs(i+1, j,c);    // Down
+    }
+    else return;
+    
+}
  bool cmp(pair<int,char>a, pair<int,char>b){
     if(a.first!=b.first) return a>b;
     return a<b;
  }
 
-vector<int>adj[26];
-bool vis[26];
-
-void dfs(int i){
-    if(vis[i])return;
-    vis[i]=true;
-    for(auto j:adj[i]) if(!vis[j])dfs(j);
-}
 
 int main(){
    
@@ -69,30 +74,40 @@ int main(){
    FASTERIO; //cmt when use scanf & printf ;
 
    
-     int tt; cin>>tt;
-     string c,s;
-     for(int i=0; i<tt; i++){
-            cin>>c;
-            int node = c[0]-65;
-            getline(cin,s);
-            while(getline(cin,s)){
-                if(s.size()==0)break;
-                adj[s[0]-65].pb(s[1]-65);
-                adj[s[1]-65].pb(s[0]-65);
+      int tt; cin>>tt;
+      for(int caseno=1; caseno<=tt; caseno++){
+            r=0; c=0;
+            cin>>r>>c;
+            flush; 
+            for (int i = 0; i < r; i++){
+                string s; cin>>s;
+                v.pb(s);
             }
-            
-            memset(vis,false,sizeof vis);
 
-            for(int i=0; i<=node; i++){
-                if(!vis[i]){
-                    cnt++; dfs(i);
+            vector<pair<int,char>>pp;
+            vector<char>tmp(26,0);
+
+            for (int i = 0; i<r; i++){
+                for(int j = 0; j<c; j++){
+                    if(v[i][j]!='0'){
+                        char c = v[i][j];
+                        tmp[c-'a']++;
+                        dfs(i,j,c);
+                    }
                 }
             }
-            cout<<cnt<<endl;
-            cnt=0;
-            if(i<tt-1)cout<<endl;
-            for(int i=0; i<=node; i++) adj[i].clear();
-     }
+
+            for(int i=0; i<26; i++) if(tmp[i]>0)pp.pb(mk(tmp[i],i+'a'));
+
+
+            sort(pp.begin(), pp.end(), cmp);
+            cout<<"World #"<<caseno<<endl;
+            for(auto i=0; i<pp.size(); i++){
+                cout<<pp[i].second<<": "<<pp[i].first<<endl;
+            }
+           v.clear();
+        }
+
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

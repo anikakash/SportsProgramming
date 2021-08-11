@@ -35,9 +35,8 @@ int main(){
        freopen("OUTPUT.txt","w",stdout); 
   #endif
 
-   FASTERIO; //cmt when use scanf & printf ;
-
-   x = sum(12,1);
+       int x = 23&1;
+   cout<<x<<endl;
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
