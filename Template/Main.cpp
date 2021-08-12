@@ -42,7 +42,7 @@ int BinaryToDecimal(string s){
     return ans;
 }
 
-int cnt=0, r,c;
+int  r,c;
 
  bool cmp(pair<int,char>a, pair<int,char>b){
     if(a.first!=b.first) return a>b;
@@ -68,31 +68,28 @@ int main(){
 
    FASTERIO; //cmt when use scanf & printf ;
 
-   
-     int tt; cin>>tt;
-     string c,s;
-     for(int i=0; i<tt; i++){
-            cin>>c;
-            int node = c[0]-65;
-            getline(cin,s);
-            while(getline(cin,s)){
-                if(s.size()==0)break;
-                adj[s[0]-65].pb(s[1]-65);
-                adj[s[1]-65].pb(s[0]-65);
-            }
-            
-            memset(vis,false,sizeof vis);
+   int year;
+   while(cin>>year){
+        int tt; cin>>tt;
+        vector<int>v(tt);
+        for(int i=0; i<tt; i++) cin>>v[i];
 
-            for(int i=0; i<=node; i++){
-                if(!vis[i]){
-                    cnt++; dfs(i);
+            sort(v.begin(), v.end());
+
+        int big=0, f=0,l=0, cnt=0; 
+
+        for(int i=0; i<v.size(); i++){
+            cnt=0;
+            for(int j=i; j<v.size() && v[j]<v[i]+year; j++){
+                cnt++;
+                if(cnt>big){
+                    big = cnt; f = v[i]; l = v[j];
                 }
             }
-            cout<<cnt<<endl;
-            cnt=0;
-            if(i<tt-1)cout<<endl;
-            for(int i=0; i<=node; i++) adj[i].clear();
-     }
+        }
+        cout<<big<<" "<<f<<" "<<l<<endl;
+
+   }
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

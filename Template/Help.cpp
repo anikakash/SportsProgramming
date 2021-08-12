@@ -34,9 +34,16 @@ int main(){
        freopen("INPUT.txt","r",stdin);
        freopen("OUTPUT.txt","w",stdout); 
   #endif
-
-       int x = 23&1;
-   cout<<x<<endl;
+       FASTERIO;
+       
+       int tt; cin>>tt;
+       while(tt--){
+            dl r1,r2, x,y; cin>>r1>>r2;
+            x = pi*r1*r1;
+            y = pi*r2*r2;
+            if(x>2*y)cout<<1<<endl;
+            else cout<<2<<endl;
+       }
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
