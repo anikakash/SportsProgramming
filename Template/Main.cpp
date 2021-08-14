@@ -74,6 +74,7 @@ int main(){
 
         printf("%07d\n",((sec*(10*100*100*100))/(24*60*60*100)));
     }
+    
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
