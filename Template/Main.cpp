@@ -20,7 +20,7 @@ int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
 // Debugger
-#define debugNS(a,b,c)             cout<<a<<b<<c<<endl;
+#define debugNS(a,b,c)             cout<<a<<b<<c;
 #define debugN(b)               cout<<b<<endl;
 
 int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
@@ -63,17 +63,30 @@ int main(){
        freopen("output.txt","w",stdout); 
   #endif
 
-  // FASTERIO; //cmt when use scanf & printf ;
+  FASTERIO; //cmt when use scanf & printf ;
 
-    string s;
-    while(cin>>s){
-        ll sec = ((s[0]-'0')*10 + (s[1]-'0'))*60*60*100;
-        sec+= ((s[2]-'0')*10 + (s[3]-'0'))*60*100;
-        sec+= ((s[4]-'0')*10 + (s[5]-'0'))*100;
-        sec+= ((s[6]-'0')*10 + (s[7]-'0'));
+    int a, b; 
+    cin>>a;
+    vector<int>v(a);
+    for(int i=0; i<a; i++)cin>>v[i];
+        // sort(v.begin(), v.end());
+        int l=v[0], r=v[0];
+        
+        for(int i=0; i<a; i++){
+            l = min(l,v[i]);
+            r = max(r,v[i]);
+        }
 
-        printf("%07d\n",((sec*(10*100*100*100))/(24*60*60*100)));
-    }
+        int SM=INT_MAX;
+        for(int i=l; i<=r; i++){
+            int tmp=0;
+            for(int j=0; j<a; j++){
+                tmp+= (v[j]-i)*(v[j]-i);
+            }
+            //debugNS(i," = ",tmp);NL;
+            if(tmp<SM)SM = tmp;
+        }
+        cout<<SM<<endl;
     
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
