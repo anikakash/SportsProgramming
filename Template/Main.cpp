@@ -54,6 +54,14 @@ ll findTrailingZeros(ll n)
         count += n / i;
     return count;
 }
+ll digit_counter(ll n){
+    ll cnt=0;
+    while(n){
+        n/=10;
+        cnt++;
+    }
+    return cnt;
+}
 
 int main(){
    
@@ -64,30 +72,17 @@ int main(){
   #endif
 
   FASTERIO; //cmt when use scanf & printf ;
+  
+   int t; cin>>t;
+   while(t--){
+        int a,b,c;
+        cin>>a>>b>>c;
+        int diff = abs(a-b);
+        if(max({a,b,c}) > 2*diff)cout<<-1<<endl;
+        else if(diff<c)cout<<c-diff<<endl;
+        else cout<<c+diff<<endl;
+   }
 
-    int a, b; 
-    cin>>a;
-    vector<int>v(a);
-    for(int i=0; i<a; i++)cin>>v[i];
-        // sort(v.begin(), v.end());
-        int l=v[0], r=v[0];
-        
-        for(int i=0; i<a; i++){
-            l = min(l,v[i]);
-            r = max(r,v[i]);
-        }
-
-        int SM=INT_MAX;
-        for(int i=l; i<=r; i++){
-            int tmp=0;
-            for(int j=0; j<a; j++){
-                tmp+= (v[j]-i)*(v[j]-i);
-            }
-            //debugNS(i," = ",tmp);NL;
-            if(tmp<SM)SM = tmp;
-        }
-        cout<<SM<<endl;
-    
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
   #endif
