@@ -73,15 +73,26 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-   int t; cin>>t;
-   while(t--){
-        int a,b,c;
-        cin>>a>>b>>c;
-        int diff = abs(a-b);
-        if(max({a,b,c}) > 2*diff)cout<<-1<<endl;
-        else if(diff<c)cout<<c-diff<<endl;
-        else cout<<c+diff<<endl;
-   }
+   ll t; cin>>t;
+   vector<ll>v(t);
+  for(int i=0; i<t; i++)cin>>v[i];
+    sort(v.begin(), v.end());
+    ll n; cin>>n;
+    auto it = upper_bound(v.begin(), v.end(),5);
+
+    vector<ll>::iterator tmp1, tmp2;
+    tmp1=it;
+    tmp1 = tmp1-1;
+
+    if(*it == n)cout<<-1<<endl;
+    else{
+        int x = n-(*tmp1);
+        int y = (*it)-n;
+        if(x>y)cout<<*it<<endl;
+        else if(x==y)cout<<*it<<endl;
+        else cout<<*tmp1<<endl;
+    }
+   //cout<<*tmp1<<endl;
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

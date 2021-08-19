@@ -1,54 +1,34 @@
 #include<bits/stdc++.h>
 using namespace    std;
-#define pi                      acos(-1.0) //3.1415926535897932384626
-#define pb                      push_back
-
 
 
 int main(){
-   
-   ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-   int t;
-    cin>>t;
-    for(int j=1; j<=t; j++)
-    {
 
-        ll n;
-        ll x, last, first, mid, c, r, diff;
-        cin>>n;
+   long long int t; 
+   cin>>t;
+    vector<long long int>v;
+  for(int i=0; i<t; i++){
+    long long int x; 
+    cin>>x;
+    v.push_back(x);
+  }
+    sort(v.begin(), v.end());
 
-        x = (sqrt(n-1))+1;
-        last = x*x;
+    long long int n; cin>>n;
+    auto it = lower_bound(v.begin(), v.end(),n);
 
-        first = ((x-1)*(x-1))+1;
-
-        mid = (last+first)/2;
-
-        if(n>mid && n<=last)
-        {
-            c = x;
-            diff = last-n;
-            r = diff+1;
-        }
-        else if(n<mid && n>=first)
-        {
-            diff = mid-n;
-            c = x-diff;
-            r = x;
-
-        }
-        else
-        {
-            c = x;
-            r = x;
-        }
-
-        
-           cout<<c<<" "<<r<<endl;
-        
-
+    vector<long long int>::iterator tmp1, tmp2;
+    tmp1=it;
+    tmp1 = tmp1-1;
+    if(*it == n)cout<<-1<<endl;
+    else if(*it == 0)cout<<v[t-1]<<endl;
+    else{
+        int x = n-(*tmp1);
+        int y = (*it)-n;
+        if(x>y)cout<<*it<<endl;
+        else if(x==y)cout<<*it<<endl;
+        else cout<<*tmp1<<endl;
     }
-  
 
    return 0;
 }
