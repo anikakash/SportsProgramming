@@ -1,60 +1,93 @@
 #include<bits/stdc++.h>
 using namespace    std;
 
+#define flush                   cin.ignore(numeric_limits<streamsize>::max(),'\n')
 #define FASTERIO                ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define NL                      '\n';
+#define pi                      acos(-1.0) //3.1415926535897932384626
+#define pb                      push_back
+#define mk                      make_pair
+#define mx                      1e18
+#define EPS                     1e-10
+#define dpoint(x)               fixed<<setprecision(x)
 typedef long long int           ll;
+typedef double                  dl;
+typedef unsigned long long      ul;
 
-void lucky_Number(ll n){
-     if(n>1e10)return;
-    
-     lucky_Number(n*10+4);
-     lucky_Number(n*10+7);
+//Funtions
+template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
+int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
+int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
+
+// Debugger
+#define debugNS(a,b,c)             cout<<a<<b<<c;
+#define debugN(b)               cout<<b<<endl;
+
+int dx[] = {0, 0, -1, 1, -1, -1, 1, 1}; //Graph Move;
+int dy[] = {1, -1, 0, 0, -1, 1, -1, 1};
+
+string DecimalToBinary(int n){
+
+    string res="";
+    for(int i=31; i>=0; i--){
+        int k = n & (1<<i);
+        res += (n&k)?'1':'0';
+    }
+    return res;
+}
+int BinaryToDecimal(string s){
+    int ans = 0;
+    for(int i=0; i<s.size(); i++){
+        ans = (2*ans)+s[i]-'0';
+    }
+    return ans;
+}
+ bool cmp(pair<int,char>a, pair<int,char>b){
+    if(a.first!=b.first) return a>b;
+    return a<b;
+ }
+
+ll findTrailingZeros(ll n)
+{
+    ll count = 0;
+    for (ll i = 5; n / i >= 1; i *= 5)
+        count += n / i;
+    return count;
+}
+ll digit_counter(ll n){
+    ll cnt=0;
+    while(n){
+        n/=10;
+        cnt++;
+    }
+    return cnt;
 }
 
-
 int main(){
+   
+  #ifdef anikakash
+       clock_t tStart = clock();
+       freopen("INPUT.txt","r",stdin);
+       freopen("output.txt","w",stdout); 
+  #endif
+
+  FASTERIO; //cmt when use scanf & printf ;
+  
+   string s; 
+   cin>>s;
+
+   int x = (s[0]-'0')*10+(s[1]-'0');
+   x = x*10+(s[2]-'0');
+
+   int y = (s[3]-'0')*10+(s[4]-'0');
+   y = y*10+(s[5]-'0');
+
+   
 
 
-       FASTERIO;
-       
-     int t;
-    cin>>t;
-    for(int j=1; j<=t; j++)
-    {
+  #ifdef anikakash
+     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+  #endif
 
-        ll n;
-        ll x, last, first, mid, c, r, diff;
-        cin>>n;
-
-        x = (sqrt(n-1))+1;
-        last = x*x;
-
-        first = ((x-1)*(x-1))+1;
-
-        mid = (last+first)/2;
-
-        if(n>mid && n<=last)
-        {
-            c = x;
-            diff = last-n;
-            r = diff+1;
-        }
-        else if(n<mid && n>=first)
-        {
-            diff = mid-n;
-            c = x-diff;
-            r = x;
-
-        }
-        else
-        {
-            c = x;
-            r = x;
-        }
-
-           cout<<c<<" "<<r<<endl;
-
-    }
- 
    return 0;
 }

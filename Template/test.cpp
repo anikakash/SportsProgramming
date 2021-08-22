@@ -1,34 +1,53 @@
 #include<bits/stdc++.h>
 using namespace    std;
+typedef long long int           LL;
+
+int check(LL k){
+       LL up=(1LL<< 31 )- 1 ;
+       LL down = 1 ;
+      LL mid;
+      LL m;
+      while (up>= down){
+          mid=(up+down)/ 2 ;
+          cout<<"MID "<<mid<<endl;
+          m=mid*(mid- 1 )/ 2+ 1 ;
+          cout<<"M "<<m<<endl;
+          cout<<endl;
+          if (m==k) return  1 ;
+          else  if (m>k) up=mid- 1 ;
+          else down=mid + 1 ;
+      }
+       return  0 ;
+   }
 
 
 int main(){
+  #ifdef anikakash
+       // clock_t tStart = clock();
+       freopen("INPUT.txt","r",stdin);
+       freopen("output.txt","w",stdout); 
+  #endif
 
-   long long int t; 
-   cin>>t;
-    vector<long long int>v;
-  for(int i=0; i<t; i++){
-    long long int x; 
-    cin>>x;
-    v.push_back(x);
-  }
-    sort(v.begin(), v.end());
-
-    long long int n; cin>>n;
-    auto it = lower_bound(v.begin(), v.end(),n);
-
-    vector<long long int>::iterator tmp1, tmp2;
-    tmp1=it;
-    tmp1 = tmp1-1;
-    if(*it == n)cout<<-1<<endl;
-    else if(*it == 0)cout<<v[t-1]<<endl;
-    else{
-        int x = n-(*tmp1);
-        int y = (*it)-n;
-        if(x>y)cout<<*it<<endl;
-        else if(x==y)cout<<*it<<endl;
-        else cout<<*tmp1<<endl;
-    }
+    int n,k;
+       // freopen("data.txt","r",stdin); 
+      scanf( " %d " ,& n);
+       for (int i = 0 ;i<n;i++ ){
+           scanf( " %d " ,& k);
+           if (i) printf( "  " );
+           printf( " %d " ,check(k));
+       }
+       printf( " \n " );
 
    return 0;
 }
+
+/*
+
+  Let's take x is out input;
+  so if we do y = x/2;
+  then we can ((y*(y-1))/2) if this formula return us the excate number 
+
+
+*/
+
+
