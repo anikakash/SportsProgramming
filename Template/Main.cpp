@@ -79,29 +79,20 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-  int t;cin>>t;
-  while(t--){
-    ull n, s=0, pw=0, i=0, j=0, ans=INT_MAX;
-    string s1, s2;
-
-    cin>>n; 
-    s2 = to_string(n);
-
-        while(s<=1e18){
-            s = pow(2,pw);
-            pw++;
-            s1 = to_string(s); int cnt=0;
-            for(i=0, j=0; i<s2.size(); i++){
-                if(s1[j] == s2[i]){
-                    j++; cnt++;
-                }
-            }
-            ull tmp = (s1.size()-cnt)+(s2.size()-cnt);
-            ans = min(ans,tmp);
-            cout<<s1<<" = "<<s1.size()<<" "<<cnt<<" "<<ans<<endl;
-        }
-        cout<<ans<<endl;
-  }
+  
+    int n;cin>>n;
+    
+    while(n--){
+       ll x; cin>>x;
+       if(x<=6){
+        cout<<15<<endl;
+        continue;
+       }
+       if(x%2!=0) x++;
+       ll p = x*2.5;
+       cout<<p<<endl;
+       
+    }
     
 
   #ifdef anikakash

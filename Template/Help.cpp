@@ -72,18 +72,14 @@ int main(){
   #endif
 
   FASTERIO; //cmt when use scanf & printf ;
-  
-   string s; 
-   cin>>s;
-
-   int x = (s[0]-'0')*10+(s[1]-'0');
-   x = x*10+(s[2]-'0');
-
-   int y = (s[3]-'0')*10+(s[4]-'0');
-   y = y*10+(s[5]-'0');
+   
+   ll n, ans=1; cin>>n; 
+   for(ll i=1; i<=n; i++){
+        ans*=i;
+   }
+   cout<<ans<<endl;
 
    
-
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
