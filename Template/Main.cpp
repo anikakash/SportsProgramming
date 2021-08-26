@@ -80,19 +80,31 @@ int main(){
   FASTERIO; //cmt when use scanf & printf ;
   
   
-    int n;cin>>n;
-    
-    while(n--){
-       ll x; cin>>x;
-       if(x<=6){
-        cout<<15<<endl;
-        continue;
-       }
-       if(x%2!=0) x++;
-       ll p = x*2.5;
-       cout<<p<<endl;
-       
-    }
+     int n; cin>>n; 
+     while(n--){
+        int sz; cin>>sz;
+        vector<int>v(sz);
+        for(int i=0; i<sz; i++)cin>>v[i];
+            int cnt=0;
+        bool flg = false;
+           for(int i=0; i<sz; i++){
+                for(int j=0; j<sz-1; j++){
+                    if(v[j]>v[j+1]){
+                        swap(v[j],v[j+1]);
+                        j++;;
+                        flg = true;
+                    }
+                }
+                if(flg){cnt++; flg = false;}
+                // for(auto it:v) cout<<it<<" ";
+                //     NL;
+           }
+
+            cout<<cnt<<endl;
+            // for(auto it:v)
+            //     cout<<it<<" ";
+            // NL;
+     }
     
 
   #ifdef anikakash
