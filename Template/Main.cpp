@@ -68,6 +68,13 @@ ll digit_counter(ll n){
     }
     return cnt;
 }
+int findmin(string s){
+    int sm = INT_MAX;
+    for(int i=0; i<s.size()-1; i++){
+        sm = min(sm, abs((int)s[i] - (int)s[i+1]));
+    }
+    return sm;
+}
 
 int main(){
    
@@ -79,32 +86,43 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-  
-     int n; cin>>n; 
-     while(n--){
-        int sz; cin>>sz;
-        vector<int>v(sz);
-        for(int i=0; i<sz; i++)cin>>v[i];
-            int cnt=0;
-        bool flg = false;
-           for(int i=0; i<sz; i++){
-                for(int j=0; j<sz-1; j++){
-                    if(v[j]>v[j+1]){
-                        swap(v[j],v[j+1]);
-                        j++;;
-                        flg = true;
-                    }
-                }
-                if(flg){cnt++; flg = false;}
-                // for(auto it:v) cout<<it<<" ";
-                //     NL;
-           }
+  string s, s2, ans;
+  while(getline(cin,s)){
+         s2 = s;
+        int ln = INT_MIN, tmp;
 
-            cout<<cnt<<endl;
-            // for(auto it:v)
-            //     cout<<it<<" ";
-            // NL;
-     }
+        tmp = findmin(s);
+        if(ln>tmp){
+            ln = tmp;
+            ans = s;
+        }
+
+        for(int i=1; i<11; i++)
+        {
+            if(prev_permutation(s.begin(), s.end()))
+            {
+                    tmp = findmin(s);
+                    if(ln>tmp){
+                        ln = tmp;
+                        ans = s;
+                    }
+                    if(tmp == ln) ans = min(s,ans);
+            }
+        }
+
+        for(int i=1; i<11; i++)
+        {
+            if(next_permutation(s2.begin(), s2.end()))
+            {
+                    tmp = findmin(s2);
+                    if(ln>tmp){
+                        ln = tmp;
+                        ans = s2;
+                    }
+            }
+        }
+        cout<<ans<<ln<<endl;
+  }
     
 
   #ifdef anikakash
