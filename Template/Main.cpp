@@ -86,13 +86,17 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-  string s, s2, ans;
+  
+    string s="", s2="", ans="";
   while(getline(cin,s)){
+  
          s2 = s;
-        int ln = INT_MIN, tmp;
+        // cout <<s<<" "<<s2<<endl;
+        int ln = INT_MIN, tmp=0;
+        
 
         tmp = findmin(s);
-        if(ln>tmp){
+        if(ln<tmp){
             ln = tmp;
             ans = s;
         }
@@ -102,11 +106,11 @@ int main(){
             if(prev_permutation(s.begin(), s.end()))
             {
                     tmp = findmin(s);
-                    if(ln>tmp){
+                    if(ln<tmp){
                         ln = tmp;
                         ans = s;
                     }
-                    if(tmp == ln) ans = min(s,ans);
+                    if(ln==tmp)ans=min(ans,s);
             }
         }
 
@@ -115,7 +119,7 @@ int main(){
             if(next_permutation(s2.begin(), s2.end()))
             {
                     tmp = findmin(s2);
-                    if(ln>tmp){
+                    if(ln<tmp){
                         ln = tmp;
                         ans = s2;
                     }
