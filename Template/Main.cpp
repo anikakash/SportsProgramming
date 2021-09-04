@@ -82,15 +82,14 @@ int main(){
   
     int t;cin>>t;
     while(t--){
-        vector<int>v(3);
-        for(int i=0; i<3; i++)cin>>v[i];
-            int d, e;
-        cin>>d>>e;
-        sort(v.begin(), v.end());
-        if(v[0]<=e){
-            if(v[1]+v[2]<=d)cout<<"YES"<<endl;
-            else cout<<"NO"<<endl;
-        }
+        int a,b,c,d,e;
+        cin>>a>>b>>c>>d>>e;
+        bool flg = false;
+        if(b+c<=d && a<=e)flg = true;
+        else if(a+c<=d && b<=e)flg = true;
+        else if(a+b<=d && c<=e)flg = true;
+        else flg = false;
+        if(flg)cout<<"YES"<<endl;
         else cout<<"NO"<<endl;
     }
 
