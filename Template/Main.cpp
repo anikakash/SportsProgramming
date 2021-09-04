@@ -68,13 +68,7 @@ ll digit_counter(ll n){
     }
     return cnt;
 }
-int findmin(string s){
-    int sm = INT_MAX;
-    for(int i=0; i<s.size()-1; i++){
-        sm = min(sm, abs((int)s[i] - (int)s[i+1]));
-    }
-    return sm;
-}
+
 
 int main(){
    
@@ -86,45 +80,19 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-  
-    int n;
-    vector<string>v;
-    while(cin>>n){
-        flush;
-        while(n--){
-            string s; cin>>s;
-            v.pb(s);
+    int t;cin>>t;
+    while(t--){
+        vector<int>v(3);
+        for(int i=0; i<3; i++)cin>>v[i];
+            int d, e;
+        cin>>d>>e;
+        sort(v.begin(), v.end());
+        if(v[0]<=e){
+            if(v[1]+v[2]<=d)cout<<"YES"<<endl;
+            else cout<<"NO"<<endl;
         }
-
-        int t;
-        cin>>t;
-        flush;
-        vector<string>vs;
-        while(t--){
-            string s; cin>>s;
-            vs.pb(s);
-            // // cout<<vs[0]<<endl;
-            // for(int i=0; i<10; i++){
-
-            // }
-        }
-
-        for(int k=0; k<v.size(); k++){
-            string ss = "", tmp = v[k];
-            for(int i=0; i<vs.size(); i++){
-                for(int j=0; j<vs[i].size(); j++){
-                   // cout<<vs[i][j]<<" ";
-                    if(vs[i][j] == '#') ss+=tmp;
-                    else ss.pb('$');
-                }
-            }
-            for(int i=0; i<10; i++){
-                
-            }
-        }
-
+        else cout<<"NO"<<endl;
     }
-    
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
