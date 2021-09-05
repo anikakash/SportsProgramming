@@ -86,57 +86,19 @@ int main(){
         int n;
         cin>>n;
         vector<int>v(n);
-        for(int i=0; i<n; i++) cin>>v[i];
-          
-        sort(v.begin(), v.end());
-    dl sum=0.0;
-        if(n%2==0){
-            int x=0, y=n/2;
-            dl sum1=0.0, sum2=0.0, m = y;
-            
-            y--;
-            while(x<=y){
-                if(v[x]<0){y++; m++;}
-                sum1+=(v[x]*1.0);
-                x++;
-            }
-            if(gobug) debugNS("sum1"," = ",sum1);
-            sum1 = sum1/m;
-             y = n-1;
-             m = 0;
-            while(x<=y){
-                sum2+=(v[x]*1.0);
-                x++; m++;
-            }
-            if(gobug) debugNS("sum2"," = ",sum2);
-            sum2 = sum2/m;
-            sum = sum1+sum2;
+        int x = INT_MIN;
+        ll sum=0;
+        for(int i=0; i<n; i++){
+            cin>>v[i];
+            sum+=v[i];
+            if(v[i]>x)x=v[i];
         }
-        else{
 
-            int x=0, y=(n/2);
-            dl sum1=0.0, sum2=0.0, m = y+1.0;
-            if(gobug)debugN(y);
-            if(gobug)debugN(m);
-            while(x<=y){
-                sum1 =sum1 + ((v[x]+v[y])*1.0) ;
-                x++; y--;
-            }
-            sum1 = sum1/m;
-            if(gobug)debugNS("sum1"," = ",sum1);
-            x++; y = n-1; m--;
-            while(x<=y){
-                sum2 =sum2 + (v[x]*1.0);
-                x++; y--;
-            }
-            sum2 = sum2/m;
-            if(gobug)debugNS("sum2"," = ",sum2);
-            sum = sum1+sum2;
-        }
-        
+        dl p = sum-x;
 
-        
-        cout<<dpoint(9)<<sum<<endl;
+        p = p/((n-1)*1.0);
+        cout<<dpoint(9)<<p+x<<endl;
+      
    }
 
   #ifdef anikakash
