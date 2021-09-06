@@ -69,7 +69,12 @@ ll digit_counter(ll n){
     }
     return cnt;
 }
-
+int xoo(int n){
+    if(n%4==0)return n;
+    else if(n%4==1)return 1;
+    else if(n%4==2)return n+1;
+    return 0;
+}
 
 int main(){
    
@@ -84,9 +89,10 @@ int main(){
    int tt;cin>>tt;
    while(tt--){
         int a,b; cin>>a>>b;
-        int x = b^(a+b);
-        if(a<b)x++;
-        cout<< x <<endl;
+        int x = xoo(a-1);
+        if(x==b)cout<<a<<endl;
+        else if((x^b)!= a)cout<<a+1<<endl;
+        else cout<<a+2<<endl;
    }
 
   #ifdef anikakash
