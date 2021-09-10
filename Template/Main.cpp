@@ -61,21 +61,19 @@ ll findTrailingZeros(ll n)
         count += n / i;
     return count;
 }
-ll digit_counter(ll n){
-    ll cnt=0;
-    while(n){
-        n/=10;
-        cnt++;
-    }
-    return cnt;
-}
-int xoo(int n){
-    if(n%4==0)return n;
-    else if(n%4==1)return 1;
-    else if(n%4==2)return n+1;
-    return 0;
-}
 
+int is_prime(ll n)
+{
+    ll i, root;
+    if(n==2) return 1;
+    if(n%2==0 || n==1) return 0;
+
+    root = sqrt(n);
+    
+    for(i=3; i<=root; i = i+2)if(n%i==0)  return 0;
+    
+    return 1;
+}
 int main(){
    
   #ifdef anikakash
@@ -86,14 +84,14 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
   
-   int tt;cin>>tt;
-   while(tt--){
-        int a,b; cin>>a>>b;
-        int x = xoo(a-1);
-        if(x==b)cout<<a<<endl;
-        else if((x^b)!= a)cout<<a+1<<endl;
-        else cout<<a+2<<endl;
-   }
+    
+    string s; cin>>s;
+    int cnt=0;
+    for(int i=1; i<s.size(); i++){
+        if(s[i]!=s[i-1])cnt++;
+    }
+    if(cnt==0)cout<<-1<<endl;
+    else cout<<2<<endl;
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
