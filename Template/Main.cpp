@@ -85,13 +85,19 @@ int main(){
   FASTERIO; //cmt when use scanf & printf ;
   
     
-    string s; cin>>s;
-    int cnt=0;
-    for(int i=1; i<s.size(); i++){
-        if(s[i]!=s[i-1])cnt++;
+    int tt; cin>>tt;
+    for(int caseno=1; caseno<=tt; caseno++){
+        int n; cin>>n;
+        string s; cin>>s;
+        int cnt=0, ans=INT_MAX;
+        for(int i=0; i<n; i++){
+            if(s[i]=='.'){
+                cnt++;
+                i+=2;
+            }
+        }
+        cout<<"Case "<<caseno<<": "<<cnt<<endl;
     }
-    if(cnt==0)cout<<-1<<endl;
-    else cout<<2<<endl;
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
