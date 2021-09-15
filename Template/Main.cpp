@@ -7,7 +7,7 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define mx                       1e2
+#define mx                       100005
 #define EPS                      1e-10
 #define dpoint(x)                fixed<<setprecision(x)
 typedef long long int            ll;
@@ -62,18 +62,29 @@ ll findTrailingZeros(ll n)
     return count;
 }
 
-int is_prime(ll n)
-{
-    ll i, root;
-    if(n==2) return 1;
-    if(n%2==0 || n==1) return 0;
+int par[mx];
+int sz[mx];
+int max_size = INT_MIN;
 
-    root = sqrt(n);
-    
-    for(i=3; i<=root; i = i+2)if(n%i==0)  return 0;
-    
-    return 1;
+int root(int u){
+    if(par[u]!=u) return par[u] = root(par[u]);
+    else return u;
 }
+
+void marge(int p, int q){
+    if(sz[p]>=sz[q]){
+        sz[p]+=sz[q];
+        par[q]=p;
+        max_size = max(max_size,sz[p]);
+    }
+    else{
+        sz[q]+=sz[p];
+        par[p]=q;
+        max_size = max(max_size,sz[q]);
+    }
+}
+
+
 int main(){
    
   #ifdef anikakash
@@ -83,20 +94,26 @@ int main(){
   #endif
 
   FASTERIO; //cmt when use scanf & printf ;
-  
     
-    int tt; cin>>tt;
-    for(int caseno=1; caseno<=tt; caseno++){
-        int n; cin>>n;
-        string s; cin>>s;
-        int cnt=0, ans=INT_MAX;
-        for(int i=0; i<n; i++){
-            if(s[i]=='.'){
-                cnt++;
-                i+=2;
-            }
+    int n, k;
+    while(cin>>n>>k && n!=0){
+        map<string, int> mp;   
+        for(int i=1; i<=n; i++){
+            string s; cin>>s;
+            mp[s]=i;
+            par[i]=i;
+            sz[i]=1;
         }
-        cout<<"Case "<<caseno<<": "<<cnt<<endl;
+        max_size = 1;
+        for(int i=1; i<=k; i++){
+            string s, s1; cin>>s>>s1;
+            int x = mp[s];
+            int y = mp[s1];
+            int p = root(x);
+            int q = root(y);
+            if(p!=q)marge(p,q);
+        }
+        cout<<max_size<<endl;
     }
 
   #ifdef anikakash
