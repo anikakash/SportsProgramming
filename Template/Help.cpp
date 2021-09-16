@@ -8,6 +8,8 @@ int main(){
   #endif
 
        int tt; cin>>tt;
-       while((tt--))
+       while(tt--){
+        cout<<"HI"<<endl;
+       }
     return 0;
 }

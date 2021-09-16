@@ -95,25 +95,16 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
     
-    int n, k;
-    while(cin>>n>>k && n!=0){
-        map<string, int> mp;   
-        for(int i=1; i<=n; i++){
-            string s; cin>>s;
-            mp[s]=i;
-            par[i]=i;
-            sz[i]=1;
+    int tt; cin>>tt;
+    while(tt--){
+        ll n, x, t; cin>>n>>x>>t;
+        ll s = t/x;
+        if(s>n) cout<<(n-1)*(n)/2<<endl;
+        else{
+            ll ans = s*n;
+            ans-=(s)*(s+1)/2;
+            cout<<ans<<endl;
         }
-        max_size = 1;
-        for(int i=1; i<=k; i++){
-            string s, s1; cin>>s>>s1;
-            int x = mp[s];
-            int y = mp[s1];
-            int p = root(x);
-            int q = root(y);
-            if(p!=q)marge(p,q);
-        }
-        cout<<max_size<<endl;
     }
 
   #ifdef anikakash
