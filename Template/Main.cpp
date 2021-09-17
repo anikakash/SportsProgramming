@@ -95,17 +95,20 @@ int main(){
 
   FASTERIO; //cmt when use scanf & printf ;
     
+    
     int tt; cin>>tt;
     while(tt--){
-        ll n, x, t; cin>>n>>x>>t;
-        ll s = t/x;
-        if(s>n) cout<<(n-1)*(n)/2<<endl;
+        ll a,b; cin>>a>>b;
+        if(a>b)swap(a,b);
+        if(a==b)cout<<0<<" "<<0<<endl;
         else{
-            ll ans = s*n;
-            ans-=(s)*(s+1)/2;
-            cout<<ans<<endl;
+            ll x = abs(a-b);
+            ll y = a%x;
+            y = min(y,x-y);
+            cout<<x<<" "<<y<<endl;
         }
     }
+
 
   #ifdef anikakash
      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
