@@ -15,45 +15,45 @@ typedef double                   dl;
 typedef unsigned long long int   ull;
 
 //Funtions
-template <class T> T digitsum(T n){T sum=0;while(n!=0){sum+=n%10;n/=10;}return sum;}
-int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
-int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
+template <class T> T digitsum(T n) {T sum = 0; while (n != 0) {sum += n % 10; n /= 10;} return sum;}
+int gcd(int a, int b) { int x ; return x = __gcd(a, b);}
+int lcm(int a, int b) {int y; return y = ((a) * ((b) / gcd(a, b)));}
 
 // Debugger
 #define gobug                   0
 #define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-int ROW[]={+0, +0, -1, +1};
-int COL[]={+1, -1, +0, +0};
- 
-int X[]={+0,+0,+1,-1,-1,+1,-1,+1};   // Kings Move
-int Y[]={-1,+1,+0,+0,+1,+1,-1,-1};  // Kings Move
- 
-int KX[]={-2, -2, -1, -1,  1,  1,  2,  2};  // Knights Move
-int KY[]={-1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+int ROW[] = { +0, +0, -1, +1};
+int COL[] = { +1, -1, +0, +0};
 
-string DecimalToBinary(int n){
+int X[] = { +0, +0, +1, -1, -1, +1, -1, +1}; // Kings Move
+int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 
-    string res="";
-    for(int i=31; i>=0; i--){
-        int k = n & (1<<i);
-        res += (n&k)?'1':'0';
+int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
+int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+
+string DecimalToBinary(int n) {
+
+    string res = "";
+    for (int i = 31; i >= 0; i--) {
+        int k = n & (1 << i);
+        res += (n & k) ? '1' : '0';
     }
     return res;
 }
-int BinaryToDecimal(string s){
+int BinaryToDecimal(string s) {
     int ans = 0;
-    for(int i=0; i<s.size(); i++){
-        ans = (2*ans)+s[i]-'0';
+    for (int i = 0; i < s.size(); i++) {
+        ans = (2 * ans) + s[i] - '0';
     }
     return ans;
 }
- bool cmp(pair<int,char>a, pair<int,char>b){
-    if(a.first!=b.first) return a>b;
-    return a<b;
- }
-
+bool cmp(pair<int, int>a, pair<int, int>b) {
+    if(a<b)return true;
+    return false;
+}
+ 
 ll findTrailingZeros(ll n)
 {
     ll count = 0;
@@ -66,53 +66,93 @@ int par[mx];
 int sz[mx];
 int max_size = INT_MIN;
 
-int root(int u){
-    if(par[u]!=u) return par[u] = root(par[u]);
+int root(int u) {
+    if (par[u] != u) return par[u] = root(par[u]);
     else return u;
 }
 
-void marge(int p, int q){
-    if(sz[p]>=sz[q]){
-        sz[p]+=sz[q];
-        par[q]=p;
-        max_size = max(max_size,sz[p]);
+void marge(int p, int q) {
+    if (sz[p] >= sz[q]) {
+        sz[p] += sz[q];
+        par[q] = p;
+        max_size = max(max_size, sz[p]);
     }
-    else{
-        sz[q]+=sz[p];
-        par[p]=q;
-        max_size = max(max_size,sz[q]);
+    else {
+        sz[q] += sz[p];
+        par[p] = q;
+        max_size = max(max_size, sz[q]);
     }
 }
 
 
-int main(){
-   
-  #ifdef anikakash
-       clock_t tStart = clock();
-       freopen("INPUT.txt","r",stdin);
-       freopen("output.txt","w",stdout); 
-  #endif
+int main() {
 
-  FASTERIO; //cmt when use scanf & printf ;
+#ifdef anikakash
+    clock_t tStart = clock();
+    freopen("INPUT.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+
+    FASTERIO; //cmt when use scanf & printf ;
+
+
+   // int tt, n; cin>>tt;
+   // int x,y; cin>>x>>y; 
+   // n = tt;
+   // vector<pair<int,int>>mp;
+   // while(tt--){
+   //      int a,b; cin>>a>>b;
+   //      mp.pb({a,b});
+   // }
+   // // for(auto it:mp)
+   // //  cout<<it.first<<" "<<it.second<<endl;
+   //  // sort(mp.begin(), mp.end(), cmp);
+   // //  NL;
+   //  // for(auto it:mp)
+   //  // cout<<it.first<<" "<<it.second<<endl;
+
+   // for(int i=0; i<n; i++){
+   //  for(int j=i+1; j<n; j++){
+   //      if(cmp(mp[i],mp[j]))swap(mp[i],mp[j]);
+   //  }
+   // }
+   //  for(auto it:mp)
+   //  cout<<it.first<<" "<<it.second<<endl;
     
-    
+   //  bool flg = false;
+   //  int boll=0, ric=0, cnt=0;
+   //  for(auto it:mp){
+   //      boll+=it.first;
+   //      ric+=it.second;
+   //      cnt++;
+   //      if(boll >= x && ric>=y){
+   //          flg = true; break;
+   //      }
+   //  }
+   //  if(flg)cout<<cnt<<endl;
+   //  else cout<<-1<<endl;
     int tt; cin>>tt;
     while(tt--){
-        ll a,b; cin>>a>>b;
-        if(a>b)swap(a,b);
-        if(a==b)cout<<0<<" "<<0<<endl;
-        else{
-            ll x = abs(a-b);
-            ll y = a%x;
-            y = min(y,x-y);
-            cout<<x<<" "<<y<<endl;
+        int n; cin>>n;
+        vector<int>x,y;
+        for(int i=0; i<n; i++){
+            int p; cin>>p; x.pb(p);
         }
+        for(int i=0; i<n; i++){
+            int p; cin>>p; y.pb(p);
+        }
+        int cnt=0;
+        for(int i=0; i<n; i++){
+            if(x[i]<y[i])cnt++;
+        }
+        int sm = n-cnt;
+        if(sm==1)sm++;
+        cout<<sm<<endl;
     }
 
+#ifdef anikakash
+    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#endif
 
-  #ifdef anikakash
-     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-  #endif
-
-   return 0;
+    return 0;
 }
