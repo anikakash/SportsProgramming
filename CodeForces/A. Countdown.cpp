@@ -49,11 +49,11 @@ int BinaryToDecimal(string s) {
     }
     return ans;
 }
-bool cmp(pair<int, char>a, pair<int, char>b) {
-    if (a.first != b.first) return a > b;
-    return a < b;
+bool cmp(pair<int, int>a, pair<int, int>b) {
+    if(a<b)return true;
+    return false;
 }
-
+ 
 ll findTrailingZeros(ll n)
 {
     ll count = 0;
@@ -95,22 +95,22 @@ int main() {
 
     FASTERIO; //cmt when use scanf & printf ;
 
-
-    int tt; cin >> tt;
-    while (tt--) {
-        int n, sum=0; cin>>n;
-        vector<int>arr(n);
-        for(int i=0; i<n; i++){
-            cin>>arr[i];
-            sum+=arr[i];
+    int tt; cin>>tt;
+    while(tt--){
+        int n; cin>>n;
+        string s; cin>>s;
+        int sum=0;
+        for(int i=s.size()-1; i>=0; i--){
+            if(i == s.size()-1){
+                sum+=s[i]-'0';
+            }
+            else if(s[i]!='0'){
+                sum+=s[i]-'0';
+                sum++;
+            }
         }
-        if(sum<=0 || sum<n){
-            cout<<1<<endl;
-        }
-        else cout<<sum-n<<endl;
-        // cout<<sum<<endl;
+        cout<<sum<<endl;
     }
-
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
