@@ -95,60 +95,22 @@ int main() {
 
     FASTERIO; //cmt when use scanf & printf ;
 
-
-   // int tt, n; cin>>tt;
-   // int x,y; cin>>x>>y; 
-   // n = tt;
-   // vector<pair<int,int>>mp;
-   // while(tt--){
-   //      int a,b; cin>>a>>b;
-   //      mp.pb({a,b});
-   // }
-   // // for(auto it:mp)
-   // //  cout<<it.first<<" "<<it.second<<endl;
-   //  // sort(mp.begin(), mp.end(), cmp);
-   // //  NL;
-   //  // for(auto it:mp)
-   //  // cout<<it.first<<" "<<it.second<<endl;
-
-   // for(int i=0; i<n; i++){
-   //  for(int j=i+1; j<n; j++){
-   //      if(cmp(mp[i],mp[j]))swap(mp[i],mp[j]);
-   //  }
-   // }
-   //  for(auto it:mp)
-   //  cout<<it.first<<" "<<it.second<<endl;
     
-   //  bool flg = false;
-   //  int boll=0, ric=0, cnt=0;
-   //  for(auto it:mp){
-   //      boll+=it.first;
-   //      ric+=it.second;
-   //      cnt++;
-   //      if(boll >= x && ric>=y){
-   //          flg = true; break;
-   //      }
-   //  }
-   //  if(flg)cout<<cnt<<endl;
-   //  else cout<<-1<<endl;
-    int tt; cin>>tt;
-    while(tt--){
-        int n; cin>>n;
-        vector<int>x,y;
-        for(int i=0; i<n; i++){
-            int p; cin>>p; x.pb(p);
+   int tt;cin>>tt;
+   while(tt--){
+    int n; cin>>n; 
+        if(n%2==0){
+            for(int i=n; i>=1; i-=2){
+                cout<<i-1<<" "<<i<<" ";
+            }
         }
-        for(int i=0; i<n; i++){
-            int p; cin>>p; y.pb(p);
+        else{
+            for(int i=n; i>=1; i--){
+                cout<<i<<" ";
+            }
         }
-        int cnt=0;
-        for(int i=0; i<n; i++){
-            if(x[i]<y[i])cnt++;
-        }
-        int sm = n-cnt;
-        if(sm==1)sm++;
-        cout<<sm<<endl;
-    }
+        NL;
+   }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

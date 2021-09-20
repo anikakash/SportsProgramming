@@ -8,24 +8,8 @@ int main(){
        freopen("output.txt","w",stdout); 
   #endif
 
-       int n; cin>>n;
-       vector<int>v(n);
-        for(int i=0; i<n; i++){
-          int x; cin>>x;
-          v.push_back(x);
-        }
-        v.push_back(10);
-
-
-       for(int i=0; i<v.size(); i++)
-        cout<<v[i]<<" ";
-
-
-
-
-    
-      cout<<fixed<<setprecision(3)<<ans<<endl;
-
+       int n = __gcd(2,4);
+       cout<<n<<endl;
 
 
 
