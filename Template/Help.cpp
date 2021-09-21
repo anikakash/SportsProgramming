@@ -1,56 +1,40 @@
-// #include<bits/stdc++.h>
-// using namespace std;
-// typedef long long int ll;
-// int main(){
-//     #ifdef anikakash
-//        freopen("INPUT.txt","r",stdin);
-//        freopen("output.txt","w",stdout); 
-//   #endif
+#include<bits/stdc++.h>
+using namespace    std;
 
-//        int tt; cin>>tt;
-//        while(tt--){
-//         cout<<"HI"<<endl;
-//        }
-//     return 0;
-// }
-#include<stdio.h>
+#define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
+#define FASTERIO                 ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define NL                       cout<<'\n';
+#define pi                       acos(-1.0) //3.1415926535897932384626
+#define pb                       push_back
+#define mk                       make_pair
+#define mx                       100005
+#define EPS                      1e-10
+#define dpoint(x)                fixed<<setprecision(x)
+typedef long long int            ll;
+typedef double                   dl;
+typedef unsigned long long int   ull;
+
 int main()
 {
-    #ifdef anikakash
-       freopen("INPUT.txt","r",stdin);
-       freopen("output.txt","w",stdout); 
-  #endif
-    char s[1005],a[1005];
-    int i,j,sum=0,x,count[26]={0};
-     fgets(s, sizeof(s), stdin);      
-    for(i=1,j=0;s[j];i=i+3,j++){
- 
-        a[j]=s[i];
- 
-    }
- 
- 
- 
-  for(j=0;a[j];j++){
-        if(a[j]!='}'){
-        x=a[j]-97;
-        count[x]++;
- 
+#ifdef anikakash
+    freopen("INPUT.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    int t; cin >> t;
+    for (int i = 1; i <= t; i++) {
+        int x; cin >> x;
+        if ((x & 1)) {
+            cout << "Case " << i << ": Impossible" << endl;
+        } else {
+            int k, j;
+            for (k = 3; k <= x; k += 2) {
+                for (j = 2; j <= x; j += 2)
+                    if (k * j == x) {
+                        cout << "Case " << i << ": " << k << " " << j << endl;
+                        break;
+                    }
+            }
         }
     }
- 
-for(j=0;j<26;j++){
- 
-       if(count[j]>1){
-        count[j]=1;
-       }
- 
-    }
-    for(j=0;j<26;j++){
- 
-       sum=sum+count[j];
- 
-    }
-printf("%d\n",sum);
     return 0;
 }

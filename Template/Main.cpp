@@ -50,10 +50,10 @@ int BinaryToDecimal(string s) {
     return ans;
 }
 bool cmp(pair<int, int>a, pair<int, int>b) {
-    if(a<b)return true;
+    if (a < b)return true;
     return false;
 }
- 
+
 ll findTrailingZeros(ll n)
 {
     ll count = 0;
@@ -95,22 +95,18 @@ int main() {
 
     FASTERIO; //cmt when use scanf & printf ;
 
-    
-   int tt;cin>>tt;
-   while(tt--){
-    int n; cin>>n; 
-        if(n%2==0){
-            for(int i=n; i>=1; i-=2){
-                cout<<i-1<<" "<<i<<" ";
-            }
+    int tt;
+    while (cin >> tt) {
+        if(tt==0)return 0;
+        ll sum=0, ans=0;
+        while (tt--) {
+            ll x; cin>>x;
+            sum+=x;
+            if(sum<0)ans-=sum;
+            else ans+=sum;
         }
-        else{
-            for(int i=n; i>=1; i--){
-                cout<<i<<" ";
-            }
-        }
-        NL;
-   }
+        cout<<ans<<endl;
+    }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
