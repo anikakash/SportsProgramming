@@ -17,24 +17,18 @@ typedef unsigned long long int   ull;
 int main()
 {
 #ifdef anikakash
-    freopen("INPUT.txt", "r", stdin);
+    freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-    int t; cin >> t;
-    for (int i = 1; i <= t; i++) {
-        int x; cin >> x;
-        if ((x & 1)) {
-            cout << "Case " << i << ": Impossible" << endl;
-        } else {
-            int k, j;
-            for (k = 3; k <= x; k += 2) {
-                for (j = 2; j <= x; j += 2)
-                    if (k * j == x) {
-                        cout << "Case " << i << ": " << k << " " << j << endl;
-                        break;
-                    }
-            }
-        }
-    }
+   std::map<ll, ll> mp;
+   mp[0]=1;
+   mp[2]=2;
+   mp[3]=3;
+   mp[5]=5;
+   mp[6]=6;
+   mp[7]=7;
+
+   for(auto it:mp)
+      cout<<it.first<<" "<<it.second<<endl;
     return 0;
 }

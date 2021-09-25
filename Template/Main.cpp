@@ -7,7 +7,7 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define mx                       100005
+#define mx                       1000005
 #define EPS                      1e-10
 #define dpoint(x)                fixed<<setprecision(x)
 typedef long long int            ll;
@@ -83,30 +83,68 @@ void marge(int p, int q) {
         max_size = max(max_size, sz[q]);
     }
 }
+vector<ll>prime;
+map<ll, ll> mp;
+bool vis[mx];  //mx is define in above of the code;
+void sieve() {
+    ll x=sqrt((int)mx);
+    for(ll i=3; i<=x; i+=2) {
+        if(vis[i]==0) {
+            for(ll j=i*i; j<mx; j+=2*i)
+                vis[j]=1;
+        }
+    }
 
+    prime.pb(2);
+    mp[0]=1;
+    mp[2]=2;
+    for(ll i=3; i<mx; i+=2){
+        if(vis[i]==0){
+            prime.pb(i);
+            mp[i]=i;
+        }
+        else{
+            mp[i]=0;
+        }
+    }
+}
 
 int main() {
 
 #ifdef anikakash
     clock_t tStart = clock();
-    freopen("INPUT.txt", "r", stdin);
+    freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
 
     FASTERIO; //cmt when use scanf & printf ;
 
-    int tt;
-    while (cin >> tt) {
-        if(tt==0)return 0;
-        ll sum=0, ans=0;
-        while (tt--) {
-            ll x; cin>>x;
-            sum+=x;
-            if(sum<0)ans-=sum;
-            else ans+=sum;
+    int tt; cin>>tt;
+    while(tt--){
+        int n; cin>>n;
+        vector<int>a1(n), a2(n);
+        for(int i=0; i<n; i++)cin>>a1[i];
+        for(int i=0; i<n; i++)cin>>a2[i];
+
+        if(a1[0]<a2[0])cout<<0<<endl;
+        else{
+            int x=0, y=0;
+            for(int i=0; i<n; i++){
+                if(a1[i]<a2[0]){
+                    x = i; break;
+                }
+            }
+            for(int i=0; i<n; i++){
+                if(a2[i]>a1[0]){
+                    y = i;
+                    break;
+                }
+            }
+            // cout<<x<<" "<<y<<endl;
+            cout<<min(x,y)<<endl;
         }
-        cout<<ans<<endl;
     }
+    
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
