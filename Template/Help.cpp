@@ -20,15 +20,7 @@ int main()
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-   std::map<ll, ll> mp;
-   mp[0]=1;
-   mp[2]=2;
-   mp[3]=3;
-   mp[5]=5;
-   mp[6]=6;
-   mp[7]=7;
-
-   for(auto it:mp)
-      cout<<it.first<<" "<<it.second<<endl;
+  string s; getline(cin,s);
+  cout<<s.size()<<endl;
     return 0;
 }

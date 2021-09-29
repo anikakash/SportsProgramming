@@ -87,24 +87,24 @@ vector<ll>prime;
 map<ll, ll> mp;
 bool vis[mx];  //mx is define in above of the code;
 void sieve() {
-    ll x=sqrt((int)mx);
-    for(ll i=3; i<=x; i+=2) {
-        if(vis[i]==0) {
-            for(ll j=i*i; j<mx; j+=2*i)
-                vis[j]=1;
+    ll x = sqrt((int)mx);
+    for (ll i = 3; i <= x; i += 2) {
+        if (vis[i] == 0) {
+            for (ll j = i * i; j < mx; j += 2 * i)
+                vis[j] = 1;
         }
     }
 
     prime.pb(2);
-    mp[0]=1;
-    mp[2]=2;
-    for(ll i=3; i<mx; i+=2){
-        if(vis[i]==0){
+    mp[0] = 1;
+    mp[2] = 2;
+    for (ll i = 3; i < mx; i += 2) {
+        if (vis[i] == 0) {
             prime.pb(i);
-            mp[i]=i;
+            mp[i] = i;
         }
-        else{
-            mp[i]=0;
+        else {
+            mp[i] = 0;
         }
     }
 }
@@ -118,32 +118,18 @@ int main() {
 #endif
 
     FASTERIO; //cmt when use scanf & printf ;
+    int n;
+    cin>>n;
+    int arr[n]={};
+    for (int i = 0; i <n; ++i)cin>>arr[i];
 
-    int tt; cin>>tt;
-    while(tt--){
-        int n; cin>>n;
-        vector<int>a1(n), a2(n);
-        for(int i=0; i<n; i++)cin>>a1[i];
-        for(int i=0; i<n; i++)cin>>a2[i];
-
-        if(a1[0]<a2[0])cout<<0<<endl;
-        else{
-            int x=0, y=0;
-            for(int i=0; i<n; i++){
-                if(a1[i]<a2[0]){
-                    x = i; break;
-                }
-            }
-            for(int i=0; i<n; i++){
-                if(a2[i]>a1[0]){
-                    y = i;
-                    break;
-                }
-            }
-            // cout<<x<<" "<<y<<endl;
-            cout<<min(x,y)<<endl;
+    for(int i=0; i<n-1; i++){
+        for(int j=i+1; j<n; j++){
+            if(arr[i]>arr[j])swap(arr[i],arr[j]);
         }
     }
+    for(int i=0; i<n; i++)
+        cout<<arr[i]<<" ";
     
 
 #ifdef anikakash
