@@ -83,31 +83,6 @@ void marge(int p, int q) {
         max_size = max(max_size, sz[q]);
     }
 }
-vector<ll>prime;
-map<ll, ll> mp;
-bool vis[mx];  //mx is define in above of the code;
-void sieve() {
-    ll x = sqrt((int)mx);
-    for (ll i = 3; i <= x; i += 2) {
-        if (vis[i] == 0) {
-            for (ll j = i * i; j < mx; j += 2 * i)
-                vis[j] = 1;
-        }
-    }
-
-    prime.pb(2);
-    mp[0] = 1;
-    mp[2] = 2;
-    for (ll i = 3; i < mx; i += 2) {
-        if (vis[i] == 0) {
-            prime.pb(i);
-            mp[i] = i;
-        }
-        else {
-            mp[i] = 0;
-        }
-    }
-}
 
 int main() {
 
@@ -118,22 +93,27 @@ int main() {
 #endif
 
     FASTERIO; //cmt when use scanf & printf ;
+    
     int tt; cin>>tt;
     while(tt--){
-        int n; cin>>n; 
-        deque<int>dq;
+        int n;cin>>n;
+        vector<int>v(n);
+        map<int,int>mp;
         for(int i=0; i<n; i++){
-            int x; cin>>x;
-            if(dq.size() && x<dq.front())
-                dq.push_front(x);
-
-            else dq.push_back(x);
+            cin>>v[i]; mp[v[i]]++;
         }
-        for(auto it:dq) 
-            cout<<it<<" ";
-        cout<<endl;
+        int tmp=0;
+        for(auto it:mp)
+            if(it.second == 1)tmp = it.first;
+
+        for(int i=0; i<n; i++){
+            if(v[i]==tmp)cout<<i+1<<endl;
+        }
+
+        
     }
-    
+
+
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
