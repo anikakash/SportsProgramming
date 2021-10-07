@@ -83,37 +83,89 @@ void marge(int p, int q) {
         max_size = max(max_size, sz[q]);
     }
 }
+ll pur(ll n) {
+    ll ans = 1;
+    for (ll i = 1; i <= 2 * n; i++) {
+        ans = (ans % 1000000007 * i % 1000000007) % 1000000007;
+    }
+    return ans / 2ll;
+}
+ll t;
+ll checke(ll n) {
+    while (n) {
+        int mod = n % 10;
+        n /= 10;
+        if (mod == t) return 0;
+    }
+    return 1;
+}
+
+void GameChanger(string &s, char c, char b) {
+    ll tmp = stoi(s);
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] == c) {
+            s[i] = ++c;
+            for (int j = i + 1; j < s.size(); j++) {
+                s[j] = b;
+            }
+            break;
+        }
+    }
+    ll num = stoi(s);
+    cout << num - tmp << endl;
+}
+
+void sort_ascending(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] > arr[j])swap(arr[i], arr[j]);
+        }
+    }
+}
 
 int main() {
 
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("tmp.txt", "w", stdout);
 #endif
 
     FASTERIO; //cmt when use scanf & printf ;
-    
-    int tt; cin>>tt;
-    while(tt--){
-        int n;cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        for(int i=0; i<n; i++){
-            cin>>v[i]; mp[v[i]]++;
-        }
-        int tmp=0;
-        for(auto it:mp)
-            if(it.second == 1)tmp = it.first;
 
-        for(int i=0; i<n; i++){
-            if(v[i]==tmp)cout<<i+1<<endl;
+    int tt; cin >> tt;
+    while (tt--) {
+        int n; cin >> n;
+        vector<int>arr(n);
+        int counter[102]={0};
+
+        for (int i = 0; i < n; i++){
+            cin >> arr[i];
+            counter[arr[i]]++;
+        }
+        int AMex=-1, flg=1;
+        for(int i=0; i<101; i++){
+            if(counter[i]>0){
+                counter[i]--;
+            }
+            else {
+
+                AMex = i; break;
+            }
+        }
+        int BMex=-1;
+        for(int i=0; i<101; i++){
+            if(counter[i]>0){
+                counter[i]--;
+            }
+            else {
+                BMex = i; break;
+            }
         }
 
+        cout<<AMex+BMex<<endl;
         
     }
-
-
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
