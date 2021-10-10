@@ -7,7 +7,7 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define mx                       10000005
+#define mx                       100000
 #define EPS                      1e-10
 #define dpoint(x)                fixed<<setprecision(x)
 typedef long long int            ll;
@@ -24,33 +24,28 @@ int lcm(int a, int b) {int y; return y = ((a) * ((b) / gcd(a, b)));}
 #define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
 #define debugN(b)               cout<<b<<endl;
 
-
-
 vector<ll>prime;
-map<ll, ll> mp;
 bool vis[mx];  //mx is define in above of the code;
 void sieve() {
-    ll x = sqrt((int)mx);
-    for (ll i = 3; i <= x; i += 2) {
-        if (vis[i] == 0) {
-            for (ll j = i * i; j < mx; j += 2 * i)
-                vis[j] = 1;
+    ll x=sqrt((int)mx);
+    for(ll i=3; i<=x; i+=2) {
+        if(vis[i]==0) {
+            for(ll j=i*i; j<mx; j+=2*i)
+                vis[j]=1;
         }
     }
-
+    prime.pb(1);
     prime.pb(2);
-    mp[2] = 2;
-    for (ll i = 3; i < mx; i += 2) {
-        if (vis[i] == 0) {
+    for(ll i=3; i<mx; i+=2)
+        if(vis[i]==0)
             prime.pb(i);
-            mp[i] = i;
-        }
-        else {
-            mp[i] = 0;
-        }
+}
+vector<int>nprime;
+void push(int n){
+    for(int i=0; i<n; i++){
+        if(prime[i]<=n)nprime.pb(prime[i]);
     }
 }
-
 int main() {
 
 #ifdef anikakash
@@ -62,45 +57,38 @@ int main() {
     FASTERIO; //cmt when use scanf & printf ;
 
     sieve();
-    ll n;
-    while (cin >> n) {
-        if (n <= 7) {
-            cout << "Impossible." << endl;
-        }
-        else {
-            if (n % 2 == 0) {
-                cout << 2 << " " << 2 << " ";
-                bool ok = false;
-                n -= 4;
-                for (auto it : mp) {
-                    ll x = 0;
-                    if (it.second != 0)
-                        x = n - it.first;
-                    if (mp[x] != 0) {
-                        cout << it.first << " " << x << endl;
-                        ok = true;
-                    }
-                    if (ok)break;
+    int n,c;
+    while(cin>>n>>c){
+        push(n);
+        
+        int sz = nprime.size();
+        // cout<<"Size : "<<sz<<endl;
+        cout<<n<<" "<<c<<":";
+        if(sz%2==0){
+            int pp = 2*c, cnt=0;
+            int cut = sz-pp;
+            for(int i = 0; i<sz; i++){
+                if((i>=(cut/2)) && (cnt<pp) ){
+                    cout<<" "<<prime[i];
+                    cnt++;
                 }
             }
-            else {
-                cout << 2 << " " << 3 << " ";
-                bool ok = false;
-                n -= 5;
-                for (auto it : mp) {
-                    ll x = 0;
-                    if (it.second != 0)
-                        x = n - it.first;
-                    if (mp[x] != 0) {
-                        cout << it.first << " " << x << endl;
-                        ok = true;
-                    }
-                    if (ok)break;
-                }
-
-            }
+             NL;NL;
         }
+        else{
+            int pp = (2*c)-1, cnt=0;
+            int cut = sz-pp;
+            for(int i = 0; i<sz; i++){
+                if((i>=(cut/2)) && (cnt<pp) ){
+                    cout<<" "<<prime[i];
+                    cnt++;
+                }
+            }
+             NL;NL;
+        }
+        nprime.clear();
     }
+
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

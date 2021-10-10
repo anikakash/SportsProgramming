@@ -7,9 +7,10 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define mx                       1000005
+#define mx                       46500
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
+#define Fill(ar, val)            memset(ar, val, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
@@ -83,44 +84,43 @@ void marge(int p, int q) {
         max_size = max(max_size, sz[q]);
     }
 }
-ll pur(ll n) {
-    ll ans = 1;
-    for (ll i = 1; i <= 2 * n; i++) {
-        ans = (ans % 1000000007 * i % 1000000007) % 1000000007;
-    }
-    return ans / 2ll;
-}
-ll t;
-ll checke(ll n) {
-    while (n) {
-        int mod = n % 10;
-        n /= 10;
-        if (mod == t) return 0;
-    }
-    return 1;
-}
 
-void GameChanger(string &s, char c, char b) {
-    ll tmp = stoi(s);
-    for (int i = 0; i < s.size(); i++) {
-        if (s[i] == c) {
-            s[i] = ++c;
-            for (int j = i + 1; j < s.size(); j++) {
-                s[j] = b;
-            }
-            break;
+ll L,R, Prime_size;
+
+vector<ll>prime;
+bool vis[mx];  //mx is define in above of the code;
+void sieve() {
+
+    Fill(vis, true);
+    vis[0] = vis[1] = false;
+    for(int i=4; i<mx; i+=2)vis[i]=false;
+
+    ll x=sqrt((int)mx);
+    for(ll i=3; i<=x; i+=2) {
+        if(vis[i]) {
+            for(ll j=i*i; j<mx; j+=2*i)
+                vis[j]=false;
         }
     }
-    ll num = stoi(s);
-    cout << num - tmp << endl;
+    prime.pb(2);
+    for(ll i=3; i<mx; i+=2)
+        if(vis[i]==0)
+            prime.pb(i);
+        Prime_size = prime.size();
 }
 
-void sort_ascending(int arr[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (arr[i] > arr[j])swap(arr[i], arr[j]);
-        }
-    }
+bool isprime(ll n){
+    if(n<mx) return vis[n];
+    int root = sqrt(n);
+    for(int i=0; i<Prime_size && prime[i]<=root; i++)
+        if(n%prime[i]==0)return false;
+    return true;
+}
+
+int nextPrime(ll u){
+    for(++u; u<=R; u++)
+        if(isprime(u)) return u;
+    return -1;
 }
 
 int main() {
@@ -128,23 +128,30 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("tmp.txt", "w", stdout);
+    freopen("output.txt", "w", stdout);
 #endif
 
-    FASTERIO; //cmt when use scanf & printf ;
+     sieve();
+    while (scanf("%ld %ld", &L, &R)!=EOF) {
+        int Max = 0, Min = INT_MIN, ax, ay, bx, by;
+        int last = nextPrime(L-1), next;
+        if (last!=-1) while (1) {
+            next = nextPrime(last);
+            if (next==-1) break;
+            if (next-last > Max) {
+                Max = next - last;
+                ax = last; ay = next;
+            }
+            if (next-last < Min) {
+                Min = next - last;
+                bx = last; by = next;
+            }
+            last = next;
+        }
+        if (Max==0) puts("There are no adjacent primes.");
+        else printf("%d,%d are closest, %d,%d are most distant.\n", bx, by, ax, ay);
+    }
 
-    string s1, s2; 
-    cin>>s1>>s2;
-    int n=0;
-    for(int i=0; i<s1.size(); i++){
-        n = n*10+(s1[i]-'0');
-    }
-    for(int i=0; i<s2.size(); i++){
-        n = n*10+(s2[i]-'0');
-    }
-    int x = sqrt(n);
-    if((x*x)==n)cout<<"Yes"<<endl;
-    else cout<<"No"<<endl;
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
