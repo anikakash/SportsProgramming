@@ -57,7 +57,9 @@ int main() {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
-    sieve();
-    for(auto it:prime)cout<<it<<endl;
+    
+    int n=100;
+    int x = n>>1;
+    cout<<x<<endl;
     return 0;
 }

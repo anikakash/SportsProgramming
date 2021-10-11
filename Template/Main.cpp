@@ -34,22 +34,7 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-string DecimalToBinary(int n) {
 
-    string res = "";
-    for (int i = 31; i >= 0; i--) {
-        int k = n & (1 << i);
-        res += (n & k) ? '1' : '0';
-    }
-    return res;
-}
-int BinaryToDecimal(string s) {
-    int ans = 0;
-    for (int i = 0; i < s.size(); i++) {
-        ans = (2 * ans) + s[i] - '0';
-    }
-    return ans;
-}
 bool cmp(pair<int, int>a, pair<int, int>b) {
     if (a < b)return true;
     return false;
