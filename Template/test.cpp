@@ -23,32 +23,25 @@ int lcm(int a, int b) {int y; return y = ((a) * ((b) / gcd(a, b)));}
 #define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
 #define debugN(b)               cout<<b<<endl;
 
+void fact(ll n){
+    ull ans=1;
+    for(int i=1; i<=n; i++){
+        ans*=i;
+        cout<<ans<<endl;
+    }
+}
 
 int main() {
 
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
 
     FASTERIO; //cmt when use scanf & printf ;
 
-   int tt; cin>>tt;
-   while(tt--){
-        vector<int>list(5);
-        for(int i=0; i<5; i++)cin>>list[i];
-        int in=0, eng=0, dr=0;
-    for(int i=0; i<5; i++){
-        if(list[i]==1)in++;
-        else if(list[i] == 2)eng++;
-        else dr++;
-    }
-    if(in>eng)cout<<"INDIA"<<endl;
-    else if(eng>in)cout<<"ENGLAND"<<endl;
-    else cout<<"DRAW"<<endl;
-   }
-
+   fact(30);
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
