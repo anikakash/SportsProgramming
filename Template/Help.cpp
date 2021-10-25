@@ -7,14 +7,36 @@ int main(){
     freopen("input.txt", "r", stdin);
     freopen("ans.txt", "w", stdout);
 #endif
-    string rendom = " )aAb^B+1c[Cd(9D`e#}Ef_2.F!g$Gh|Hi{\"I3j+Jk'KlL<4m\\~M@nN-o/O5,p&P:qQrR->6s;]tTu?U=7v!Vw[W%x8&XyYzZ`>{";
-    cout << "PASSWORD LENGHT: ";
-    int passlen=8;
-    // cin >> passlen;
-    srand(time(NULL));
-    for(int i = 0; i < passlen; i++){
-        int j = rand() % 99 + 1;
-        cout << rendom[j];
+
+    int tt; scanf("%d",&tt);
+    while(tt--){
+        int b, p, f;
+        scanf("%d %d %d", &b,&p, &f);
+
+        int ans=0;
+        if(b%2==1)b--;
+        int h, c; scanf("%d %d", &h, &c);
+        if(c>h){
+            if(2*f>b){
+                ans+= (b/2)*c;
+            }
+            else{
+                ans+=f*c;
+            }
+        }
+        else{
+            if(2*p>b){
+                ans+=(b/2)*h;
+            }
+            else{
+                ans+=p*c;
+            }
+        }
+        printf("%d\n",ans);
     }
-    cout << endl;
+
+
+#ifdef anikakash
+    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#endif
 }
