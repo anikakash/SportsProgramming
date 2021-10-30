@@ -34,88 +34,53 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
+int arr[5];
 
-int n;
-int par[MaxN];
-int sz[MaxN];
-
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
+void insertionSort(int n)
+{
+    int i, key, j;
+    for (i = 1; i < n; i++){
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key){
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
 }
 
-struct node{
-    int u, v, z;
-};
-bool cmp(node a, node b){
-    return a.z < b.z;
-}
-void join(int p, int q){
-
-    if (sz[q] >= sz[p]){
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else{
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
-    }
+int BinarySrc(int key)
+{
+   int l=0, r = sizeof(arr)/sizeof(arr[0]);
+   // cout<<r<<endl;
+   while(l<=r)
+   {
+      int mid = l+(r-l)/2;             
+      if(arr[mid]==key) return mid;   
+      if(arr[mid]<key) l = mid+1;    
+      else r = mid-1;               
+   }
+     return -1;                   
 }
 
 int main() {
-
 #ifdef anikakash
     clock_t tStart = clock();
-    freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-    int n, m;
-    while(cin>>n>>m && n!=0 && m!=0){
-        for(int i=0; i<n; i++){
-            par[i]=i;
-            sz[i]=i;
-        }
-
-        int sum=0, sum2=0, cnt=0;
-
-        vector<node>v;
-
-        node p;
-        while(m--){
-            int a, b, c; cin>>a>>b>>c;
-            sum+=c;
-            p.u=a;
-            p.v=b;
-            p.z=c;
-            v.pb(p);
-        }
-
-        sort(v.begin(), v.end(), cmp);
-
-        vector<int>res;
-        for(auto it:v){
-            int x,y,z;
-            x=it.u;
-            y=it.v;
-            z=it.z;
-
-            int p = findPar(x);
-            int q = findPar(y);
-
-            if(p!=q){
-                join(p,q);
-                sum2+=z;
-                cnt++;
-            }
-            if(cnt==n-1)break;
-        }
-
-        
-            cout<< sum-sum2<<endl;
-        }
+    int n; cin>>n;
+    for(int i=0; i<n; i++)cin>>arr[i];
+        insertionSort(n);
+    // for(int i=0; i<n; i++)cout<<arr[i]<<" "; NL;
+    int key; cin>>key;
+        int ans = BinarySrc(key);
+        // cout<<ans<<endl;
+        (ans!=-1)?cout<<"Found"<<endl : cout<<"Not Found"<<endl;
 
 
 #ifdef anikakash

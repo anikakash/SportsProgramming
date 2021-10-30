@@ -34,88 +34,39 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-
-int n;
-int par[MaxN];
-int sz[MaxN];
-
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
 }
 
-struct node{
-    int u, v, z;
-};
-bool cmp(node a, node b){
-    return a.z < b.z;
-}
-void join(int p, int q){
-
-    if (sz[q] >= sz[p]){
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else{
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
+void selectionSort(int arr[], int n)
+{
+    int i, j, min_idx;
+ 
+    for (i = 0; i < n-1; i++){
+        min_idx = i;
+        for (j = i+1; j < n; j++)if (arr[j] < arr[min_idx])min_idx = j;
+            
+        swap(&arr[min_idx], &arr[i]);
     }
 }
 
 int main() {
-
 #ifdef anikakash
     clock_t tStart = clock();
-    freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-    int n, m;
-    while(cin>>n>>m && n!=0 && m!=0){
-        for(int i=0; i<n; i++){
-            par[i]=i;
-            sz[i]=i;
-        }
-
-        int sum=0, sum2=0, cnt=0;
-
-        vector<node>v;
-
-        node p;
-        while(m--){
-            int a, b, c; cin>>a>>b>>c;
-            sum+=c;
-            p.u=a;
-            p.v=b;
-            p.z=c;
-            v.pb(p);
-        }
-
-        sort(v.begin(), v.end(), cmp);
-
-        vector<int>res;
-        for(auto it:v){
-            int x,y,z;
-            x=it.u;
-            y=it.v;
-            z=it.z;
-
-            int p = findPar(x);
-            int q = findPar(y);
-
-            if(p!=q){
-                join(p,q);
-                sum2+=z;
-                cnt++;
-            }
-            if(cnt==n-1)break;
-        }
-
-        
-            cout<< sum-sum2<<endl;
-        }
+    int arr[MaxN];
+    int n; cin>>n;
+    for(int i=0; i<n; i++)cin>>arr[i];
+        selectionSort(arr,n);
+    for(int i=0; i<n; i++)cout<<arr[i]<<" ";
 
 
 #ifdef anikakash

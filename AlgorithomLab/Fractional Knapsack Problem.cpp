@@ -4,7 +4,7 @@ using namespace    std;
 #define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
 #define FASTERIO                 ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define NL                       cout<<'\n';
-// #define pi                       acos(-1.0) //3.1415926535897932384626
+#define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
 #define MaxN                     100005
@@ -35,87 +35,52 @@ int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 
-int n;
-int par[MaxN];
-int sz[MaxN];
+struct Item {
+    int value, weight;
 
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
-}
-
-struct node{
-    int u, v, z;
+    Item(int value, int weight) {
+        this->value = value;
+        this->weight = weight;
+    }
 };
-bool cmp(node a, node b){
-    return a.z < b.z;
-}
-void join(int p, int q){
 
-    if (sz[q] >= sz[p]){
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else{
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
-    }
+bool cmp(struct Item a, struct Item b)
+{
+    double r1 = (double)a.value / (double)a.weight;
+    double r2 = (double)b.value / (double)b.weight;
+    return r1 > r2;
 }
+
+double fractionalKnapsack(int W, struct Item arr[], int n)
+{
+    sort(arr, arr + n, cmp);
+    int curWeight = 0;
+    double finalvalue = 0.0;
+
+    for (int i = 0; i < n; i++) {
+        if (curWeight + arr[i].weight <= W) {
+            curWeight += arr[i].weight;
+            finalvalue += arr[i].value;
+        }
+        else {
+            int remain = W - curWeight;
+            finalvalue += arr[i].value * ((double)remain / (double)arr[i].weight);
+            break;
+        }
+    }
+    return finalvalue;
+}
+
 
 int main() {
-
 #ifdef anikakash
     clock_t tStart = clock();
-    freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("in.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-    int n, m;
-    while(cin>>n>>m && n!=0 && m!=0){
-        for(int i=0; i<n; i++){
-            par[i]=i;
-            sz[i]=i;
-        }
-
-        int sum=0, sum2=0, cnt=0;
-
-        vector<node>v;
-
-        node p;
-        while(m--){
-            int a, b, c; cin>>a>>b>>c;
-            sum+=c;
-            p.u=a;
-            p.v=b;
-            p.z=c;
-            v.pb(p);
-        }
-
-        sort(v.begin(), v.end(), cmp);
-
-        vector<int>res;
-        for(auto it:v){
-            int x,y,z;
-            x=it.u;
-            y=it.v;
-            z=it.z;
-
-            int p = findPar(x);
-            int q = findPar(y);
-
-            if(p!=q){
-                join(p,q);
-                sum2+=z;
-                cnt++;
-            }
-            if(cnt==n-1)break;
-        }
-
-        
-            cout<< sum-sum2<<endl;
-        }
 
 
 #ifdef anikakash
