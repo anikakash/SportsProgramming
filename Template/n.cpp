@@ -19,12 +19,13 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("out.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-   
+   string s; cin>>s;
+   cout<<s.size()<<endl;
 
 
 #ifdef anikakash

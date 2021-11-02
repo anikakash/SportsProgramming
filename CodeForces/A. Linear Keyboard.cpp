@@ -35,32 +35,6 @@ int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 
-int n;
-int par[MaxN];
-int sz[MaxN];
-
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
-}
-
-struct node {
-    int u, v, z;
-};
-bool cmp(node a, node b) {
-    return a.z < b.z;
-}
-void join(int p, int q) {
-
-    if (sz[q] >= sz[p]) {
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else {
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
-    }
-}
 
 int main() {
 
