@@ -10,7 +10,7 @@ using namespace    std;
 #define MaxN                     100005
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
-#define Fill(ar, val)            memset(ar, val, sizeof(ar))
+// #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
@@ -62,6 +62,17 @@ void join(int p, int q) {
     }
 }
 
+
+void bobule_sort(float arr[], int n){
+    for(int i=0; i<n; i++){
+        for(int j=i+1; j<=n-1; j++){
+            if(arr[i]>arr[j]){
+                swap(arr[i], arr[j]);
+            }
+        }
+    }
+}
+
 int main() {
 
 #ifdef anikakash
@@ -70,43 +81,42 @@ int main() {
     freopen("out.txt", "w", stdout);
 #endif
 
-    FASTERIO;
+    // FASTERIO;
 
-     int n;
-    scanf("%d", &n);
-    int val[n + 7], price[n];
+     int n; cin>>n;
+
+    int weight[n + 7], price[n];
     float tk[n + 7], arr[n + 7];
+
+    for (int i = 0; i < n; i++) cin>>weight[i];
+    for (int i = 0; i < n; i++) cin>>price[i];
+
     for (int i = 0; i < n; i++) {
-        scanf("%d", &val[i]);
-    }
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &price[i]);
-    }
-    for (int i = 0; i < n; i++) {
-        tk[i] = (float)price[i] / val[i];
+        tk[i] = (float)price[i] / weight[i];
+        // cout<<tk[i]<<endl;
         arr[i] = tk[i];
     }
-    sort(arr, arr + n);
+    bobule_sort(arr,n);
 
-    int w; scanf("%d", &w);
+    int w;cin>>w;
 
 
     float sum = 0;
     for (int i = n - 1; i >= 0; i--) {
         for (int j = 0; j < n; j++) {
-            if (arr[i] == tk[j] && val[j] <= w && w > 0) {
+            if (arr[i] == tk[j] && weight[j] <= w && w > 0) {
                 sum += price[j];
-                w -= val[j];
+                w -= weight[j];
                 tk[j] = -1;
             }
-            else if (arr[i] == tk[j] && val[j] >= w && w != 0) {
+            else if (arr[i] == tk[j] && weight[j] >= w && w != 0) {
                 sum += w * arr[i];
                 w = 0;
             }
         }
     }
 
-    printf("%f\n", sum);
+    cout<<dpoint(2)<<sum<<endl;
     
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
