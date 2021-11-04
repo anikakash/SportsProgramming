@@ -76,7 +76,6 @@ int main() {
     scanf("%d", &n);
     int val[n + 7], price[n];
     float tk[n + 7], arr[n + 7];
-    
     for (int i = 0; i < n; i++) {
         scanf("%d", &val[i]);
     }
@@ -108,6 +107,7 @@ int main() {
     }
 
     printf("%f\n", sum);
+    
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
