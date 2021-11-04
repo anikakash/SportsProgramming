@@ -72,26 +72,42 @@ int main() {
 
     FASTERIO;
 
-    int tt; cin >> tt;
-    while (tt--) {
-        string s1; cin >> s1;
-        string s; cin >> s;
-        std::map<char, int> mp;
-        if (s.size() == 0)cout << 0 << endl;
-        else {
-            for (int i = 0; i < s1.size(); i++) {
-                mp[s1[i]] = i+1;
+     int n;
+    scanf("%d", &n);
+    int val[n + 7], price[n];
+    float tk[n + 7], arr[n + 7];
+    
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &val[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &price[i]);
+    }
+    for (int i = 0; i < n; i++) {
+        tk[i] = (float)price[i] / val[i];
+        arr[i] = tk[i];
+    }
+    sort(arr, arr + n);
+
+    int w; scanf("%d", &w);
+
+
+    float sum = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j < n; j++) {
+            if (arr[i] == tk[j] && val[j] <= w && w > 0) {
+                sum += price[j];
+                w -= val[j];
+                tk[j] = -1;
             }
-            int sum=0;
-            // for(auto it:mp)cout<<it.first<<" "<<it.second<<endl;
-            for(int i=1; i<s.size(); i++){
-                char a = s[i], b = s[i-1];
-                sum+=abs(mp[a]-mp[b]);
+            else if (arr[i] == tk[j] && val[j] >= w && w != 0) {
+                sum += w * arr[i];
+                w = 0;
             }
-            cout<<sum<<endl;
         }
     }
 
+    printf("%f\n", sum);
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

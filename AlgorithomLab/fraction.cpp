@@ -4,8 +4,11 @@ using namespace std;
 int main() {
     int n;
     scanf("%d", &n);
+
     int val[n + 7], price[n];
+
     float tk[n + 7], arr[n + 7];
+    
     for (int i = 0; i < n; i++) {
         scanf("%d", &val[i]);
     }

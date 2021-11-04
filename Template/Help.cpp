@@ -39,26 +39,22 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("out.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-    int tt; cin >> tt;
-    while (tt--) {
-        int n, ans=0; cin >> n;
-        vector<int>arr(n);
-        int big=0, idx=0;
-        for (int i = 0; i < n; i++){
-            cin >> arr[i];
-            if(arr[i]>big){
-                big=arr[i];
-                idx = i+1;
-            }
-            ans = max(ans, big-idx);
-        }
-        cout<<ans<<endl;
+   string rendom = " )aAb^B+1c[Cd(9D`e#}Ef_2.F!g$Gh|Hi{\"I3j+Jk'KlL<4m\\~M@nN-o/O5,p&P:qQrR->6s;]tTu?U=7v!Vw[W%x8&XyYzZ`>{";
+    cout << "PASSWORD LENGHT: ";
+    int passlen;
+    cin >> passlen;
+    srand(time(NULL));
+    for(int i = 0; i < passlen; i++){
+        int j = rand() % 99 + 1;
+        cout << rendom[j];
     }
+    cout << endl;
+
 
 
 #ifdef anikakash
