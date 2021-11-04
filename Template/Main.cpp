@@ -83,7 +83,7 @@ int main() {
 
     // FASTERIO;
 
-     int n; cin>>n;
+     int n,w; cin>>w>>n;
 
     int weight[n + 7], price[n];
     float tk[n + 7], arr[n + 7];
@@ -97,9 +97,6 @@ int main() {
         arr[i] = tk[i];
     }
     bobule_sort(arr,n);
-
-    int w;cin>>w;
-
 
     float sum = 0;
     for (int i = n - 1; i >= 0; i--) {
