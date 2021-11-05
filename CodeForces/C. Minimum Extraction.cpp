@@ -35,67 +35,6 @@ int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 
-int n;
-int par[MaxN];
-int sz[MaxN];
-
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
-}
-
-struct node {
-    int u, v, z;
-};
-bool cmp(node a, node b) {
-    return a.z < b.z;
-}
-void join(int p, int q) {
-
-    if (sz[q] >= sz[p]) {
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else {
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
-    }
-}
-
-
-void bobule_sort(float arr[], int n){
-    for(int i=0; i<n; i++){
-        for(int j=i+1; j<=n-1; j++){
-            if(arr[i]>arr[j]){
-                swap(arr[i], arr[j]);
-            }
-        }
-    }
-}
-void Mata_Nosto(ll n){
-    if(n>=10000000){
-        Mata_Nosto(n/10000000);
-        cout<<" kuti";
-        n%=10000000;
-    }
-    if(n>=100000){
-        Mata_Nosto(n/100000);
-        cout<<" lakh";
-        n%=100000;
-    }
-    if(n>=1000){
-        Mata_Nosto(n/1000);
-        cout<<" hajar";
-        n%=1000;
-    }
-    if(n>=100){
-        Mata_Nosto(n/100);
-        cout<<" shata";
-        n%=100;
-    }
-    if(n)cout<<" "<<n;
-}
-
 int main() {
 
 #ifdef anikakash

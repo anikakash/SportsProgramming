@@ -10,7 +10,7 @@ using namespace    std;
 #define MaxN                     100005
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
-// #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
+#define Fill(ar, val)            memset(ar, val, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
@@ -62,40 +62,6 @@ void join(int p, int q) {
     }
 }
 
-
-void bobule_sort(float arr[], int n){
-    for(int i=0; i<n; i++){
-        for(int j=i+1; j<=n-1; j++){
-            if(arr[i]>arr[j]){
-                swap(arr[i], arr[j]);
-            }
-        }
-    }
-}
-void Mata_Nosto(ll n){
-    if(n>=10000000){
-        Mata_Nosto(n/10000000);
-        cout<<" kuti";
-        n%=10000000;
-    }
-    if(n>=100000){
-        Mata_Nosto(n/100000);
-        cout<<" lakh";
-        n%=100000;
-    }
-    if(n>=1000){
-        Mata_Nosto(n/1000);
-        cout<<" hajar";
-        n%=1000;
-    }
-    if(n>=100){
-        Mata_Nosto(n/100);
-        cout<<" shata";
-        n%=100;
-    }
-    if(n)cout<<" "<<n;
-}
-
 int main() {
 
 #ifdef anikakash
@@ -106,23 +72,28 @@ int main() {
 
     FASTERIO;
 
-    ll tt;cin>>tt;
-    while(tt--){
-        ll n; cin>>n;
-        vector<ll>arr(n);
-        for(int i=0; i<n;i++)cin>>arr[i];
-            sort(arr.begin(), arr.end());
-        // for(auto it:arr)cout<<it<<" ";
-        ll sum=0, big = INT_MIN;
-        for(int i=0; i<n; i++){
-           arr[i]-=sum;
-           big = max(big, arr[i]);
-           sum+=arr[i];
-           // cout<<arr[i]<<" "<<sum<<endl;
+    ll tt; cin >> tt;
+    while (tt--) {
+        ll x, n; cin >> x >> n;
+        if (n == 0)cout << x << endl;
+        else {
+            if (x % 2 == 0)x--;
+            else x++;
+            ll step = (n - 1) / 4, extra = (n - 1) % 4;
+            step *= 4;
+            if (x % 2 == 0) x += step;
+            else x -= step;
+
+            if (extra == 1 && x % 2 == 0) x -= n;
+            else if (extra == 2 && x % 2 == 0) x = x - n - (n - 1);
+            else if (extra == 3 && x % 2 == 0) x = x - n - (n - 1) + (n + 2);
+            else if (extra == 1 && x % 2 != 0) x += n;
+            else if (extra == 2 && x % 2 != 0) x = x + n + (n - 1);
+            else if (extra == 3 && x % 2 != 0) x = x + n + (n - 1) - (n + 2);
+
+            cout << x << endl;
         }
-        cout<<big<<endl;
     }
-    
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
