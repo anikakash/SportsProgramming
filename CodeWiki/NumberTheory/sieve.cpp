@@ -2,23 +2,23 @@
 using namespace    std;
 
 #define pb           push_back
-#define mx           10000007
+#define MaxN           10000007
 
 typedef long long int       ll;
 
 
 vector<ll>prime;
-bool vis[mx];  //mx is define in above of the code;
+bool vis[MaxN];  //MaxN is define in above of the code;
 void sieve() {
-    ll x=sqrt((int)mx);
+    ll x=sqrt((int)MaxN);
     for(ll i=3; i<=x; i+=2) {
         if(vis[i]==0) {
-            for(ll j=i*i; j<mx; j+=2*i)
+            for(ll j=i*i; j<MaxN; j+=2*i)
                 vis[j]=1;
         }
     }
     prime.pb(2);
-    for(ll i=3; i<mx; i+=2)
+    for(ll i=3; i<MaxN; i+=2)
         if(vis[i]==0)
             prime.pb(i);
 }
