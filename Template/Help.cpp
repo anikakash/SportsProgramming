@@ -1,59 +1,44 @@
 #include<bits/stdc++.h>
 using namespace    std;
 
-#define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
-#define FASTERIO                 ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-#define NL                       cout<<'\n';
-// #define pi                       acos(-1.0) //3.1415926535897932384626
-#define pb                       push_back
-#define mk                       make_pair
-#define MaxN                     100005
-#define EPS                      1e-18
-#define dpoint(x)                fixed<<setprecision(x)
-#define Fill(ar, val)            memset(ar, val, sizeof(ar))
-typedef long long int            ll;
-typedef double                   dl;
-typedef unsigned long long int   ull;
+#define pb                      push_back
 
-//Funtions
-template <class T> T digitsum(T n) {T sum = 0; while (n != 0) {sum += n % 10; n /= 10;} return sum;}
-template <class T> T gcd(T a, T b) { T x ; return x = __gcd(a, b);}
-template <class T> T lcm(T a, T b) {T y; return y = ((a) * (b)) / gcd(a, b);}
+typedef long long int           ll;
+typedef double                  dl;
 
-// Debugger
-#define gobug                   0
-#define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
-#define debugN(b)               cout<<b<<endl;
+vector<int>arr; //declear the vector globally for easy access;
+int BinarySrc(char key)
+{
+   int l=0, r = arr.size()-1;
+   while(l<=r)
+   {
+      int mid = l+(r-l)/2;             // over flow chance if use (l+r)/2;
+      if(arr[mid]==key) return mid;   // return the key index;
+      if(arr[mid]<key) l = mid+1;    //update the left range cause our search value up to arr[mid]
+      else r = mid-1;               //update the right range cause our search value down to arr[mid]
+   }
+     return -1;                   //when we don't find our value in array;
+}
 
-int ROW[] = { +0, +0, -1, +1};
-int COL[] = { +1, -1, +0, +0};
+int main()
+{
+   #ifdef anikakash
+        clock_t tStart = clock();
+        freopen("input.txt","r",stdin);
+        freopen("out.txt","w",stdout);
+   #endif
+        char key;
+        string arr = "aaaadhikknss";
+        cin>>key; //vector length and search key;
+        
+        int tmp = BinarySrc(key);
+        cout<<tmp<<endl;
 
-int X[] = { +0, +0, +1, -1, -1, +1, -1, +1}; // Kings Move
-int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
+        if(tmp==-1)cout<<"NOT Found The Value"<<endl;
+        else cout<<"Found The Value And The Index Is : "<<tmp<<endl; // 0 base indexing;
 
-int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
-int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
-
-
-
-int main() {
-#ifdef anikakash
-    clock_t tStart = clock();
-    freopen("input.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
-#endif
-
-    FASTERIO;
-
-   
-    int arr[]={5,4,3,2,10};
-    bobule_sort(arr,5);
-    for(int i=0; i<5; i++){
-        cout<<arr[i]<<" ";
-    }
-
-#ifdef anikakash
-    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-#endif
+   #ifdef anikakash
+      fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+   #endif
     return 0;
 }

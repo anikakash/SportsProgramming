@@ -7,7 +7,7 @@ using namespace    std;
 // #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     100005
+#define MaxN                     1000000
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 // #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
@@ -63,39 +63,101 @@ void join(int p, int q) {
 }
 
 
-void bobule_sort(float arr[], int n){
-    for(int i=0; i<n; i++){
-        for(int j=i+1; j<=n-1; j++){
-            if(arr[i]>arr[j]){
+void bobule_sort(float arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j <= n - 1; j++) {
+            if (arr[i] > arr[j]) {
                 swap(arr[i], arr[j]);
             }
         }
     }
 }
-void Mata_Nosto(ll n){
-    if(n>=10000000){
-        Mata_Nosto(n/10000000);
-        cout<<" kuti";
-        n%=10000000;
+void Mata_Nosto(ll n) {
+    if (n >= 10000000) {
+        Mata_Nosto(n / 10000000);
+        cout << " kuti";
+        n %= 10000000;
     }
-    if(n>=100000){
-        Mata_Nosto(n/100000);
-        cout<<" lakh";
-        n%=100000;
+    if (n >= 100000) {
+        Mata_Nosto(n / 100000);
+        cout << " lakh";
+        n %= 100000;
     }
-    if(n>=1000){
-        Mata_Nosto(n/1000);
-        cout<<" hajar";
-        n%=1000;
+    if (n >= 1000) {
+        Mata_Nosto(n / 1000);
+        cout << " hajar";
+        n %= 1000;
     }
-    if(n>=100){
-        Mata_Nosto(n/100);
-        cout<<" shata";
-        n%=100;
+    if (n >= 100) {
+        Mata_Nosto(n / 100);
+        cout << " shata";
+        n %= 100;
     }
-    if(n)cout<<" "<<n;
+    if (n)cout << " " << n;
 }
 
+
+vector<ll>prime, ans;
+bool vis[MaxN];  //MaxN is define in above of the code;
+int is_prime(ll n)
+{
+    ll i, root;
+    if (n == 2) return 1;
+    if (n % 2 == 0 || n == 1) return 0;
+
+    root = sqrt(n);
+
+    for (i = 3; i <= root; i = i + 2)if (n % i == 0)  return 0;
+
+    return 1;
+}
+
+void sieve() {
+    ll x = sqrt((int)MaxN);
+    for (ll i = 4; i < MaxN; i += 2)vis[i] = 1;
+    for (ll i = 3; i <= x; i += 2) {
+        if (vis[i] == 0) {
+            for (ll j = i * i; j < MaxN; j += 2 * i)
+                vis[j] = 1;
+        }
+    }
+    prime.pb(0);
+    prime.pb(0);
+    prime.pb(1);
+    ans.pb(0);
+    ans.pb(0);
+    ans.pb(2);
+    int cnt = 1;
+    for (ll i = 3; i < MaxN; i++) {
+        if (vis[i] == 0) {
+            int sum = digitsum(i);
+            if (is_prime(sum)) {
+                // prime.pb(i);
+                ans.pb(i);
+                cnt++;
+                prime.pb(cnt);
+                // cout<<i<<" "<<cnt<<endl;
+            }
+            else {
+                prime.pb(cnt);
+                ans.pb(0);
+            }
+        }
+        else {
+            prime.pb(cnt);
+            ans.pb(0);
+        }
+    }
+}
+
+ll factorial[21];
+
+ll fact(ll n){
+    return !n ? factorial[n] = 1ll : factorial[n] = n*fact(n-1);
+}
+int anik(int best, int first, int second){
+    return max(0,max(first,second) +1 -best);
+}
 int main() {
 
 #ifdef anikakash
@@ -106,23 +168,42 @@ int main() {
 
     FASTERIO;
 
-    ll tt;cin>>tt;
+    // fact(20);
+    // int tt; cin>>tt;
+    // while(tt--){
+    //     string s, ans;cin>>s;
+    //     flush;
+    //     ll n; cin>>n;
+    //     sort(s.begin(), s.end());
+    //     int sz = s.size();
+        
+    //     while(sz){
+    //         ll ff = factorial[sz-1];
+    //         if(n/ff <sz){
+    //             ans+=s[n/ff];
+    //             s.erase(s.begin()+n/ff);
+    //             n%=ff;
+    //         }
+    //         else{
+    //             ans+=s;
+    //             break;
+    //         }
+    //         cout<<ans<<endl;
+    //     }
+
+    // }
+    int tt; cin>>tt;
     while(tt--){
-        ll n; cin>>n;
-        vector<ll>arr(n);
-        for(int i=0; i<n;i++)cin>>arr[i];
-            sort(arr.begin(), arr.end());
-        // for(auto it:arr)cout<<it<<" ";
-        ll sum=0, big = INT_MIN;
-        for(int i=0; i<n; i++){
-           arr[i]-=sum;
-           big = max(big, arr[i]);
-           sum+=arr[i];
-           // cout<<arr[i]<<" "<<sum<<endl;
-        }
-        cout<<big<<endl;
+        ll a, b, c; cin>>a>>b>>c;
+        int big;
+        // if(a==b && b==c && c==a)cout<<++a<<" "<<++b<<" "<<++c<<endl;
+        // else{
+            cout<<anik(a,b,c)<<" "<<anik(b,a,c)<<" "<<anik(c,a,b)<<endl;
+        // }
     }
-    
+
+
+
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
