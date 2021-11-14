@@ -48,14 +48,10 @@ int main() {
     
     int tt;cin>>tt;
     while(tt--){
-        ll n,m; cin>>n>>m;
-        if(n==2 && m==2) cout<<2<<endl;
-        else{
-            ll x = n*m;
-             // cout<<x<<endl;
-            dl xx = x/3.0;
-            cout<<(int)ceil(xx)<<endl;
-        }
+        ll u,v; cin>>u>>v;
+        ll x = -u*u;
+        ll y = v*v;
+        cout<<x<<" "<<y<<endl;
     }
 
 
