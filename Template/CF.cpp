@@ -7,7 +7,7 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     1000000
+#define MaxN                     3000
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 // #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
@@ -34,7 +34,38 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-ll arr[1000010];
+vector<ll>prime;
+bool vis[MaxN];  //MaxN is define in above of the code;
+void sieve() {
+    ll x=sqrt((int)MaxN);
+    for(ll i=3; i<=x; i+=2) {
+        if(vis[i]==0) {
+            for(ll j=i*i; j<MaxN; j+=2*i)
+                vis[j]=1;
+        }
+    }
+    prime.pb(2);
+    for(ll i=3; i<MaxN; i+=2)
+        if(vis[i]==0)
+            prime.pb(i);
+}
+
+vector<int>prime_factor;
+void primeFactorization(int n)
+{
+      for(int i=0; prime[i]*prime[i]<=n; i++)
+      {
+          if(n%prime[i]==0)
+          {
+              while(n%prime[i]==0)
+              {
+                  n/=prime[i];
+                  prime_factor.pb(prime[i]); 
+              }
+          }
+      }
+    if(n>1)prime_factor.pb(n);
+}
 
 int main() {
 
@@ -45,14 +76,25 @@ int main() {
 #endif
 
     FASTERIO;
-    
-    int tt;cin>>tt;
-    while(tt--){
-        ll u,v; cin>>u>>v;
-        ll x = -u*u;
-        ll y = v*v;
-        cout<<x<<" "<<y<<endl;
+
+    sieve();
+    int n, cnt=0;cin>>n;
+    for(int i=1; i<=n; i++){
+        primeFactorization(i);
+        // cout<<i<<" = ";
+        // for(auto it:prime_factor)cout<<it<<" ";
+        //     cout<<endl;
+
+        map<int,int>mp;
+        for(int j=0; j<prime_factor.size(); j++){
+            if(mp[prime_factor[j]]==0)mp[prime_factor[j]]++;
+        }
+        int tmp = mp.size();
+        if(tmp==2)cnt++;
+
+        prime_factor.clear();
     }
+    cout<<cnt<<endl;
 
 
 #ifdef anikakash

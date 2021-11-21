@@ -152,12 +152,27 @@ void sieve() {
 
 ll factorial[21];
 
-ll fact(ll n){
-    return !n ? factorial[n] = 1ll : factorial[n] = n*fact(n-1);
+ll fact(ll n) {
+    return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
 }
-int anik(int best, int first, int second){
-    return max(0,max(first,second) +1 -best);
+int anik(int best, int first, int second) {
+    return max(0, max(first, second) + 1 - best);
 }
+void insertion_sort(vector<int>arr){
+
+    for(int i=0; i<arr.size(); i++){
+        int sm = arr[i];
+        int j=i-1;
+        while(j>=0 && arr[j]>sm){
+            arr[j+1] = arr[j];
+            j = j-1;
+        }
+        arr[j+1]=sm;
+    }
+    for(auto it:arr)cout<<it<<" ";
+}
+
+
 int main() {
 
 #ifdef anikakash
@@ -168,41 +183,9 @@ int main() {
 
     FASTERIO;
 
-    // fact(20);
-    // int tt; cin>>tt;
-    // while(tt--){
-    //     string s, ans;cin>>s;
-    //     flush;
-    //     ll n; cin>>n;
-    //     sort(s.begin(), s.end());
-    //     int sz = s.size();
-        
-    //     while(sz){
-    //         ll ff = factorial[sz-1];
-    //         if(n/ff <sz){
-    //             ans+=s[n/ff];
-    //             s.erase(s.begin()+n/ff);
-    //             n%=ff;
-    //         }
-    //         else{
-    //             ans+=s;
-    //             break;
-    //         }
-    //         cout<<ans<<endl;
-    //     }
-
-    // }
-    int tt; cin>>tt;
-    while(tt--){
-        ll a, b, c; cin>>a>>b>>c;
-        int big;
-        // if(a==b && b==c && c==a)cout<<++a<<" "<<++b<<" "<<++c<<endl;
-        // else{
-            cout<<anik(a,b,c)<<" "<<anik(b,a,c)<<" "<<anik(c,a,b)<<endl;
-        // }
-    }
-
-
+    int xx = lcm(3,5);
+    int yy = lcm(xx,2);
+    cout<<yy;
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
