@@ -37,34 +37,34 @@ int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 vector<ll>prime;
 bool vis[MaxN];  //MaxN is define in above of the code;
 void sieve() {
-    ll x=sqrt((int)MaxN);
-    for(ll i=3; i<=x; i+=2) {
-        if(vis[i]==0) {
-            for(ll j=i*i; j<MaxN; j+=2*i)
-                vis[j]=1;
+    ll x = sqrt((int)MaxN);
+    for (ll i = 3; i <= x; i += 2) {
+        if (vis[i] == 0) {
+            for (ll j = i * i; j < MaxN; j += 2 * i)
+                vis[j] = 1;
         }
     }
     prime.pb(2);
-    for(ll i=3; i<MaxN; i+=2)
-        if(vis[i]==0)
+    for (ll i = 3; i < MaxN; i += 2)
+        if (vis[i] == 0)
             prime.pb(i);
 }
 
 vector<int>prime_factor;
 void primeFactorization(int n)
 {
-      for(int i=0; prime[i]*prime[i]<=n; i++)
-      {
-          if(n%prime[i]==0)
-          {
-              while(n%prime[i]==0)
-              {
-                  n/=prime[i];
-                  prime_factor.pb(prime[i]); 
-              }
-          }
-      }
-    if(n>1)prime_factor.pb(n);
+    for (int i = 0; prime[i]*prime[i] <= n; i++)
+    {
+        if (n % prime[i] == 0)
+        {
+            while (n % prime[i] == 0)
+            {
+                n /= prime[i];
+                prime_factor.pb(prime[i]);
+            }
+        }
+    }
+    if (n > 1)prime_factor.pb(n);
 }
 
 int main() {
@@ -77,24 +77,28 @@ int main() {
 
     FASTERIO;
 
-    sieve();
-    int n, cnt=0;cin>>n;
-    for(int i=1; i<=n; i++){
-        primeFactorization(i);
-        // cout<<i<<" = ";
-        // for(auto it:prime_factor)cout<<it<<" ";
-        //     cout<<endl;
+    int tt; cin >> tt;
+    while (tt--) {
+        int n; cin >> n;
 
-        map<int,int>mp;
-        for(int j=0; j<prime_factor.size(); j++){
-            if(mp[prime_factor[j]]==0)mp[prime_factor[j]]++;
+        vector<int>arr(n), frek;
+        map<int, int>mp;
+        bool flg = false;
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+            mp[arr[i]]++;
+            if (mp[arr[i]] >= 2)flg = true;
         }
-        int tmp = mp.size();
-        if(tmp==2)cnt++;
-
-        prime_factor.clear();
+        if (n % 2 == 0)cout << "YES" << endl;
+        else {
+            
+            for(int i=1; i<n; i++){
+                if(arr[i-1]>=arr[i])
+            }
+            if(flg)cout<<"YES"<<endl;
+            else cout<<"NO"<<endl;
+        }
     }
-    cout<<cnt<<endl;
 
 
 #ifdef anikakash

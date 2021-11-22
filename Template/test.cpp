@@ -92,15 +92,15 @@ void nPermute(char str[], long long int n)
 // Driver program
 int main()
 {
-    #ifdef anikakash
-        clock_t tStart = clock();
-        freopen("input.txt", "r", stdin);
-        freopen("out.txt", "w", stdout);
-    #endif
+#ifdef anikakash
+    clock_t tStart = clock();
+    freopen("input.txt", "r", stdin);
+    freopen("out.txt", "w", stdout);
+#endif
+    
+    int n = 9^8;
+    cout<<n<<endl;
 
-    long long int n = 2432902008176639999;
-    char str[] = "abcdefghijklmnopqrst";
 
-    nPermute(str, n);
     return 0;
 }
