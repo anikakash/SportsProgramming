@@ -35,143 +35,18 @@ int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 
-int n;
-int par[MaxN];
-int sz[MaxN];
-
-int findPar(int v) {
-    if (par[v] == v) return v; //base
-    return par[v] = findPar(par[v]); //recursion plus saving
-}
-
-struct node {
-    int u, v, z;
-};
-bool cmp(node a, node b) {
-    return a.z < b.z;
-}
-void join(int p, int q) {
-
-    if (sz[q] >= sz[p]) {
-        par[p] = q; //q is the new parant
-        sz[q] += sz[p];
-    }
-    else {
-        par[q] = p; //q is the new parant
-        sz[p] += sz[q];
-    }
-}
-
-
-void bobule_sort(float arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j <= n - 1; j++) {
-            if (arr[i] > arr[j]) {
-                swap(arr[i], arr[j]);
-            }
-        }
-    }
-}
-void Mata_Nosto(ll n) {
-    if (n >= 10000000) {
-        Mata_Nosto(n / 10000000);
-        cout << " kuti";
-        n %= 10000000;
-    }
-    if (n >= 100000) {
-        Mata_Nosto(n / 100000);
-        cout << " lakh";
-        n %= 100000;
-    }
-    if (n >= 1000) {
-        Mata_Nosto(n / 1000);
-        cout << " hajar";
-        n %= 1000;
-    }
-    if (n >= 100) {
-        Mata_Nosto(n / 100);
-        cout << " shata";
-        n %= 100;
-    }
-    if (n)cout << " " << n;
-}
-
-
-vector<ll>prime, ans;
-bool vis[MaxN];  //MaxN is define in above of the code;
-int is_prime(ll n)
-{
-    ll i, root;
-    if (n == 2) return 1;
-    if (n % 2 == 0 || n == 1) return 0;
-
-    root = sqrt(n);
-
-    for (i = 3; i <= root; i = i + 2)if (n % i == 0)  return 0;
-
-    return 1;
-}
-
-void sieve() {
-    ll x = sqrt((int)MaxN);
-    for (ll i = 4; i < MaxN; i += 2)vis[i] = 1;
-    for (ll i = 3; i <= x; i += 2) {
-        if (vis[i] == 0) {
-            for (ll j = i * i; j < MaxN; j += 2 * i)
-                vis[j] = 1;
-        }
-    }
-    prime.pb(0);
-    prime.pb(0);
-    prime.pb(1);
-    ans.pb(0);
-    ans.pb(0);
-    ans.pb(2);
-    int cnt = 1;
-    for (ll i = 3; i < MaxN; i++) {
-        if (vis[i] == 0) {
-            int sum = digitsum(i);
-            if (is_prime(sum)) {
-                // prime.pb(i);
-                ans.pb(i);
-                cnt++;
-                prime.pb(cnt);
-                // cout<<i<<" "<<cnt<<endl;
-            }
-            else {
-                prime.pb(cnt);
-                ans.pb(0);
-            }
-        }
-        else {
-            prime.pb(cnt);
-            ans.pb(0);
-        }
-    }
-}
-
 ll factorial[21];
 
 ll fact(ll n) {
     return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
 }
-int anik(int best, int first, int second) {
-    return max(0, max(first, second) + 1 - best);
+int ans=0;
+ll arr[10000];
+int fib(int n){
+    if(n<=1)return n;
+    if(arr[n])return arr[n];
+    return arr[n]= fib(n-1)+fib(n-2);
 }
-void insertion_sort(vector<int>arr){
-
-    for(int i=0; i<arr.size(); i++){
-        int sm = arr[i];
-        int j=i-1;
-        while(j>=0 && arr[j]>sm){
-            arr[j+1] = arr[j];
-            j = j-1;
-        }
-        arr[j+1]=sm;
-    }
-    for(auto it:arr)cout<<it<<" ";
-}
-
 
 int main() {
 
@@ -182,10 +57,9 @@ int main() {
 #endif
 
     FASTERIO;
+    fib(45);
+    for(int i=0; i<sizeof(arr)/sizeof(arr[0]); i++)cout<<arr[i]<<" ";
 
-    int xx = lcm(3,5);
-    int yy = lcm(xx,2);
-    cout<<yy;
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

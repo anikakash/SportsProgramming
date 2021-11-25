@@ -79,24 +79,15 @@ int main() {
 
     int tt; cin >> tt;
     while (tt--) {
-        int n; cin >> n;
-
-        vector<int>arr(n), frek;
-        map<int, int>mp;
-        bool flg = false;
-        for (int i = 0; i < n; i++) {
-            cin >> arr[i];
-            mp[arr[i]]++;
-            if (mp[arr[i]] >= 2)flg = true;
-        }
-        if (n % 2 == 0)cout << "YES" << endl;
-        else {
-            
-            for(int i=1; i<n; i++){
-                if(arr[i-1]>=arr[i])
-            }
-            if(flg)cout<<"YES"<<endl;
-            else cout<<"NO"<<endl;
+        int a,b; cin>>a>>b;
+        int sum = a+b;
+        if(sum%2==1)cout<<-1<<" "<<-1<<endl;
+        else if(a==0 && b==0)cout<<0<<" "<<0<<endl;
+        else{
+            sum/=2.0;
+            int xx =0;
+            if(a<b)swap(sum,xx);
+            cout<<sum<<" "<<xx<<endl;
         }
     }
 
