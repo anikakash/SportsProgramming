@@ -179,19 +179,13 @@ int main() {
 #ifdef anikakash
    clock_t tStart = clock();
    freopen("input.txt", "r", stdin);
-   freopen("out.txt", "w", stdout);
+   freopen("ans.txt", "w", stdout);
 #endif
 
    FASTERIO;
-   int ID;
-   scanf(" %d", &ID); // value of ID is the last two digits value of your ID
-//For example if your ID is 191-15-1234 then ID = 34
-   int count = 0 ;
-   while (ID %= 3){
-      printf("\tLoopy!!\nNot Loopy!\n");
-      count++;
-      if (count == ID) break;
-   }
+   
+   int n = 106%3;
+   cout<<n<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n >> Runtime: % .10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

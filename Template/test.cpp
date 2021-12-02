@@ -1,106 +1,76 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include<bits/stdc++.h>
+using namespace    std;
 
-#define ll long long int
+#define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
+#define FASTERIO                 ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define NL                       cout<<'\n';
+// #define pi                       acos(-1.0) //3.1415926535897932384626
+#define pb                       push_back
+#define mk                       make_pair
+#define MaxN                     1000000
+#define EPS                      1e-18
+#define dpoint(x)                fixed<<setprecision(x)
+// #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
+typedef long long int            ll;
+typedef double                   dl;
+typedef unsigned long long int   ull;
 
-const int MAX_CHAR = 26;
-const int MAX_FACT = 20;
-ll fact[MAX_FACT];
+//Funtions
+template <class T> T digitsum(T n) {T sum = 0; while (n != 0) {sum += n % 10; n /= 10;} return sum;}
+template <class T> T gcd(T a, T b) { T x ; return x = __gcd(a, b);}
+template <class T> T lcm(T a, T b) {T y; return y = ((a) * (b)) / gcd(a, b);}
 
-// Utility for calculating factorials
-void precomputeFactorials()
-{
-    fact[0] = 1;
-    for (int i = 1; i < MAX_FACT; i++)
-        fact[i] = fact[i - 1] * i;
+// Debugger
+#define gobug                   0
+#define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
+#define debugN(b)               cout<<b<<endl;
+
+int ROW[] = { +0, +0, -1, +1};
+int COL[] = { +1, -1, +0, +0};
+
+int X[] = { +0, +0, +1, -1, -1, +1, -1, +1}; // Kings Move
+int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
+
+int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
+int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+
+
+ll factorial[21];
+
+ll fact(ll n) {
+    return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
 }
 
-// Function for nth permutation
-void nPermute(char str[], long long int n)
-{
-    precomputeFactorials();
 
-    // Length of given string
-    int len = strlen(str);
 
-    // Count frequencies of all
-    // characters
-    int freq[MAX_CHAR] = { 0 };
-    for (int i = 0; i < len; i++)
-        freq[str[i] - 'a']++;
+int main() {
 
-    // Out string for output string
-    char out[MAX_CHAR];
-
-    // Iterate till sum equals n
-    int sum = 0;
-    int k = 0;
-
-    // We update both n and sum in this
-    // loop.
-    while (sum != n) {
-
-        sum = 0;
-        // Check for characters present in freq[]
-        for (int i = 0; i < MAX_CHAR; i++) {
-            if (freq[i] == 0)
-                continue;
-
-            // Remove character
-            freq[i]--;
-
-            // Calculate sum after fixing
-            // a particular char
-            int xsum = fact[len - 1 - k];
-            for (int j = 0; j < MAX_CHAR; j++)
-                xsum /= fact[freq[j]];
-            sum += xsum;
-
-            // if sum > n fix that char as
-            // present char and update sum
-            // and required nth after fixing
-            // char at that position
-            if (sum >= n) {
-                out[k++] = i + 'a';
-                n -= (sum - xsum);
-                break;
-            }
-
-            // if sum < n, add character back
-            if (sum < n)
-                freq[i]++;
-        }
-    }
-
-    // if sum == n means this
-    // char will provide its
-    // greatest permutation
-    // as nth permutation
-    for (int i = MAX_CHAR - 1;
-            k < len && i >= 0; i--)
-        if (freq[i]) {
-            out[k++] = i + 'a';
-            freq[i++]--;
-        }
-
-    // append string termination
-    // character and print result
-    out[k] = '\0';
-    cout << out;
-}
-
-// Driver program
-int main()
-{
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
-    
-    int n = 9^8;
-    cout<<n<<endl;
 
+    FASTERIO;
 
+    int NumberofProfit, NumberofWeight, BagSize, Capacity;
+    cin>>NumberofProfit>>NumberofWeight>>BagSize>>Capacity;
+
+    int pro[NumberofProfit], wt[NumberofWeight], save[20][10];
+    for(int i=0; i<NumberofProfit; i++)cin>>pro[i];
+    for(int i=0; i<NumberofWeight; i++)cin>>wt[i];
+
+    for(int i=0; i<=Capacity; i++){
+        for(int j=0; j<=BagSize; j++){
+            if(i==0 || j==0)save[i][j]=0;
+            else if(wt[i]<=j)save[i][j]=max(pro[i]+save[i-1][j-wt[i]], save[i-1][j]);
+            else save[i][j]=save[i-1][j];
+        }
+    }
+    cout<<save[Capacity][BagSize];
+
+#ifdef anikakash
+    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#endif
     return 0;
 }

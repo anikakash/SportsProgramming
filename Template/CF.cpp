@@ -49,46 +49,44 @@ void sieve() {
         if (vis[i] == 0)
             prime.pb(i);
 }
-
-vector<int>prime_factor;
-void primeFactorization(int n)
+int is_prime(ll n)
 {
-    for (int i = 0; prime[i]*prime[i] <= n; i++)
-    {
-        if (n % prime[i] == 0)
-        {
-            while (n % prime[i] == 0)
-            {
-                n /= prime[i];
-                prime_factor.pb(prime[i]);
-            }
-        }
-    }
-    if (n > 1)prime_factor.pb(n);
+    ll i, root;
+    if (n == 2) return 1;
+    if (n % 2 == 0 || n == 1) return 0;
+
+    root = sqrt(n);
+
+    for (i = 3; i <= root; i = i + 2)if (n % i == 0)  return 0;
+
+    return 1;
 }
+
 
 int main() {
 
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-    int tt; cin >> tt;
-    while (tt--) {
-        int a,b; cin>>a>>b;
-        int sum = a+b;
-        if(sum%2==1)cout<<-1<<" "<<-1<<endl;
-        else if(a==0 && b==0)cout<<0<<" "<<0<<endl;
-        else{
-            sum/=2.0;
-            int xx =0;
-            if(a<b)swap(sum,xx);
-            cout<<sum<<" "<<xx<<endl;
-        }
+    int tt;cin>>tt;
+    while(tt--){
+        string n1, n2;
+        int p1, p2;
+        cin>>n1>>p1;
+        cin>>n2>>p2;
+
+        if(p1)for(int i=0; i<p1; i++)n1.pb('0');
+        if(p2)for(int i=0; i<p1; i++)n2.pb('0');
+        
+
+        if(n1>n2)cout<<"<"<<endl;
+        else if(n1<n2)cout<<">"<<endl;
+        else cout<<"="<<endl;
     }
 
 
