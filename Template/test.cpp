@@ -67,7 +67,12 @@ int main() {
             else save[i][j]=save[i-1][j];
         }
     }
-    cout<<save[Capacity][BagSize];
+    cout<<save[Capacity][BagSize]<<endl;
+
+    for(int i=0; i<=Capacity; i++){
+        for(int j=0; j<=BagSize; j++)cout<<save[i][j]<<" ";
+            cout<<endl;
+    }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
