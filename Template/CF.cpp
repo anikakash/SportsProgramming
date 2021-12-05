@@ -75,20 +75,31 @@ int main() {
 
     int tt;cin>>tt;
     while(tt--){
-        string n1, n2;
+        ll n1, n2;
         int p1, p2;
         cin>>n1>>p1;
         cin>>n2>>p2;
 
-        if(p1)for(int i=0; i<p1; i++)n1.pb('0');
-        if(p2)for(int i=0; i<p1; i++)n2.pb('0');
-        
+        ll fsz = log10(n1), ssz = log10(n2);
+        fsz++; ssz++;
+         fsz = fsz+p1, ssz = ssz+p2;
 
-        if(n1>n2)cout<<"<"<<endl;
-        else if(n1<n2)cout<<">"<<endl;
-        else cout<<"="<<endl;
+        if(fsz>ssz)cout<<">"<<endl;
+        else if(fsz<ssz)cout<<"<"<<endl;
+        else{
+
+            string s1 = to_string(n1), s2 = to_string(n2);
+            while(s1.size()!=s2.size()){
+                if(s1.size()>s2.size())s2+='0';
+                else s1+='0';
+            }
+            if(s1<s2)cout<<"<"<<endl;
+            else if(s1>s2)cout<<">"<<endl;
+            else cout<<"="<<endl;
+            
+        }
+
     }
-
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

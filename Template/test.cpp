@@ -4,10 +4,10 @@ using namespace    std;
 #define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
 #define FASTERIO                 ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
 #define NL                       cout<<'\n';
-// #define pi                       acos(-1.0) //3.1415926535897932384626
+#define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     1000000
+#define MaxN                     3000
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 // #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
@@ -34,13 +34,33 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-
-ll factorial[21];
-
-ll fact(ll n) {
-    return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
+vector<ll>prime;
+bool vis[MaxN];  //MaxN is define in above of the code;
+void sieve() {
+    ll x = sqrt((int)MaxN);
+    for (ll i = 3; i <= x; i += 2) {
+        if (vis[i] == 0) {
+            for (ll j = i * i; j < MaxN; j += 2 * i)
+                vis[j] = 1;
+        }
+    }
+    prime.pb(2);
+    for (ll i = 3; i < MaxN; i += 2)
+        if (vis[i] == 0)
+            prime.pb(i);
 }
+int is_prime(ll n)
+{
+    ll i, root;
+    if (n == 2) return 1;
+    if (n % 2 == 0 || n == 1) return 0;
 
+    root = sqrt(n);
+
+    for (i = 3; i <= root; i = i + 2)if (n % i == 0)  return 0;
+
+    return 1;
+}
 
 
 int main() {
@@ -53,25 +73,19 @@ int main() {
 
     FASTERIO;
 
-    int NumberofProfit, NumberofWeight, BagSize, Capacity;
-    cin>>NumberofProfit>>NumberofWeight>>BagSize>>Capacity;
-
-    int pro[NumberofProfit], wt[NumberofWeight], save[20][10];
-    for(int i=0; i<NumberofProfit; i++)cin>>pro[i];
-    for(int i=0; i<NumberofWeight; i++)cin>>wt[i];
-
-    for(int i=0; i<=Capacity; i++){
-        for(int j=0; j<=BagSize; j++){
-            if(i==0 || j==0)save[i][j]=0;
-            else if(wt[i]<=j)save[i][j]=max(pro[i]+save[i-1][j-wt[i]], save[i-1][j]);
-            else save[i][j]=save[i-1][j];
+    int tt;cin>>tt;
+    while(tt--){
+        ll n; cin>>n;
+        vector<int>v1(n);
+        for(int i=0; i<n; i++)cin>>v1[i];
+            sort(v1.begin(), v1.end());
+        // for(auto it:v1)cout<<it<<" ";
+            // cout<<endl;
+        for(int i=1; i<=n/2; i++){
+            cout<<v1[i]<<" "<<v1[0]<<endl;
         }
-    }
-    cout<<save[Capacity][BagSize]<<endl;
+        // cout<<endl
 
-    for(int i=0; i<=Capacity; i++){
-        for(int j=0; j<=BagSize; j++)cout<<save[i][j]<<" ";
-            cout<<endl;
     }
 
 #ifdef anikakash

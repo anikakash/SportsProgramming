@@ -10,7 +10,7 @@ using namespace    std;
 #define MaxN                     1000000
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
-// #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
+#define Fill(ar, weight)         memset(ar, weight, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
