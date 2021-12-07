@@ -34,32 +34,34 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-vector<ll>prime;
-bool vis[MaxN];  //MaxN is define in above of the code;
-void sieve() {
-    ll x = sqrt((int)MaxN);
-    for (ll i = 3; i <= x; i += 2) {
-        if (vis[i] == 0) {
-            for (ll j = i * i; j < MaxN; j += 2 * i)
-                vis[j] = 1;
+int max(int a, int b)
+{
+    return (a > b) ? a : b;
+}
+ 
+// Returns the maximum value that
+// can be put in a knapsack of capacity W
+int knapSack(int W, int wt[], int val[], int n)
+{
+    int i, w;
+      vector<vector<int>> K(n + 1, vector<int>(W + 1));
+ 
+    // Build table K[][] in bottom up manner
+    for(i = 0; i <= n; i++)
+    {
+        for(w = 0; w <= W; w++)
+        {
+            if (i == 0 || w == 0)
+                K[i][w] = 0;
+            else if (wt[i - 1] <= w)
+                K[i][w] = max(val[i - 1] +
+                                K[i - 1][w - wt[i - 1]],
+                                K[i - 1][w]);
+            else
+                K[i][w] = K[i - 1][w];
         }
     }
-    prime.pb(2);
-    for (ll i = 3; i < MaxN; i += 2)
-        if (vis[i] == 0)
-            prime.pb(i);
-}
-int is_prime(ll n)
-{
-    ll i, root;
-    if (n == 2) return 1;
-    if (n % 2 == 0 || n == 1) return 0;
-
-    root = sqrt(n);
-
-    for (i = 3; i <= root; i = i + 2)if (n % i == 0)  return 0;
-
-    return 1;
+    return K[n][W];
 }
 
 
@@ -73,20 +75,12 @@ int main() {
 
     FASTERIO;
 
-    int tt;cin>>tt;
-    while(tt--){
-        ll n; cin>>n;
-        vector<int>v1(n);
-        for(int i=0; i<n; i++)cin>>v1[i];
-            sort(v1.begin(), v1.end());
-        // for(auto it:v1)cout<<it<<" ";
-            // cout<<endl;
-        for(int i=1; i<=n/2; i++){
-            cout<<v1[i]<<" "<<v1[0]<<endl;
-        }
-        // cout<<endl
-
-    }
+    int s,n;
+    cin>>s>>n;
+    int val[n], wt[n];
+    for(int i=0; i<n; i++)cin>>val[i]>>wt[i];
+      cout<<(int) knapSack(s,val,wt,n)<<endl;
+    
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
