@@ -51,46 +51,11 @@ int main() {
 #endif
 
     FASTERIO;
-    int tt; cin >> tt;
-    for (int caseno = 1; caseno <= tt; caseno++) {
-        ll n, cnt = 2; cin >> n;
-        ll arr[2 * n + 2][2 * n + 2] = {0};
-        ll dp[2 * n + 2][2 * n + 2] = {0};
-
-        for (int i = 1; i <= 2 * n - 1; i++) {
-            int xx = i;
-            if (xx > n) {
-                xx -= cnt;
-                cnt += 2;
-            }
-            for (int j = 1; j <= xx; j++) {
-                cin >> arr[i][j];
-            }
-        }
-        dp[1][1] = arr[1][1];
-        for (int i = 2; i <= 2 * n - 1; i++) {
-            for (int j = 1; j <= 2 * n - 1; j++) {
-                if (i <= n) {
-                    if (j == 1)dp[i][j] = arr[i][j] + dp[i - 1][j];
-                    else {
-                        dp[i][j] = max(dp[i - 1][j - 1] + arr[i][j], dp[i - 1][j] + arr[i][j]);
-                    }
-                }
-                else{
-                    dp[i][j] = max(dp[i - 1][j] + arr[i][j], dp[i - 1][j+1] + arr[i][j]);
-                }
-            }
-        }
-
-        // for (int i = 1; i <= 2 * n - 1; i++) {
-        //     for (int j = 1; j <= 2 * n - 1; j++) {
-        //         cout << dp[i][j] << " ";
-        //     }
-        //     cout << endl;
-        // }
-        cout << "Case " << caseno << ": " << dp[2 * n - 1][1] << endl;
-    }
-
+    
+    int a[]={0,1,2,3,4,5,6,7,8,9,10,11};
+    int n = rand()%12;
+    // cout<<n<<endl;
+    cout<<a[n]<<endl;
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

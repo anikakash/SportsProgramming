@@ -7,7 +7,7 @@ using namespace    std;
 // #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     33000
+#define MaxN                     105
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 #define Fill(ar, weight)            memset(ar, weight, sizeof(ar))
@@ -55,26 +55,46 @@ void sieve() {
             prime.pb(i);
 }
 
-vector<vector<int>> Determinate_Prime;
-
-void calculate() {
-    for (int i = 0; i + 2 < prime.size(); i++) {
-        vector<int>arr;
-        int diff = prime[i + 1] - prime[i];
-        arr.pb(prime[i]);
-        arr.pb(prime[i + 1]);
-        int x = i + 1, cnt = 0;
-        while (diff == prime[x + 1] - prime[x]) {
-            arr.pb(prime[x + 1]);
-            x++;
-            cnt++;
-        }
-        if (cnt == 0) {
-            arr.pop_back();
-            arr.pop_back();
-        } else i = x - 1;
-        if(arr.size()!=0)Determinate_Prime.pb(arr);
+vector<ll>Nprime(30);
+ll n, d;
+int cal(int n, int k) {
+    int res = 0, kk = k;
+    while (kk <= n) {
+        res += n / kk;
+        kk *= k;
     }
+    return res;
+}
+
+ll solve() {
+
+    if(n==0)return (d==1)?1:0;
+
+    int p = 0;
+    while (prime[p] <= n) {
+        // cout << prime[p] << endl;
+        Nprime[p] = cal(n, prime[p]);
+        p++;
+    }
+
+    int p2 = 0;
+
+    while (p2 < prime.size()&& d != 1) {
+        if (d % prime[p2] == 0) {
+            while (d % prime[p2] == 0) {
+                d /= prime[p2];
+                Nprime[p2]--;
+                if (Nprime[p2] < 0)return 0;
+            }
+        }
+        p2++;
+    }
+    if (d != 1)return 0;
+
+    ll ans = 1;
+    for (int i = 0; i < 30; i++) if (Nprime[i])ans *= (Nprime[i] + 1);
+
+    return ans;
 }
 
 int main() {
@@ -82,34 +102,16 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
 
     FASTERIO;
-    sieve(); calculate();
-
-    int a, b;
-    while (cin >> a >> b) {
-        if (a == 0 && b == 0)return 0;
-        if (a > b)swap(a, b);
-        bool flg = false;
-        // cout<<"a = "<<a<<" b = "<<b<<endl;
-        for (int i = 0; i < Determinate_Prime.size(); i++) {
-            if (Determinate_Prime[i].size() > 2 && Determinate_Prime[i][0] >= a && Determinate_Prime[i].back() <= b ) {
-                for (int j = 0; j < Determinate_Prime[i].size(); j++) {
-                    // if (Determinate_Prime[i][j] >= a && Determinate_Prime[i][j] <= b) {
-                        cout << Determinate_Prime[i][j];
-                        if (j != Determinate_Prime[i].size() - 1)cout << " ";
-                        flg = true;
-                    // }
-                    // else break;
-                }
-                if (flg) {
-                    cout << endl;
-                    flg = false;
-                }
-            }
-        }
+    sieve();
+    while (cin >> n >> d) {
+        if(d<0)d*=-1;
+        if(n==0 && d==0)return 0;
+        for (int i = 0; i < 30; i++)Nprime[i]=0;
+            cout<<(ll)solve()<<endl;
     }
 
 #ifdef anikakash
