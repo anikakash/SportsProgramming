@@ -41,10 +41,10 @@ ll fact(ll n) {
     return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
 }
 
-ll sq(ll n, ll p){
-    ll xx=1;
-    for(ll i = 1; i<=p; i++)xx*=n;
-        return xx;
+ll sq(ll n, ll p) {
+    ll xx = 1;
+    for (ll i = 1; i <= p; i++)xx *= n;
+    return xx;
 }
 
 
@@ -53,29 +53,30 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("tt.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
     int tt; cin>>tt;
     while(tt--){
-       ll n; cin>>n;
-       set<ll>s;
-       for(ll i=1; (ll)sq(i,2)<=n; i++){
-            // cout<<(ll)sq(i,2)<<endl;
-            ll tmp = sq(i,2);
-            s.insert(tmp);
-       }
-       for(ll i=1; (ll)sq(i,3)<=n; i++){
-            // cout<<(ll)sq(i,3)<<endl;
-            ll tmp = sq(i,3);
-            s.insert(tmp);
-       }
-       cout<<s.size()<<endl;
+        int n,m, rb,rd, cb, cd,cnt=0;
+        cin>>n>>m>>rb>>rd>>cb>>cd;
+        bool rb_active=false, rd_active=false;
+        while(1){
+            if(rb<n && !rb_active)rb++;
+            else if(rb==n || rb_active==true){rb--;rb_active==true;}
+
+            if(rd==n && !rd_active)rd++;
+            else if(rd<n || rd_active==true){rd--;rd_active==true;}
+            cnt++;
+            cout<<"rb = "<<rb<<"     rd = "<<rd<<endl;
+            if(rb == cb || rd == cd){
+                cout<<cnt<<endl; break;
+            }
+        }
+
     }
-
-
 
 
 #ifdef anikakash
