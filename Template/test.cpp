@@ -34,67 +34,44 @@ int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
 int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
-ll fact[21];
-ll fun(int n) {
-    return !n ? fact[n] = 1ll : fact[n] = n * fun(n - 1);
-}
 
-#define maxN 1000001
-int ans[maxN];
-bool isPrime[maxN];
-vector<int> prime;
-
-void Sieve() {
-    memset(isPrime, true, maxN);
-    isPrime[0] = isPrime[1] = false;
-    for (int i=2, lm=(int)sqrt(maxN); i<=lm; i++)
-        if (isPrime[i]) {
-            for (int j=i*i; j<=maxN; j+=i)
-                isPrime[j] = false;
-            prime.push_back(i);
-        }
-    for (int i=prime.back()+1; i<=maxN; i++)
-        if (isPrime[i]) prime.push_back(i);
-}
-
-void PreCal() {
-    Sieve();
-    ans[1] = 0;
-    for (int i=2; i<maxN; i++) {
-        ans[i] = ans[i-1];
-        int n=i, j=0;
-        while (!isPrime[n]) {
-            if (n%prime[j]==0) {
-                ans[i]++;
-                n /= prime[j];
-            }
-            else j++;
-        }
-        if (isPrime[n]) ans[i]++;
-    }
-}
 
 int main() {
 
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("ans.txt", "w", stdout);
+    freopen("tt.txt", "w", stdout);
 #endif
 
     int tt; cin>>tt;
     while(tt--){
-        int x1, x2, y1, y2;
-        cin>>x1>>y1>>x2>>y2;
-        if((x1%2==0 && y1%2==0) && (x2%2==0 && y2%2==0))cout<<"YES"<<endl;
-        else if((x1%2==0 && y1%2==0) && (x2%2==1 && y2%2==1))cout<<"YES"<<endl;
-        else if((x1%2==0 && y1%2==1) && (x2%2==0 && y2%2==1))cout<<"YES"<<endl;
-        else if((x1%2==0 && y1%2==1) && (x2%2==1 && y2%2==0))cout<<"YES"<<endl;
-        else if((x1%2==1 && y1%2==1) && (x2%2==1 && y2%2==1))cout<<"YES"<<endl;
-        else if((x1%2==1 && y1%2==1) && (x2%2==0 && y2%2==0))cout<<"YES"<<endl;
-        else if((x1%2==1 && y1%2==0) && (x2%2==1 && y2%2==0))cout<<"YES"<<endl;
-        else cout<<"NO"<<endl;
-
+        int n; cin>>n;
+        vector<int>v;
+        map<int,int>mp;
+        for(int i=0; i<n; i++){
+            int x; cin>>x;
+            // if(x<0)x*=-1;
+            v.pb(x);
+            mp[v[i]]++;
+        }
+        // for(auto it:mp)cout<<it.first<<" "<<it.second<<endl;
+        int sum=0;
+        for(auto it:mp){
+            if(it.first<0){
+                int x = abs(it.first);
+                // cout<<x<<endl;
+                if(mp[x]==1)sum+=2;
+                else if(mp[x]>1)sum+=1;
+                mp[x]=-1;
+            }
+            else if(it.first == 0 && it.first<=2)sum+=1;
+            else if(it.second!=-1){
+                if(it.second==1)sum+=1;
+                else if(it.second==2)sum+=2;
+            }
+        }
+        cout<<sum<<endl;
     }
 
 #ifdef anikakash

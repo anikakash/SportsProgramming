@@ -58,26 +58,25 @@ int main() {
 
     FASTERIO;
 
-    int tt; cin>>tt;
+   int tt; cin>>tt;
     while(tt--){
-        int n,m, rb,rd, cb, cd,cnt=0;
-        cin>>n>>m>>rb>>rd>>cb>>cd;
-        bool rb_active=false, rd_active=false;
-        while(1){
-            if(rb<n && !rb_active)rb++;
-            else if(rb==n || rb_active==true){rb--;rb_active==true;}
-
-            if(rd==n && !rd_active)rd++;
-            else if(rd<n || rd_active==true){rd--;rd_active==true;}
-            cnt++;
-            cout<<"rb = "<<rb<<"     rd = "<<rd<<endl;
-            if(rb == cb || rd == cd){
-                cout<<cnt<<endl; break;
-            }
+        int n; cin>>n;
+        vector<int>v;
+        map<int,int>mp;
+        for(int i=0; i<n; i++){
+            int x; cin>>x;
+            if(x<0)x*=-1;
+            v.pb(x);
+            mp[v[i]]++;
         }
-
+        int sum=0;
+        for(auto it:mp){
+            if(it.second==1)sum+=1;
+            else if(it.second >= 2 && it.first!=0)sum+=2;
+            else if(it.second >0 && it.first==0)sum+=1;
+        }
+        cout<<sum<<endl;
     }
-
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
