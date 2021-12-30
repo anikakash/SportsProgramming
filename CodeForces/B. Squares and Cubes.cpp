@@ -25,6 +25,22 @@ template <class T> T lcm(T a, T b) {T y; return y = ((a) * (b)) / gcd(a, b);}
 #define debugNS(a,b,c)          cout<<a<<b<<c<<endl;
 #define debugN(b)               cout<<b<<endl;
 
+int ROW[] = { +0, +0, -1, +1};
+int COL[] = { +1, -1, +0, +0};
+
+int X[] = { +0, +0, +1, -1, -1, +1, -1, +1}; // Kings Move
+int Y[] = { -1, +1, +0, +0, +1, +1, -1, -1}; // Kings Move
+
+int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
+int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
+
+
+ll factorial[21];
+
+ll fact(ll n) {
+    return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
+}
+
 ll sq(ll n, ll p){
     ll xx=1;
     for(ll i = 1; i<=p; i++)xx*=n;
