@@ -60,38 +60,36 @@ int main() {
 
    int tt; cin>>tt;
    while(tt--){
-        string s="", s1, s2; cin>>s1>>s2;
-        ll  i=s1.size()-1, j=s2.size()-1;
+       ll a, s;cin>>a>>s;
+       ll ra, rb, rs, ans=0;
+       int p=0; 
+       bool f = true;
+       while(a>0 || s>0){
+            if(a>0){
+                ra = a%10;
+                a = 1LL*a/10;
+            }
+            else ra = 0;
 
-        
-        while(1){
-            if(s1[i]>s2[j]){
-               if(j-1<0 || i<0)break;
-               ll nn = s2[j-1]-'0';
-               nn = (nn*10)+s2[j]-'0';
-               ll np = s1[i]-'0';
-               ll ans = nn-np;
-               s+=to_string(ans);
-               j-=2; i--;
+            rs = s%10;
+
+            if(ra>rs){
+                rs = s%100;
+                s = 1LL*s/100;
             }
-            else if(s1[i]<=s2[j]){
-                if(j<0 || i<0)break;
-                ll nn = s2[j]-'0';
-                ll np = s1[i]-'0';
-                ll ans = nn-np;
-                s+=to_string(ans);
-                i--; j--;
+            else s = 1LL*s/10;
+
+            rb = rs - ra;
+            if(rb>9 || rb <0 ){
+                cout<<-1<<endl;
+                f = false; break;
             }
-        }
-        reverse(s.begin(), s.end());
-        bool flg = false;
-        for(int i=0; i<s.size(); i++){
-            if(s[i]!='0' || flg){
-                cout<<s[i];
-                flg=true;
+            else {
+                ans+= pow(10,p)*1LL*rb;
+                p++;
             }
-        }
-            cout<<'\n';
+       }
+       if(f)cout<<ans<<endl;
    }
 
 #ifdef anikakash
