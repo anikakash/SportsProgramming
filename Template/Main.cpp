@@ -59,24 +59,40 @@ int main() {
     FASTERIO;
 
    int tt; cin>>tt;
-    while(tt--){
-        int n; cin>>n;
-        vector<int>v;
-        map<int,int>mp;
-        for(int i=0; i<n; i++){
-            int x; cin>>x;
-            if(x<0)x*=-1;
-            v.pb(x);
-            mp[v[i]]++;
+   while(tt--){
+        string s="", s1, s2; cin>>s1>>s2;
+        ll  i=s1.size()-1, j=s2.size()-1;
+
+        
+        while(1){
+            if(s1[i]>s2[j]){
+               if(j-1<0 || i<0)break;
+               ll nn = s2[j-1]-'0';
+               nn = (nn*10)+s2[j]-'0';
+               ll np = s1[i]-'0';
+               ll ans = nn-np;
+               s+=to_string(ans);
+               j-=2; i--;
+            }
+            else if(s1[i]<=s2[j]){
+                if(j<0 || i<0)break;
+                ll nn = s2[j]-'0';
+                ll np = s1[i]-'0';
+                ll ans = nn-np;
+                s+=to_string(ans);
+                i--; j--;
+            }
         }
-        int sum=0;
-        for(auto it:mp){
-            if(it.second==1)sum+=1;
-            else if(it.second >= 2 && it.first!=0)sum+=2;
-            else if(it.second >0 && it.first==0)sum+=1;
+        reverse(s.begin(), s.end());
+        bool flg = false;
+        for(int i=0; i<s.size(); i++){
+            if(s[i]!='0' || flg){
+                cout<<s[i];
+                flg=true;
+            }
         }
-        cout<<sum<<endl;
-    }
+            cout<<'\n';
+   }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
