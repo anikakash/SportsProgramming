@@ -53,44 +53,31 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("tt.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
 
     FASTERIO;
 
-   int tt; cin>>tt;
-   while(tt--){
-       ll a, s;cin>>a>>s;
-       ll ra, rb, rs, ans=0;
-       int p=0; 
-       bool f = true;
-       while(a>0 || s>0){
-            if(a>0){
-                ra = a%10;
-                a = 1LL*a/10;
+    int tt; cin >> tt;
+    while (tt--) {
+        string s1, s2; cin >> s1 >> s2;
+        sort(s1.begin(), s1.end());
+        vector<int>mp(26, 0);
+        for (int i = 0; i < s1.size(); i++) {
+            char c = s1[i];
+            mp[c - 'a']++;
+        }
+        if (s2 != "abc" || !mp[0] || !mp[1] || !mp[2] )cout << s1 << endl;
+        else {
+            while (mp[0]--)cout << 'a';
+            while (mp[2]--)cout << 'c';
+            while (mp[1]--)cout << 'b';
+            for (int i = 3; i < 26; i++) {
+                while (mp[i]--)cout << char('a' + i);
             }
-            else ra = 0;
-
-            rs = s%10;
-
-            if(ra>rs){
-                rs = s%100;
-                s = 1LL*s/100;
-            }
-            else s = 1LL*s/10;
-
-            rb = rs - ra;
-            if(rb>9 || rb <0 ){
-                cout<<-1<<endl;
-                f = false; break;
-            }
-            else {
-                ans+= pow(10,p)*1LL*rb;
-                p++;
-            }
-       }
-       if(f)cout<<ans<<endl;
-   }
+            cout << '\n';
+        }
+    }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

@@ -44,35 +44,16 @@ int main() {
     freopen("tt.txt", "w", stdout);
 #endif
 
-    int tt; cin>>tt;
-    while(tt--){
-        int n; cin>>n;
-        vector<int>v;
-        map<int,int>mp;
-        for(int i=0; i<n; i++){
-            int x; cin>>x;
-            // if(x<0)x*=-1;
-            v.pb(x);
-            mp[v[i]]++;
-        }
-        // for(auto it:mp)cout<<it.first<<" "<<it.second<<endl;
-        int sum=0;
-        for(auto it:mp){
-            if(it.first<0){
-                int x = abs(it.first);
-                // cout<<x<<endl;
-                if(mp[x]==1)sum+=2;
-                else if(mp[x]>1)sum+=1;
-                mp[x]=-1;
-            }
-            else if(it.first == 0 && it.first<=2)sum+=1;
-            else if(it.second!=-1){
-                if(it.second==1)sum+=1;
-                else if(it.second==2)sum+=2;
-            }
-        }
-        cout<<sum<<endl;
+    string rendom = " )aAb^B+1c[Cd(9D`e#}Ef_2.F!g$Gh|Hi{\"I3j+Jk'KlL<4m\\~M@nN-o/O5,p&P:qQrR->6s;]tTu?U=7v!Vw[W%x8&XyYzZ`>{";
+    cout << "PASSWORD LENGHT: ";
+    int passlen;
+    cin >> passlen;
+    srand(time(NULL));
+    for(int i = 0; i < passlen; i++){
+        int j = rand() % 99 + 1;
+        cout << rendom[j];
     }
+    cout << endl;
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
