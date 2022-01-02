@@ -48,6 +48,29 @@ ll sq(ll n, ll p) {
 }
 
 
+
+bool solve(vector<int>&arr) {
+    int rem = -1;
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        if (arr[i] != arr[n - 1 - i]) {
+            rem = arr[i];
+            break;
+        }
+    }
+    
+    vector<int>tmp;
+    for (auto it : arr)if (it != rem)tmp.pb(it);
+
+    int ss = tmp.size();
+    for (int i = 0; i < ss; i++) {
+        if (tmp[i] != tmp[ss - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
 
 #ifdef anikakash
@@ -60,23 +83,20 @@ int main() {
 
     int tt; cin >> tt;
     while (tt--) {
-        string s1, s2; cin >> s1 >> s2;
-        sort(s1.begin(), s1.end());
-        vector<int>mp(26, 0);
-        for (int i = 0; i < s1.size(); i++) {
-            char c = s1[i];
-            mp[c - 'a']++;
+
+         int n; cin >> n;
+         vector<int>arr(n);
+        for (int i = 0; i < n; i++)cin>>arr[i];
+
+        bool flg = solve(arr);
+        if(!flg){
+            reverse(arr.begin(), arr.end());
+            flg = solve(arr);
         }
-        if (s2 != "abc" || !mp[0] || !mp[1] || !mp[2] )cout << s1 << endl;
-        else {
-            while (mp[0]--)cout << 'a';
-            while (mp[2]--)cout << 'c';
-            while (mp[1]--)cout << 'b';
-            for (int i = 3; i < 26; i++) {
-                while (mp[i]--)cout << char('a' + i);
-            }
-            cout << '\n';
-        }
+
+        if (flg)cout << "YES" << endl;
+        else cout << "NO" << endl;
+       
     }
 
 #ifdef anikakash
