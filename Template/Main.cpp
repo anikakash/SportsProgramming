@@ -49,26 +49,55 @@ ll sq(ll n, ll p) {
 
 
 
-bool solve(vector<int>&arr) {
-    int rem = -1;
-    int n = arr.size();
-    for (int i = 0; i < n; i++) {
-        if (arr[i] != arr[n - 1 - i]) {
-            rem = arr[i];
-            break;
-        }
+void solve() {
+    int n, a, b; cin>>n>>a>>b;
+    if(a==n && n!=2){
+        cout<<-1<<endl; return;
     }
-    
-    vector<int>tmp;
-    for (auto it : arr)if (it != rem)tmp.pb(it);
+    vector<int>t1, t2;
+    int x=b+1;
+    t1.pb(a);
+    while(x<=n){
+        if(x>a)t1.pb(x);
+        x++;
+    }
+    x = a-1;
+    while(t1.size()<n/2){
+        a++; t1.pb(a);
+    }
 
-    int ss = tmp.size();
-    for (int i = 0; i < ss; i++) {
-        if (tmp[i] != tmp[ss - 1 - i]) {
-            return false;
+    // for(auto it:t1)cout<<it<<" "; cout<<endl;
+
+     t2.pb(b);
+     while(x>0){
+        if(x<b)t2.pb(x); x--;
+     }
+     while(t2.size()<(n/2)){
+        if(a+1<b){
+            a++; t2.pb(a);
         }
+        else break;
+     }
+     // for(auto it:t2)cout<<it<<" "; cout<<endl;
+     map<int,int>mp;
+     for(int i=0; i<t1.size(); i++)mp[t1[i]]++;
+     for(int i=0; i<t2.size(); i++)mp[t2[i]]++;
+
+    for(auto it:mp)if(it.second>1){
+        cout<<-1<<endl; return;
     }
-    return true;
+
+     if(t1.size()!=t2.size())cout<<-1<<endl;
+     else{
+        for(int i=0; i<t1.size(); i++)
+            cout<<t1[i]<<" ";
+        for(int i=0; i<t2.size(); i++){
+            cout<<t2[i]<<" ";
+        }
+        cout<<endl;
+        
+     }
+
 }
 
 int main() {
@@ -83,22 +112,8 @@ int main() {
 
     int tt; cin >> tt;
     while (tt--) {
-
-         int n; cin >> n;
-         vector<int>arr(n);
-        for (int i = 0; i < n; i++)cin>>arr[i];
-
-        bool flg = solve(arr);
-        if(!flg){
-            reverse(arr.begin(), arr.end());
-            flg = solve(arr);
-        }
-
-        if (flg)cout << "YES" << endl;
-        else cout << "NO" << endl;
-       
+        solve();
     }
-
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif

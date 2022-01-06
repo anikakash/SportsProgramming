@@ -41,10 +41,29 @@ int main() {
 #ifdef anikakash
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
-    freopen("tt.txt", "w", stdout);
+    freopen("ans.txt", "w", stdout);
 #endif
 
-    
+    int tt; cin >> tt;
+    while (tt--) {
+        int n, a, b; cin>>n>>a>>b;
+        vector<int>v(n+1);
+        for(int i=0; i<=n; i++){
+            if(i==0)v[i]=-1;
+            else v[i]=i;
+        }
+        int i=a;
+        vector<int>t1;
+        while(i<=n && t1.size()<=n/2){
+            if(i!=b && v[i]!=-1){
+                t1.pb(v[i]);
+                v[i]=-1; i++;
+            }
+            else break;
+        }
+        for(auto it:t1)cout<<it<<" ";
+            
+    }
 
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
