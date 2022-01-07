@@ -41,63 +41,29 @@ ll fact(ll n) {
     return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
 }
 
-ll sq(ll n, ll p) {
-    ll xx = 1;
-    for (ll i = 1; i <= p; i++)xx *= n;
-    return xx;
+ll sum(ll n){
+    return n*1ll*(n+1)/2;
 }
 
-
-
 void solve() {
-    int n, a, b; cin>>n>>a>>b;
-    if(a==n && n!=2){
-        cout<<-1<<endl; return;
+  
+  ll k, x; cin>>k>>x;
+  ll l=1, r = 2*k-1, ans=2*k-1;
+  bool ok = false;
+  while(l<=r){
+    ll mid = l+(r-l)/2;
+    if(mid >= k){
+        ok = (sum(k) + sum(k-1) - sum(2*k-1-mid) >= x);
     }
-    vector<int>t1, t2;
-    int x=b+1;
-    t1.pb(a);
-    while(x<=n){
-        if(x>a)t1.pb(x);
-        x++;
+    else ok = (sum(mid) >= x);
+
+    if(ok){
+        ans = mid;
+        r = mid-1;
     }
-    x = a-1;
-    while(t1.size()<n/2){
-        a++; t1.pb(a);
-    }
-
-    // for(auto it:t1)cout<<it<<" "; cout<<endl;
-
-     t2.pb(b);
-     while(x>0){
-        if(x<b)t2.pb(x); x--;
-     }
-     while(t2.size()<(n/2)){
-        if(a+1<b){
-            a++; t2.pb(a);
-        }
-        else break;
-     }
-     // for(auto it:t2)cout<<it<<" "; cout<<endl;
-     map<int,int>mp;
-     for(int i=0; i<t1.size(); i++)mp[t1[i]]++;
-     for(int i=0; i<t2.size(); i++)mp[t2[i]]++;
-
-    for(auto it:mp)if(it.second>1){
-        cout<<-1<<endl; return;
-    }
-
-     if(t1.size()!=t2.size())cout<<-1<<endl;
-     else{
-        for(int i=0; i<t1.size(); i++)
-            cout<<t1[i]<<" ";
-        for(int i=0; i<t2.size(); i++){
-            cout<<t2[i]<<" ";
-        }
-        cout<<endl;
-        
-     }
-
+    else l = mid+1;
+  }
+  cout<<ans<<endl;
 }
 
 int main() {
