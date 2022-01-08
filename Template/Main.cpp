@@ -35,35 +35,26 @@ int KX[] = { -2, -2, -1, -1,  1,  1,  2,  2}; // Knights Move
 int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 
-ll factorial[21];
 
-ll fact(ll n) {
-    return !n ? factorial[n] = 1ll : factorial[n] = n * fact(n - 1);
-}
-
-ll sum(ll n){
-    return n*1ll*(n+1)/2;
-}
 
 void solve() {
-  
-  ll k, x; cin>>k>>x;
-  ll l=1, r = 2*k-1, ans=2*k-1;
-  bool ok = false;
-  while(l<=r){
-    ll mid = l+(r-l)/2;
-    if(mid >= k){
-        ok = (sum(k) + sum(k-1) - sum(2*k-1-mid) >= x);
-    }
-    else ok = (sum(mid) >= x);
+    int n; cin>>n;
+    vector<int>v(n);
+    for(int i=0; i<n; i++)cin>>v[i];
+        int ans = 1;
+    // for(auto it:v)cout<<it<<" ";
+    //     cout<<endl;
 
-    if(ok){
-        ans = mid;
-        r = mid-1;
+    for(int i=0; i<n; i++){
+        if(v[i]==1 && v[i+1]==1 && i<n-1){
+            ans+=5;
+        }
+        else if(v[i]==1)ans++;
+        else if(v[i]==0 && v[i+1]==0 && i<n-1){
+            ans=-1; break;
+        }
     }
-    else l = mid+1;
-  }
-  cout<<ans<<endl;
+    cout<<ans<<endl;
 }
 
 int main() {
