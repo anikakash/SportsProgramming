@@ -39,22 +39,14 @@ int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 void solve() {
     int n; cin>>n;
-    vector<int>v(n);
-    for(int i=0; i<n; i++)cin>>v[i];
-        int ans = 1;
-    // for(auto it:v)cout<<it<<" ";
-    //     cout<<endl;
-
-    for(int i=0; i<n; i++){
-        if(v[i]==1 && v[i+1]==1 && i<n-1){
-            ans+=5;
-        }
-        else if(v[i]==1)ans++;
-        else if(v[i]==0 && v[i+1]==0 && i<n-1){
-            ans=-1; break;
-        }
+    map<string, int>mp;
+    while(n--){
+        string s; cin>>s;
+        mp[s]++;
+        if(mp[s]>1)cout<<s<<(int)mp[s]-1<<endl;
+        else cout<<"OK"<<endl;
     }
-    cout<<ans<<endl;
+
 }
 
 int main() {
@@ -67,10 +59,10 @@ int main() {
 
     FASTERIO;
 
-    int tt; cin >> tt;
-    while (tt--) {
+    // int tt; cin >> tt;
+    // while (tt--) {
         solve();
-    }
+    // }
 #ifdef anikakash
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
