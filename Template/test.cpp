@@ -38,7 +38,7 @@ int KY[] = { -1,  1, -2,  2, -2,  2, -1,  1}; // Knights Move
 
 int main() {
 
-#ifdef anikakash
+#ifdef wordsworth
     clock_t tStart = clock();
     freopen("input.txt", "r", stdin);
     freopen("ans.txt", "w", stdout);
@@ -65,7 +65,7 @@ int main() {
             
     }
 
-#ifdef anikakash
+#ifdef wordsworth
     fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
