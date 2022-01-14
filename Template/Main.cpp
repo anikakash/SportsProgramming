@@ -17,39 +17,10 @@ typedef unsigned long long int   ull;
 
 
 void solve() {
-    ll n; cin>>n;
-    vector<pair<ll,pair<ll,ll>>>vp;
-    vector<ll>v(n), f(n), b(n);
-
-    for(int i=0; i<n; i++)cin>>v[i];
-    for(int i=0; i<n; i++)cin>>f[i];
-    for(int i=0; i<n; i++)cin>>b[i];
-
-    for(int i=0; i<n; i++)
-        vp.pb(make_pair(v[i],make_pair(f[i],b[i])));
-    sort(vp.begin(), vp.end());
-
-    // for(int i=0; i<n; i++)
-    //     cout<<vp[i].first<<" "<<vp[i].second.first<<" "<<vp[i].second.second<<endl;
-    
-    ll ln; cin>>ln;
-    vector<ll>list(ln);
-    for(int i=0; i<ln; i++)cin>>list[i];
-        vector<ll>ans;
-    for(int i=0; i<ln; i++){
-        for(int j=0; j<n; j++){
-            if((vp[j].first!=-1) && ((list[i]==vp[j].second.first)||(list[i]==vp[j].second.second))){
-                ans.pb(vp[j].first);
-                vp[j].first=-1; list[i]=-1; break;
-            }
-        }
-        if(list[i]!=-1)ans.pb(-1);
-    }
-    for(auto it:ans)cout<<it<<" ";
-        ll ss = ans.size();
-    ln-=ss;
-    while(ln--)cout<<-1<<" ";
-    cout<<"\n";
+    vector<int>v(4);
+    for(int i=0; i<4; i++)cin>>v[i];
+        sort(v.begin(), v.end());
+    cout<<(int)v[3]-v[2]<<" "<<(int)v[3]-v[1]<<" "<<(int)v[3]-v[0]<<endl;
 }
 
 int gate=0;

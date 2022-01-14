@@ -17,22 +17,8 @@ typedef unsigned long long int   ull;
 
 
 void solve() {
-    int n, b; cin>>b>>n;
-    int node=1, cnt=1;
-    while(cnt<b){
-        if(n&1 || n==0){
-            node =node<<1;
-            n = (n/2)+1;
-            // cout<<"1Node "<<node<<" N "<<n<<endl;
-        }
-        else{
-            node = (node<<1)+1; n/=2;
-            // cout<<"Node "<<node<<" N "<<n<<endl;
-        }
-        cnt++;
-        // cout<<"Cnt "<<cnt<<endl;
-    }
-    cout<<node<<endl;
+    int n=10;
+    cout<<n%4;
 }
 
 int gate=1;
