@@ -14,16 +14,15 @@ using namespace    std;
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
-
+ int lcm(ll a, ll b){
+    return (a*b)/__gcd(a,b);
+ }
 
 void solve() {
-    vector<int>v(4);
-    for(int i=0; i<4; i++)cin>>v[i];
-        sort(v.begin(), v.end());
-    cout<<(int)v[3]-v[2]<<" "<<(int)v[3]-v[1]<<" "<<(int)v[3]-v[0]<<endl;
+    int c;cin>>c;cout<<c<<endl;
 }
 
-int gate=0;
+int gate=1;
 int main() {
 
 #ifdef wordsworth
