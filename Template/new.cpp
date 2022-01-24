@@ -4,9 +4,7 @@ using namespace std;
 int countOdd(int a, int b){
     int N = (b - a) / 2;
     if (a % 2 != 0 || b % 2 != 0)
-        N += 1;
- 
-    return N;
+        N += 1; return N;
 }
 
 int main()
