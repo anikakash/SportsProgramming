@@ -30,7 +30,7 @@ void sieve(){
 }
 vector<int>factor;
 void primeFactorization(int n){
-    for(int i=0; prime[i]*prime[i]<=n; i++){
+    for(int i=0; i<prime.size(); i++){
         if(n%prime[i]==0){
             while(n%prime[i]==0){
                 n/=prime[i];
@@ -47,10 +47,11 @@ void solve() {
         if(n==0)return;
         cout<<"Case "<<cnt++<<": ";
         primeFactorization(n);
-        int sum=0; 
+        ll sum=0; 
         for(auto it:factor)sum+=it;
             if(factor.size()==1)sum++;
         cout<<sum<<endl;
+        // for(auto it:factor)cout<<it<<" "; cout<<"\n";
         factor.clear();
     }
 }

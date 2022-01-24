@@ -18,24 +18,32 @@ typedef unsigned long long int   ull;
     return (a*b)/__gcd(a,b);
  }
 
-
+int countOdd(int L, int R){
+ 
+    int N = (R - L) / 2;
+ 
+    // if either R or L is odd
+    if (R % 2 != 0 || L % 2 != 0)
+        N += 1;
+ 
+    return N;
+}
 
 void solve() {
-   ll n, cnt=0; cin>>n;
-   for(int i=1; i<=n; i++){
-        int x = i;
-        while(x){
-            if(x%5==0){
-                cnt++; x/=5;
-            }
-            else break;
-        }
+   int a, b, c; cin>>a>>b>>c;
+   if(a==1&&b==1)cout<<"NO"<<endl;
+   else if(a==b)cout<<"YES"<<endl;
+   else{
+        int cnt=0;
+        int odd = countOdd(a,b);
+        if(odd<=c )cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+
    }
-   cout<<cnt<<endl;
 
 }
 
-int gate=0;
+int gate=1;
 int main() {
 
 #ifdef wordsworth

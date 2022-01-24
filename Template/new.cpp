@@ -1,14 +1,23 @@
-#include<bits/stdc++.h>
-using namespace    std;
+#include <bits/stdc++.h>
+ 
+using namespace std;
+int countOdd(int a, int b){
+    int N = (b - a) / 2;
+    if (a % 2 != 0 || b % 2 != 0)
+        N += 1;
+ 
+    return N;
+}
 
-int main() {
+int main()
+{   
+    freopen("int.txt", "r", stdin);
+    int a, b; cin>>a>>b;
+    int odds = countOdd(a, b);
+    int evens = (b - a + 1) - odds;
+     
+    cout << "Count of odd numbers is " << odds << endl;
+    cout << "Count of even numbers is " << evens << endl;
 
-    string s; getline(cin,s);
-    map<char, int>mp;
-    for(int i=0; i<s.size(); i++){
-        if(s[i]!=' ')mp[s[i]]++;
-    }
-    for(auto it:mp)cout<<it.first<<" : "<<it.second<<endl;
-    
     return 0;
 }

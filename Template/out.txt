@@ -1,3 +1,9 @@
-Case 1: 7
-Case 2: 7
-Case 3: 6
+NO
+NO
+YES
+YES
+YES
+YES
+NO
+NO
+YES
