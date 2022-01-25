@@ -18,29 +18,21 @@ typedef unsigned long long int   ull;
     return (a*b)/__gcd(a,b);
  }
 
-int countOdd(int L, int R){
- 
-    int N = (R - L) / 2;
- 
-    // if either R or L is odd
-    if (R % 2 != 0 || L % 2 != 0)
-        N += 1;
- 
-    return N;
-}
-
 void solve() {
-   int a, b, c; cin>>a>>b>>c;
-   if(a==1&&b==1)cout<<"NO"<<endl;
-   else if(a==b)cout<<"YES"<<endl;
-   else{
-        int cnt=0;
-        int odd = countOdd(a,b);
-        if(odd<=c )cout<<"YES"<<endl;
-        else cout<<"NO"<<endl;
-
+   int n, m; cin>>n>>m;
+   vector<int>v;
+   for(int i=1; i<=n; i++){
+        for(int j=1; j<=m; j++){
+            int a = abs(1-i)+abs(1-j);
+            int b = abs(1-i)+abs(m-j);
+            int c = abs(n-i)+abs(1-j);
+            int d = abs(n-i)+abs(m-j);
+            int x = max(a,max(b,max(c,d)));
+            v.pb(x);
+        }
    }
-
+   sort(v.begin(), v.end());
+   for(auto it:v)cout<<it<<" ";cout<<"\n";
 }
 
 int gate=1;
