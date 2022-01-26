@@ -19,20 +19,20 @@ typedef unsigned long long int   ull;
  }
 
 void solve() {
-   int n, m; cin>>n>>m;
-   vector<int>v;
-   for(int i=1; i<=n; i++){
-        for(int j=1; j<=m; j++){
-            int a = abs(1-i)+abs(1-j);
-            int b = abs(1-i)+abs(m-j);
-            int c = abs(n-i)+abs(1-j);
-            int d = abs(n-i)+abs(m-j);
-            int x = max(a,max(b,max(c,d)));
-            v.pb(x);
-        }
-   }
-   sort(v.begin(), v.end());
-   for(auto it:v)cout<<it<<" ";cout<<"\n";
+      int n, mx=-1000000000;
+      long long k;
+      cin>>n>>k;
+      vector<int>v(n);
+      for(int i=0; i<n; i++){
+        cin>>v[i]; if(mx<v[i])mx=v[i];
+      }
+      int mx2=0;
+      for(int i=0; i<n; i++){
+        v[i]=mx-v[i]; if(mx2<v[i])mx2=v[i];
+      }
+       k--; k%=2;
+      for(int i=0; i<n && k; i++)v[i]=mx2-v[i];
+      for(auto it:v)cout<<it<<" "; cout<<"\n";
 }
 
 int gate=1;
