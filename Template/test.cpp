@@ -19,23 +19,13 @@ typedef unsigned long long int   ull;
  }
 
 void solve() {
-      int n, mx=-1000000000;
-      long long k;
-      cin>>n>>k;
-      vector<int>v(n);
-      for(int i=0; i<n; i++){
-        cin>>v[i]; if(mx<v[i])mx=v[i];
+      string s="anikakash";
+      for(int i=0;i<s.size(); i++){
+        cout<<(s[i]-'a'+1)<<endl;
       }
-      int mx2=0;
-      for(int i=0; i<n; i++){
-        v[i]=mx-v[i]; if(mx2<v[i])mx2=v[i];
-      }
-       k--; k%=2;
-      for(int i=0; i<n && k; i++)v[i]=mx2-v[i];
-      for(auto it:v)cout<<it<<" "; cout<<"\n";
 }
 
-int gate=1;
+int gate=0;
 int main() {
 
 #ifdef wordsworth
