@@ -1,12 +1,5 @@
-#include<stdio.h>
-int main()
-{
-   	  //start
-    int a;
-    /*
-    sdsd
-    */
-    printf("%d",a);
-    //end here
-
-}
+1
+2
+3
+4
+5
