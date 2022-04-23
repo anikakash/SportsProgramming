@@ -7,45 +7,40 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     65536 // 2^16
+#define MaxN                     100005 //1e5
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 #define Fill(ar, weight)         memset(ar, weight, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
-int lcm(ll a, ll b){return (a*b)/__gcd(a,b);}
+
+
+void solve(){
+    int n; cin>>n;
+    vector<int>v(n), ans;
+    for(int i=0; i<n; i++)cin>>v[i];
+        int a = v[0];
+        int b = v[n-1];
+    if((b-a-1)>n)cout<<"NO\n";
+    else cout<<"YES\n";
+    
+}
 
 int main() {
 #ifdef INSANE
-    clock_t tStart = clock();
-    freopen("int.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+   clock_t tStart = clock();
+   freopen("int.txt", "r", stdin);
+   freopen("out.txt", "w", stdout);
 #endif
+  
+    FASTERIO; // comment when use scanf and printf 
+   int tt; cin>>tt; 
+   while(tt--)
+    solve();
 
-    FASTERIO;
-    
-    int tt; cin>>tt;
-    while(tt--){
-        ll a, b; cin>>a>>b;
-        int ans=INT_MAX, cnt;
-        for(int i=0; i<30; i++){
-            if(b+i==1)continue;
-            else{
-                int B=b+i;
-                int A=a;
-                cnt=i;
-                while(A){
-                    A/=B; cnt++;
-                }
-                if(cnt<ans)ans=cnt;
-            }
-        }
-        cout<<ans<<endl;
-    }
-    
 #ifdef INSANE
-    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+   fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }
