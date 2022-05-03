@@ -15,26 +15,30 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-
-void solve(){
-    int n; cin>>n;
-    int v[n+2];
-    int sum=0;
-    bool flg=false, ok=false;
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-    }
-    for(int i=1; i<=n; i++){
-        if(v[i]%2!=0){
-            if(i%2==0)cout<<"errorgorn\n";
-            else cout<<"maomao90\n";
-            return;
+int next_prime(int n){
+    while(1){
+        bool flg=true;
+        for(int i=2; i*i<=n; i++){
+            flg=true;
+            if(n%i==0){
+                flg=false;
+                 break;
+            }
         }
+        if(flg==false)n++;
+        else break;
     }
-    cout<<"maomao90\n";
-    
+    return n;
 }
-
+void solve(){
+    int d;cin>>d;
+    int x = 1+d;
+    x = next_prime(x);
+    int y = x+d;
+    y = next_prime(y);
+    cout<<(int)x*y<<endl;
+}
+ 
 int main() {
 #ifdef INSANE
    clock_t tStart = clock();
@@ -43,8 +47,8 @@ int main() {
 #endif
   
     FASTERIO; // comment when use scanf and printf 
-   int tt; cin>>tt; 
-   while(tt--)
+    int tt; cin>>tt; 
+    while(tt--)
     solve();
 
 #ifdef INSANE
