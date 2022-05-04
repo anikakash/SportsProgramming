@@ -31,12 +31,23 @@ int next_prime(int n){
     return n;
 }
 void solve(){
-    int d;cin>>d;
-    int x = 1+d;
-    x = next_prime(x);
-    int y = x+d;
-    y = next_prime(y);
-    cout<<(int)x*y<<endl;
+    string s1, s2; cin>>s1>>s2;
+    if(s1==s2){
+        cout<<s1<<endl;
+        return;
+    }
+    int a[27], a1[27];
+    for(int i=0; i<s1.size(); i++){
+        a[s1[i]-'a']++;
+    }
+    for(int i=0; i<s1.size(); i++){
+        a1[s1[i]-'a']++;
+    }
+    for(int i=0; i<27; i++)
+        cout<<a[i]<<" ";NL;
+    for(int i=0; i<27; i++)
+        cout<<a1[i]<<" ";NL;
+    
 }
  
 int main() {

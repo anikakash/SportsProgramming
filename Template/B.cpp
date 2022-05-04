@@ -7,7 +7,7 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     100005 //1e5
+#define MaxN                     500 //1e5
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 #define Fill(ar, weight)         memset(ar, weight, sizeof(ar))
@@ -67,13 +67,21 @@ int next_prime(int n){
     }
     return n;
 }
+map<int,bool>arr;
+void pre_cal(){
+    arr[1]=true;
+    int last=1, gap=1;
+    while(true){
+        last+=gap;
+        if(last<0)break;
+        arr[last]=true;
+        gap++;
+    }
+}
 void solve(){
-    int d;cin>>d;
-    int x = 1+d;
-    x = next_prime(x);
-    int y = x+d;
-    y = next_prime(y);
-    cout<<(int)x*y<<endl;
+    int n; cin>>n;
+    cout<<arr[n];
+
 }
  
 int main() {
@@ -84,9 +92,12 @@ int main() {
 #endif
   
     FASTERIO; // comment when use scanf and printf 
+    pre_cal();
     int tt; cin>>tt; 
-    while(tt--)
-    solve();
+    for(int i=1; i<=tt; i++){
+        if(i!=1)cout<<" ";
+        solve();
+    }
 
 #ifdef INSANE
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
