@@ -52,36 +52,9 @@ int LCSubStr(string X, string Y, int m, int n)
     return result;
 }
 
-int next_prime(int n){
-    while(1){
-        bool flg=true;
-        for(int i=2; i*i<=n; i++){
-            flg=true;
-            if(n%i==0){
-                flg=false;
-                 break;
-            }
-        }
-        if(flg==false)n++;
-        else break;
-    }
-    return n;
-}
-map<int,bool>arr;
-void pre_cal(){
-    arr[1]=true;
-    int last=1, gap=1;
-    while(true){
-        last+=gap;
-        if(last<0)break;
-        arr[last]=true;
-        gap++;
-    }
-}
 void solve(){
     int n; cin>>n;
-    cout<<arr[n];
-
+    cout<<n<<endl;
 }
  
 int main() {
@@ -92,7 +65,7 @@ int main() {
 #endif
   
     FASTERIO; // comment when use scanf and printf 
-    pre_cal();
+
     int tt; cin>>tt; 
     for(int i=1; i<=tt; i++){
         if(i!=1)cout<<" ";
