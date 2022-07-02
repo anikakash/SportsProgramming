@@ -52,6 +52,10 @@ int LCSubStr(string X, string Y, int m, int n)
     return result;
 }
 
+void file(){
+    freopen("int.txt", "r", stdin);
+   freopen("out.txt", "w", stdout);
+}
 void solve(){
     int n; cin>>n;
     cout<<n<<endl;
@@ -63,12 +67,11 @@ int main() {
    freopen("int.txt", "r", stdin);
    freopen("out.txt", "w", stdout);
 #endif
-  
+  file();
     FASTERIO; // comment when use scanf and printf 
 
     int tt; cin>>tt; 
     for(int i=1; i<=tt; i++){
-        if(i!=1)cout<<" ";
         solve();
     }
 
