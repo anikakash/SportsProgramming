@@ -17,22 +17,28 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-    int n; cin>>n;
-    int v[n+2];
-    int sum=0;
-    bool flg=false, ok=false;
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-    }
-    for(int i=1; i<=n; i++){
-        if(v[i]%2!=0){
-            if(i%2==0)cout<<"errorgorn\n";
-            else cout<<"maomao90\n";
-            return;
+   int n, m; cin>>n>>m;
+   vector<int>v(n);
+   for(int i=0; i<n; i++)cin>>v[i];
+    string ss = "";
+    for(int i=0; i<m; i++)ss.pb('B');
+    for(int i=0; i<n; i++){
+        int x = v[i]-1;
+        int y = (m+1)-v[i];
+            y--;
+            // cout<<x<<" "<<y<<endl;
+       if(x<m && ss[x]=='B'){
+        if(y<x){
+            if(ss[y]=='B')ss[y]='A';
+            else ss[x]='A';
         }
+        else ss[x]='A';
+        // ss[x]='A';
+       }
+       else if(y<m && ss[y]=='B')ss[y]='A';
     }
-    cout<<"maomao90\n";
-    
+    // reverse(ss.begin(), ss.end());
+    cout<<ss<<endl;
 }
 
 int main() {

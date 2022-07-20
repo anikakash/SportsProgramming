@@ -7,45 +7,38 @@ using namespace    std;
 #define pi                       acos(-1.0) //3.1415926535897932384626
 #define pb                       push_back
 #define mk                       make_pair
-#define MaxN                     1000000
+#define MaxN                     100005 //1e5
 #define EPS                      1e-18
 #define dpoint(x)                fixed<<setprecision(x)
 #define Fill(ar, weight)         memset(ar, weight, sizeof(ar))
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
- int lcm(ll a, ll b){
-    return (a*b)/__gcd(a,b);
- }
 
-void solve() {
-      string s="anikakash";
-      for(int i=0;i<s.size(); i++){
-        cout<<(s[i]-'a'+1)<<endl;
-      }
+
+void solve(){
+   int n; cin>>n;
+
+   for(int i=1; i<n; i++){
+      ll x = pow(i,n)-i;
+      cout<<x<<" "<<x%n<<endl;
+   }
 }
 
-int gate=0;
 int main() {
-
-#ifdef wordsworth
-    clock_t tStart = clock();
-    freopen("int.txt", "r", stdin);
-    freopen("out.txt", "w", stdout);
+#ifdef INSANE
+   clock_t tStart = clock();
+   freopen("int.txt", "r", stdin);
+   freopen("out.txt", "w", stdout);
 #endif
+  
+    FASTERIO; // comment when use scanf and printf 
+   int tt; cin>>tt; 
+   while(tt--)
+    solve();
 
-    FASTERIO;
-
-    if(gate){
-        int tt; cin >> tt;
-        while (tt--) {
-            solve(); 
-        }
-    }
-    else solve();
-
-#ifdef wordsworth
-    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#ifdef INSANE
+   fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
 }

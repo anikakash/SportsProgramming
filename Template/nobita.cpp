@@ -15,26 +15,37 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-
-void solve(){
-   int n; cin>>n;
-   cout<<n<<endl;
-}
-
 int main() {
-#ifdef INSANE
-   clock_t tStart = clock();
-   freopen("int.txt", "r", stdin);
-   freopen("out.txt", "w", stdout);
-#endif
-  
-    FASTERIO; // comment when use scanf and printf 
-   int tt; cin>>tt; 
-   while(tt--)
-    solve();
 
-#ifdef INSANE
-   fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
-#endif
+    FASTERIO;
+    int t; cin>>t;
+    while(t--){
+ int n, m; cin>>n>>m;
+   vector<int>v(n);
+   for(int i=0; i<n; i++)cin>>v[i];
+    string ss = "";
+    for(int i=0; i<m; i++)ss.pb('B');
+    for(int i=0; i<n; i++){
+        int x = v[i]-1;
+        int y = (m+1)-v[i];
+            y--;
+            // cout<<x<<" "<<y<<endl;
+       if(x<m && ss[x]=='B'){
+        if(y<x){
+            if(ss[y]=='B')ss[y]='A';
+            else ss[x]='A';
+        }
+        else ss[x]='A';
+        // ss[x]='A';
+       }
+       else if(y<m && ss[y]=='B')ss[y]='A';
+    }
+    // reverse(ss.begin(), ss.end());
+    cout<<ss<<endl;
+        
+
+    }
     return 0;
+    
 }
+
