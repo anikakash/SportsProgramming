@@ -18,40 +18,26 @@ typedef unsigned long long int   ull;
 int main() {
 
     FASTERIO;
-    int n, m; cin>>n>>m;
-    vector<int>v(n);
-    for(int i=0; i<n; i++)cin>>v[i];
-    int sum1[n+5]={0};
-
-    for(int i=2; i<=n; i++){
-        if(v[i-2]>v[i-1]){
-            sum1[i]=sum1[i-1]+(v[i-2]-v[i-1]);
-        }
-        else sum1[i]=sum1[i-1];
-    }
-    // for(int i=1; i<=n; i++)cout<<sum1[i]<<" ";NL;
-    reverse(v.begin(), v.end());
-    
-    vector<int>sum2;
-    sum2.pb(0);
-    sum2.pb(0);
-    for(int i=2; i<=n; i++){
-        if(v[i-2]>v[i-1]){
-            sum2.pb(sum2[i-1]+(v[i-2]-v[i-1]));
-        }
-        else sum2.pb(sum2[i-1]);
-    }
-    reverse(sum2.begin(), sum2.end());
-    // for(int i=0; i<sum2.size(); i++)cout<<sum2[i]<<" ";NL;
+    int m; cin>>m;
     while(m--){
-        int x, y; cin>>x>>y;
-        if(x<y){
-            // cout<<sum1[x]<<" "<<sum1[y]<<endl;
-            cout<<abs((sum1[y]-sum1[x])-sum1[x-1])<<endl;
+              int n; cin>>n;
+   // cout<<" n = "<<n<<" :";
+   if(n==1)cout<<1<<endl;
+   else{
+        if(n%2==0){
+            for(int i=1; i<=n; i+=2){
+                cout<<i+1<<" "<<i<<" ";
+            }
+            NL;
         }
         else{
-            cout<<abs((sum2[y-1]-sum2[x-1])-sum1[x-2])<<endl;
+            for(int i=1; i<n-2; i+=2){
+                cout<<i+1<<" "<<i<<" ";
+            }
+            cout<<n<<" "<<n-2<<" "<<n-1;
+            NL;
         }
+   }
     }
     return 0;
     

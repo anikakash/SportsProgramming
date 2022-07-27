@@ -17,8 +17,25 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-   int n; cin>>n;
-   cout<<n<<endl;
+    int n; cin>>n;
+    int cnt=0, ok=1;
+    vector<int>v(n);
+    for(int i=0; i<n; i++){
+        cin>>v[i];
+        if(v[i]==1)cnt++;
+    }
+    if(cnt==n && cnt%2==0)cout<<"Second\n";
+    else if(cnt==n && cnt%2==1)cout<<"First\n";
+    else{
+      cnt=0;
+      for(int i=0; i<n; i++){
+         if(v[i]==1)cnt++;
+         else break;
+      }
+      if(cnt%2==0)cout<<"First\n";
+    else cout<<"Second\n";
+    }
+
 }
 
 int main() {
@@ -29,7 +46,9 @@ int main() {
 #endif
   
     FASTERIO; // comment when use scanf and printf 
-   int tt; cin>>tt; 
+
+   int tt; 
+   cin>>tt; 
    while(tt--)
     solve();
 
