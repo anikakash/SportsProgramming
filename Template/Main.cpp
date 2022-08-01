@@ -17,13 +17,31 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-    ll n; cin>>n;
-    ll cnt=0;    
-    while(n>1){
-        ll step = (-1+sqrt(1+24*n))/6;
-        ll eleminated_card = (step*(3*step+1))/2;
-        n-=eleminated_card;
-        cnt++;
+    int n,x; cin>>n>>x;
+    vector<int>v(n);
+    int to=0;
+    for(int i=0;i<n;i++)cin>>v[i];
+        // sort(v.begin(), v.end());
+        int mn = abs(v[0]-x), mx = abs(v[0]+x), cnt=0;
+     // cout<<v[0]<<" = "<<mn<<" "<<mx<<endl;
+
+    for(int i=1; i<n; i++){
+        int tm1=abs(v[i]-x), tm2=abs(v[i]+x);
+        if((mn<=tm1 && tm1<=mx)||(mn<=tm2 && tm2<=mx)){
+            mn = max(tm1,mn); mx = min(mx,tm2);
+
+        }
+        else if((tm1<=mn && mn<=tm2) ||(tm1<=mx && mx<=tm2)){
+                      mn = max(tm1,mn); mx = min(mx,tm2);
+
+        }
+        else{
+            cnt++;
+            // cout<<v[i]<<" WAS "<<mn<<" "<<mx<<endl;
+            mn = abs(v[i]-x); mx = abs(v[i]+x);
+            // cout<<v[i]<<" Change "<<tm1<<" "<<tm2<<endl;
+        }
+        // cout<<v[i]<<" = "<<tm1<<" "<<tm2<<endl;
     }
     cout<<cnt<<endl;
 }
@@ -39,8 +57,7 @@ int main() {
 
    int tt; 
    cin>>tt; 
-   while(tt--)
-    solve();
+   while(tt--)solve();
 
 #ifdef INSANE
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

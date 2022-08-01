@@ -14,30 +14,54 @@ using namespace    std;
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
+void ans(){
+    int n,m; cin>>n>>m;
+    string s,s1; cin>>s>>s1;
+    int x=1, flg=1;
+
+
+
+    for(int i=m-1; i>=0; i--){
+        if(s1[i]==s[n-x]){
+            // cout<<"HEH\n";
+        }
+
+        else if(s1[i]!=s[n-x]){
+
+            if(i==0){
+
+                for(int j=0; j<n-m; j++){
+
+                    if(s1[i]==s[j]){
+                        cout<<"YES\n";
+
+                        return;
+                    }
+                }
+            }
+
+            cout<<"NO\n"; 
+            return;
+        }
+
+        x++;
+
+    }
+
+    cout<<"YES\n";
+
+}
 
 int main() {
 
+
     FASTERIO;
+
     int m; cin>>m;
+    
     while(m--){
-              int n; cin>>n;
-   // cout<<" n = "<<n<<" :";
-   if(n==1)cout<<1<<endl;
-   else{
-        if(n%2==0){
-            for(int i=1; i<=n; i+=2){
-                cout<<i+1<<" "<<i<<" ";
-            }
-            NL;
-        }
-        else{
-            for(int i=1; i<n-2; i+=2){
-                cout<<i+1<<" "<<i<<" ";
-            }
-            cout<<n<<" "<<n-2<<" "<<n-1;
-            NL;
-        }
-   }
+
+             ans();
     }
     return 0;
     
