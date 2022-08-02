@@ -14,54 +14,78 @@ using namespace    std;
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
+
+
 void ans(){
-    int n,m; cin>>n>>m;
-    string s,s1; cin>>s>>s1;
-    int x=1, flg=1;
 
 
 
-    for(int i=m-1; i>=0; i--){
-        if(s1[i]==s[n-x]){
-            // cout<<"HEH\n";
+    int n, h, m; cin>>n>>h>>m;
+   vector<pair<int,int>>v;
+   for(int i=0; i<n; i++){
+        int x, y; cin>>x>>y;
+        v.pb({x,y});
+   }
+   sort(v.begin(), v.end());
+   for(int i=0; i<n;i++){
+        if((v[i].first==h)&&(v[i].second==m)){
+            cout<<"0 0"<<endl; return;
+
+
         }
-
-        else if(s1[i]!=s[n-x]){
-
-            if(i==0){
-
-                for(int j=0; j<n-m; j++){
-
-                    if(s1[i]==s[j]){
-                        cout<<"YES\n";
-
-                        return;
-                    }
-                }
-            }
-
-            cout<<"NO\n"; 
-            return;
-        }
-
-        x++;
-
     }
+    for(int i=0; i<n;i++){
 
-    cout<<"YES\n";
+        if((v[i].first==h)&&(v[i].second!=m)){
+
+            cout<<0<<" "<<v[i].second-m<<endl; return;
+
+        }
+    }
+   if(v[0].first<h){
+
+        if(m==0){
+
+            int hh = (24-h)+v[0].first;
+            int mm = v[0].second;
+            cout<<hh<<" "<<mm<<endl;
+
+        }
+        else{
+
+            int hh = (23-h)+v[0].first;
+            int mm = (60-m)+v[0].second;
+            cout<<hh<<" "<<mm<<endl;
+        }
+
+
+   }
+
+   else if(v[0].first>h){
+        if(m==0){
+            int hh = v[0].first-h;
+            int mm = v[0].second;
+            cout<<hh<<" "<<mm<<endl;
+        }
+        else{
+            int hh = v[0].first-h;
+            int mm = (60-m)+v[0].second;
+            hh--;
+           cout<<hh<<" "<<mm<<endl;
+        }
+   }
+
 
 }
-
 int main() {
 
 
     FASTERIO;
 
-    int m; cin>>m;
+    int tt; cin>>tt;
     
-    while(m--){
-
-             ans();
+    while(tt--){
+         ans();
     }
     return 0;
     

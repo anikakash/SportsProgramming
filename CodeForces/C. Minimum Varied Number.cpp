@@ -15,16 +15,17 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
+int arr[]={
+    1,2,3,4,5,6,7,8,9,19,29,39,49,59,69,79,89,189,289,389,
+    489,589,689,789,1789,2789,3789,4789,5789,6789,16789,26789,
+    36789,46789,56789,156789,256789,356789,456789,1456789,
+    2456789,3456789,13456789,23456789,123456789,3456789,23456789,123456789
+};
 
 void solve(){
     int n; cin>>n;
-    vector<int>v(n);
-    for(int i=0; i<n; i++)cin>>v[i];
+    cout<<arr[n-1]<<endl;
 
-    for(int i=n-1; i>0; i--){
-        mp[v[i]]++;
-        if(mp[v[i]]>1)
-    }
 
 }
 
@@ -32,12 +33,12 @@ int main() {
 #ifdef INSANE
    clock_t tStart = clock();
    freopen("int.txt", "r", stdin);
-   freopen("out.txt", "w", stdout);
+   freopen("anik.txt", "w", stdout);
 #endif
   
     FASTERIO; // comment when use scanf and printf 
 
-   int tt; 
+   int tt;
    cin>>tt; 
    while(tt--)solve();
 

@@ -17,15 +17,19 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-    int n; cin>>n;
+       int n; cin>>n;
     vector<int>v(n);
     for(int i=0; i<n; i++)cin>>v[i];
-
-    for(int i=n-1; i>0; i--){
+        map<int,int>mp;
+    for(int i=n-1; i>=0; i--){
         mp[v[i]]++;
-        if(mp[v[i]]>1)
+        // cout<<v[i]<<" = "<<mp[v[i]]<<endl;
+        if(mp[v[i]]>1){
+            cout<<i+1<<endl; return;
+        }
     }
 
+    cout<<0<<endl;
 }
 
 int main() {

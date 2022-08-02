@@ -17,12 +17,7 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-   int n; cin>>n;
-
-   for(int i=1; i<n; i++){
-      ll x = pow(i,n)-i;
-      cout<<x<<" "<<x%n<<endl;
-   }
+   for(int i=1; i<=45; i++)cout<<i<<endl;
 }
 
 int main() {
