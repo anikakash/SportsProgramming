@@ -17,64 +17,11 @@ typedef unsigned long long int   ull;
 
 
 void ans(){
-
-
-
-    int n, h, m; cin>>n>>h>>m;
-   vector<pair<int,int>>v;
-   for(int i=0; i<n; i++){
-        int x, y; cin>>x>>y;
-        v.pb({x,y});
-   }
-   sort(v.begin(), v.end());
-   for(int i=0; i<n;i++){
-        if((v[i].first==h)&&(v[i].second==m)){
-            cout<<"0 0"<<endl; return;
-
-
-        }
-    }
-    for(int i=0; i<n;i++){
-
-        if((v[i].first==h)&&(v[i].second!=m)){
-
-            cout<<0<<" "<<v[i].second-m<<endl; return;
-
-        }
-    }
-   if(v[0].first<h){
-
-        if(m==0){
-
-            int hh = (24-h)+v[0].first;
-            int mm = v[0].second;
-            cout<<hh<<" "<<mm<<endl;
-
-        }
-        else{
-
-            int hh = (23-h)+v[0].first;
-            int mm = (60-m)+v[0].second;
-            cout<<hh<<" "<<mm<<endl;
-        }
-
-
-   }
-
-   else if(v[0].first>h){
-        if(m==0){
-            int hh = v[0].first-h;
-            int mm = v[0].second;
-            cout<<hh<<" "<<mm<<endl;
-        }
-        else{
-            int hh = v[0].first-h;
-            int mm = (60-m)+v[0].second;
-            hh--;
-           cout<<hh<<" "<<mm<<endl;
-        }
-   }
-
+int n; cin>>n;
+    
+    if(n==1)cout<<0<<endl;
+    else if(n==2)
+  for(int i=1; i<=n; i++)cout<<i<<" ";NL;
 
 }
 int main() {
