@@ -19,15 +19,14 @@ typedef unsigned long long int   ull;
 
 void solve(){
     int n; cin>>n;
-    vector<int>v(n);
-    for(int i=0; i<n; i++)cin>>v[i];
-
-        sort(v.begin(), v.end());
-    int sm = count(v.begin(), v.end(), v[0]);
-    int bi = count(v.begin(), v.end(), v[n-1]);
-
-    if(sm == n )cout<<1LL*n*(n-1)<<endl;
-    else cout<<2LL*sm*bi<<endl;
+    if(n%2!=0)
+        for(int i=1; i<=n; i++)cout<<1<<" ";
+    else{
+        cout<<"1 3 ";
+        for(int i=2; i<n; i++)cout<<2<<" ";
+    }
+NL;
+    
 
 }
 
@@ -50,3 +49,4 @@ int main() {
 #endif
     return 0;
 }
+
