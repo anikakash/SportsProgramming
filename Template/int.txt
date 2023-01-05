@@ -1,4 +1,13 @@
-3
-1
-4
-3
+6
+2
+LL
+2
+LR
+2
+RL
+2
+RR
+7
+LLRLLLR
+7
+RRLRRRL
