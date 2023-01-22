@@ -1,4 +1,5 @@
-0
-1
-1
-2
+b b ba
+a b a
+a a a
+a bb a
+a a ab
