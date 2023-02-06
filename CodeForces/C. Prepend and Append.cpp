@@ -18,29 +18,18 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-   int n; cin>>n;
-   string s; cin>>s;
-
-   vector<int>pref(n,0), suff(n,0);
-   set<char>count;
-   for(int i=0; i<n; i++){
-      count.insert(s[i]);
-      pref[i]=count.size();
-   }
-   cout.clear();
-   for(int i=n-1; i>=0; i--){
-      count.insert(s[i]);
-      suff[i]=count.size();
-   }
-   // for(auto it:pref)cout<<it<<" "; NL;
-   // for(auto it:suff)cout<<it<<" "; NL;
-   int ans = 0;
-   for(int i=0; i<n-1; i++){
-      ans = max(ans,pref[i]+suff[i+1]);
-   }
-   cout<<ans<<endl;
-
-
+  int n; cin>>n;
+  string s; cin>>s;
+  int x=0, y=s.size()-1, cnt=0;
+  while(x<=y){
+      if((s[x]=='1' && s[y]=='0') || ((s[x]=='0' && s[y]=='1'))){
+         cnt++;
+         x++; y--;
+      }
+      else break;
+  }
+  int ans = y-x+1;
+  cout<<ans<<endl;
 }
 
 int main() {
@@ -63,4 +52,4 @@ int main() {
 #endif
     return 0;
 }
-
+ 

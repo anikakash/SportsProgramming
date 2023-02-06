@@ -1,5 +1,3 @@
-b b ba
-a b a
-a a a
-a bb a
-a a ab
+-6
+0
+7 -5 1 1

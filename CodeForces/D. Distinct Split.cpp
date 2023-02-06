@@ -27,20 +27,18 @@ void solve(){
       count.insert(s[i]);
       pref[i]=count.size();
    }
-   cout.clear();
+   count.clear();
    for(int i=n-1; i>=0; i--){
       count.insert(s[i]);
       suff[i]=count.size();
    }
-   // for(auto it:pref)cout<<it<<" "; NL;
-   // for(auto it:suff)cout<<it<<" "; NL;
+   
    int ans = 0;
    for(int i=0; i<n-1; i++){
       ans = max(ans,pref[i]+suff[i+1]);
    }
    cout<<ans<<endl;
-
-
+   
 }
 
 int main() {
