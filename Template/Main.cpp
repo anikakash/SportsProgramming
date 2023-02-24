@@ -21,23 +21,20 @@ void solve(){
    vector<int>v(n);
    for(int i=0; i<n; i++)cin>>v[i];
       sort(v.begin(), v.end());
-   int val=0;
-   if(v[0]==1){
-      val=1;
-      for(int i=1; i<n; i++){
-         if(v[i-1]+1==v[i])val = v[i];
-         else if(v[i-1]==v[i])continue;
-         else break;
-      }
+   for(auto it:v)cout<<it<<" ";NL;
+   
+   vector<int>sum(n);
+   sum[0]=1;
+
+   for(int i=1; i<n; i++){
+      sum[i]=min(sum[i-1])
    }
-   int ans = v[n-1]-val;
-   cout<<ans<<endl;
 }
 
 int main() {
 #ifdef INSANE
    clock_t tStart = clock();
-   freopen("int.txt", "r", stdin);
+   freopen("int.txt", "r", stdin);  
    freopen("out.txt", "w", stdout);
 #endif
   
