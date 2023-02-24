@@ -18,43 +18,20 @@ typedef unsigned long long int   ull;
 
 void solve(){
    int n; cin>>n;
-   vector<vector<int>>v(n,vector<int>(n-1));
-
-   for(int i=0; i<n; i++){
-      for(int j=0; j<n-1; j++){
-         cin>>v[i][j];
+   vector<int>v(n);
+   for(int i=0; i<n; i++)cin>>v[i];
+      sort(v.begin(), v.end());
+   int val=0;
+   if(v[0]==1){
+      val=1;
+      for(int i=1; i<n; i++){
+         if(v[i-1]+1==v[i])val = v[i];
+         else if(v[i-1]==v[i])continue;
+         else break;
       }
    }
-   int arr[110]={0};
-
-   for(int i=0; i<n; i++) arr[v[i][0]]++;
-
-      int missing = 0, val;
-   for(int i=1; i<102; i++){
-      if(missing<arr[i]){
-         val = i; missing=arr[i];
-      }
-   }
-
-   for(int i=0; i<n; i++){
-      bool flg=true;
-      for(int j=0; j<n-1; j++){
-         if(val==v[i][j]){
-            flg=false; break;
-         }
-      }
-
-      if(flg){
-         cout<<val<<" ";
-         for(int j=0; j<n-1; j++){
-            cout<<v[i][j]<<' ';
-         }
-         break;
-      }
-   }
-   NL;
-
-
+   int ans = v[n-1]-val;
+   cout<<ans<<endl;
 }
 
 int main() {
