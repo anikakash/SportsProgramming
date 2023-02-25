@@ -15,38 +15,23 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-bool isPrime(int n)
-{
-    // Corner cases
-    if (n <= 1)
-        return false;
-  //suppose n=7 that is prime and its pair are (1,7)
-  //so if a no. is prime then it can be check by numbers smaller than square root
-  // of the n
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
 
 void solve(){
    int n; cin>>n;
    vector<int>v(n);
    for(int i=0; i<n; i++)cin>>v[i];
+      sort(v.begin(), v.end());
+   // for(auto it:v)cout<<it<<" ";NL;
+   
+   vector<int>sum(n);
+   sum[0]=1;
 
-   int x = __gcd(v[0],v[1]);
-   for(int i=2; i<n; i++)x = __gcd(x,v[i]);
+   for(int i=1; i<n; i++)sum[i]=min(sum[i-1]+1, v[i]);
 
-   if(x<n){
-      cout<<"YY\n";
-      for(int i=0; i<n; i++){
-         for(int j=i+1; j<n; j++){
-            if(__gcd(v[i], v[j])<=2)
-         }
-      }
-   }
-   cout<<"NO\n";
+   ll ans = 0;
+   for(int i=0; i<n; i++)ans+=v[i]-sum[i];
+      cout<<ans<<endl;
+   
 }
 
 int main() {
@@ -69,4 +54,4 @@ int main() {
 #endif
     return 0;
 }
-
+ 

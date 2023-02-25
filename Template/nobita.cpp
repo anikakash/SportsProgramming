@@ -24,17 +24,25 @@ int n; cin>>n;
   for(int i=1; i<=n; i++)cout<<i<<" ";NL;
 
 }
+
 int main() {
-
-
-    FASTERIO;
-
-    int tt; cin>>tt;
+#ifdef INSANE
+   clock_t tStart = clock();
+   freopen("int.txt", "r", stdin);  
+   freopen("out.txt", "w", stdout);
+#endif
+  
+    FASTERIO; // comment when use scanf and printf 
+   
+   int tt, caseno=1;
+   cin>>tt;
+   while(tt--){
+      int x, y; cin>>x>>y;
+      cout<<__gcd(x,y)<<endl;
+   }
     
-    while(tt--){
-         ans();
-    }
+#ifdef INSANE
+   fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
+#endif
     return 0;
-    
 }
-
