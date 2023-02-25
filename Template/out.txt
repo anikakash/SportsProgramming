@@ -1,11 +1,6 @@
 NO
-YY
 YES
-YY
 YES
-YY
 NO
-YY
-NO
-YY
-NO
+YES
+YES
