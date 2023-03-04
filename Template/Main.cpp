@@ -17,27 +17,22 @@ typedef unsigned long long int   ull;
 
 
 void solve(){
-   int n; cin>>n;
-   vector<int>v(n);
-   for(int i=0; i<n; i++)cin>>v[i];
-      sort(v.begin(), v.end());
-
-   bool flg[n]={false};
+   int n, k; cin>>n>>k;
+   string s; cin>>s;
+   vector<int>big(26,0), sm(26,0);
 
    for(int i=0; i<n; i++){
-      if(i>=v[i])flg[i]=true;
-      else flg[i]=false;
+      if(s[i]>='A' && s[i]<='Z')big[s[i]='A']++;
+      else sm[s[i]-'a']++;
    }
 
-   int ans=0; 
+   int ans=0, res=0;
    for(int i=0; i<n; i++){
-      if(flg[i]==true){
-         if(i==0)ans++;
-         else if(flg[i-1]==false)ans++;
-      }
+      res += min(big[i], sm[i]);
+      big[i]=abs(big[i]-sm[i]);
+      ans+=(big[i]/2);
    }
-   if(v[0]>0)ans++;
-
+   ans = res + min(ans,k);
    cout<<ans<<endl;
 }
 
@@ -48,9 +43,9 @@ int main() {
    freopen("out.txt", "w", stdout);
 #endif
   
-    FASTERIO; // comment when use scanf and printf 
+    FASTERIO; // comment when use scanf and printf
    
-   int tt, caseno=1; 
+   int tt, caseno=1;
    cin>>tt;
    while(tt--){
       solve();
