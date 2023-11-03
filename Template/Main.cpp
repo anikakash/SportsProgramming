@@ -80,20 +80,20 @@ void dfs(TreeNode* node,unordered_map<int,int> &ump){
         ump[node->val]++;
         dfs(node->right, ump);
         dfs(node->left, ump);
+}
+vector<int> findMode(TreeNode* root) {
+    vector<int>v;
+    unordered_map<int,int>ump;
+    dfs(root, ump);
+    int mx=0;
+    for(auto& [key, val]: ump){
+        mx=max(mx,val);
     }
-    vector<int> findMode(TreeNode* root) {
-        vector<int>v;
-        unordered_map<int,int>ump;
-        dfs(root, ump);
-        int mx=0;
-        for(auto& [key, val]: ump){
-            mx=max(mx,val);
-        }
-        for(auto it: ump){
-            if(it.second==mx)v.push_back(mx);
-        }
-        return v;
+    for(auto it: ump){
+        if(it.second==mx)v.push_back(mx);
     }
+    return v;
+}
 
 int main() {
 #ifdef anikakash
