@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+1743_Restore_#include<bits/stdc++.h>
 using namespace    std;
 
 #define flush                    cin.ignore(numeric_limits<streamsize>::max(),'\n')
@@ -16,16 +16,6 @@ typedef double                   dl;
 typedef unsigned long long int   ull;
 
 
-int countHomogenous(string s) {
-        long long sz=s.size();
-        cout<<"SZ: "<<sz<<endl;
-        for(int i=0; i<s.size(); i++){
-            for(int j=i+1; j<s.size(); j++){
-                if(s[i]==s[j])sz++;
-            }
-        }
-        return sz;
-}
 void dfs(map<int,vector<int>>&mp, set<int>&s, int head, vector<int>&ans){
     if(s.find(head)!=s.end()) return;
     ans.push_back(head);
@@ -76,4 +66,4 @@ int main() {
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
     return 0;
-}
+}the_Array_From_Adjacent_Pairs
