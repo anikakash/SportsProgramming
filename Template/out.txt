@@ -1,1 +1,21 @@
-1 2 3 4 
+Node 20: 3 
+Node 19: 3 
+Node 18: 3 
+Node 17: 3 
+Node 16: 3 
+Node 15: 2 
+Node 14: 2 
+Node 1: 0 
+Node 2: 0 
+Node 3: 0 
+Node 4: 0 
+Node 5: 0 
+Node 6: 1 
+Node 7: 1 
+Node 8: 1 
+Node 9: 1 
+Node 10: 1 
+Node 11: 2 
+Node 12: 2 
+Node 13: 2 
+No path from 1 to 20 found.
