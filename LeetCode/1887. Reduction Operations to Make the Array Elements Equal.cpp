@@ -23,7 +23,8 @@ int reductionOperations(vector<int>& nums) {
             ans+=diff;
         }
         return ans;
-    }
+}
+
 int main() {
 #ifdef anikakash
    clock_t tStart = clock();
@@ -35,9 +36,6 @@ int main() {
    
    std::vector<int> nums = {1,1,2,2,3,5,7};
    cout<<reductionOperations(nums)<<endl;
-
-   
-   
     
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
