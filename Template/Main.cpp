@@ -15,13 +15,32 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-int hammingWeight(uint32_t n) {
-        int sum=0;
-        while(n){
-            sum+=n&1;
-            n>>=1;
+ bool isSubsequence(string s, string t) {
+        unordered_map<char,int>s1;
+        unordered_map<char,int>t1;
+        for(int i=0; i<s.size(); i++){
+            s1[s[i]]++;
         }
-        return sum;
+
+        for(int i=0; i<t.size(); i++){
+            t1[t[i]]++;
+        }
+        // for(auto it: s1)cout<<it.first<<" "<<it.second<<endl;
+        //     cout<<"------\n";
+        // for(auto it: t1)cout<<it.first<<" "<<it.second<<endl;
+
+        for(auto it : s1){
+            for(auto it2 : t1){
+
+                if((it.first != it2.first) ||  (it.second !=it2.second)){
+                    cout<<it.first<<" "<<it2.first<<endl;
+                    cout<<it.second<<" "<<it2.second<<endl;
+                    return false;
+
+                }
+            }
+        }
+        return true;
 }
 
 int main() {
@@ -32,11 +51,9 @@ int main() {
 #endif
   
     FASTERIO; 
-   
-  uint32_t n = 11111111111111111111111111111101;
-  int sum = hammingWeight(n);
-  cout<<sum<<endl;
-        
+
+  cout<<isSubsequence("abc", "ahbgdc")<<endl;
+
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
 #endif
