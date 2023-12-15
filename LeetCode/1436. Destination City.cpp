@@ -15,7 +15,7 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-string destCity(vector<vector<string>>& paths){
+ string destCity(vector<vector<string>>& paths){
     unordered_set<string>vs;
     for(int i=0; i<paths.size(); i++) vs.insert(paths[i][0]);
 
@@ -26,6 +26,7 @@ string destCity(vector<vector<string>>& paths){
                 return s;
             }
         }
+    
     return "";
  }
 
