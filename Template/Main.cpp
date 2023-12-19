@@ -15,19 +15,69 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-string destCity(vector<vector<string>>& paths){
-    unordered_set<string>vs;
-    for(int i=0; i<paths.size(); i++) vs.insert(paths[i][0]);
+vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+    vector<vector<int>>vs;
+        int m = img.size(), n = img[0].size();
 
-        string ans="";
-        for(int i=0; i<paths.size(); i++){
-            string s = paths[i][1];
-            if(vs.find(s) == vs.end()){
-                return s;
+    for(int i=0; i<m; i++){
+        vector<int>tmp;
+        for(int j=0; j<n; j++){
+
+            int sum=0, cnt=0;
+
+            // Bottom 
+            if(i+1<m){
+                if(j-1>=0){
+                    sum+=img[i+1][j-1];
+                    cnt++;
+                }   
+                else if(j+1<n){
+                    sum+=img[i+1][j+1];
+                    cnt++;
+                }
+                
+                sum+=img[i+1][j];
+                cnt++;
             }
+
+            // Top
+            if(i-1>=0){
+                if(j-1>=0){
+                  sum+=img[i-1][j-1];
+                  cnt++;
+                }
+                else if(j+1<n){
+                  sum+=img[i-1][j+1];
+                  cnt++;
+                }
+
+                sum+=img[i-1][j];
+                cnt++;
+            }
+
+            // previous
+            if(j-1>=0){
+                sum+=img[i][j-1];
+                cnt++;
+            }
+
+            // next
+            if(j+1<n){
+                sum+=img[i][j+1];
+                cnt++;
+            }
+
+            // this cell;
+            sum+=img[i][j];
+            cnt++;
+            
+            tmp.push_back(sum/cnt);
         }
-    return "";
- }
+        vs.push_back(tmp);
+    }
+    return vs;
+        
+}
 
 int main() {
 #ifdef anikakash
@@ -37,10 +87,10 @@ int main() {
 #endif
   
     FASTERIO; 
-    vector<vector<string>>v={
-        {"London","New York"},
-        {"New York","Lima"},
-        {"Lima","Sao Paulo"}
+    vector<vector<int>>v={
+        {100,200,100},
+        {200,50,200},
+        {100,200,100}
     };
 
     cout<<destCity(v)<<endl;
