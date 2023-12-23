@@ -17,6 +17,7 @@ int gcd(int a, int b){ int x ; return x = __gcd(a, b);}
 int lcm(int a, int b){int y; return y = ((a)*((b)/gcd(a,b)));}
 
 // Debugger
+
 #define debugNS(a,b)             cout<<a<<" = "<<b<<endl;
 #define debugN(b)               cout<<b<<endl;
 
