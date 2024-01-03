@@ -59,14 +59,7 @@ int main() {
   
     FASTERIO; 
      
-     vector<string>v={
-        {"011001"},
-        {"000000"},
-        {"010100"},
-        {"001000"}
-     };
-
-    cout<<numberOfBeams(v)<<endl;
+     
 
 
 #ifdef anikakash
