@@ -55,7 +55,6 @@ int main() {
     FASTERIO; 
      
      vector<int>s={1,2,3,4,6}, e={3,5,10,6,9}, p={20,20,100,70,60};
-
     cout<<jobScheduling(s, e, p)<<endl;
 
 
