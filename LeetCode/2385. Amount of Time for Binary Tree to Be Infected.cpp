@@ -114,7 +114,7 @@ int main() {
     FASTERIO; 
      
    vector<int> values = {1,5,3,INT_MIN,4,10,6,9,2};
-    TreeNode* root = new TreeNode(values); 
+    TreeNode* root = new TreeNode(values); // create the tree
    cout<< amountOfTime(root, 3)<<endl;
 
 #ifdef anikakash
