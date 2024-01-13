@@ -16,38 +16,7 @@ typedef double                   dl;
 typedef unsigned long long int   ull;
 
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-    // constructor that takes a vector of values and builds a binary tree
-    TreeNode(vector<int> values) {
-        if (values.empty()) return; // empty tree
-        val = values[0]; // root value
-        queue<TreeNode*> q; // queue to store nodes
-        q.push(this); // push root node
-        int i = 1; // index to iterate over values
-        while (!q.empty() && i < values.size()) {
-            TreeNode* node = q.front(); // get the current node
-            q.pop();
-            if (values[i] != INT_MIN) { // check if left child exists
-                node->left = new TreeNode(values[i]); // create left child
-                q.push(node->left); // push left child
-            }
-            i++; // increment index
-            if (i < values.size() && values[i] != INT_MIN) { // check if right child exists
-                node->right = new TreeNode(values[i]); // create right child
-                q.push(node->right); // push right child
-            }
-            i++; // increment index
-        }
-    }
-};
-
- int minSteps(string s, string t) {
+int minSteps(string s, string t) {
         map<char,int>m1, m2;
         for(int i=0; i<s.size(); i++){
             m1[s[i]]++;
