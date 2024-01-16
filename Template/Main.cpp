@@ -69,8 +69,8 @@ int main() {
   
     FASTERIO; 
      
-  string s = "leetcode", t = "practice";
-  cout<<minSteps(s,t)<<endl;
+  int sum = 7 + 6 / 3 + 14 * 2;
+  cout<<sum<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
