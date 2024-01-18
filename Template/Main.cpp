@@ -69,8 +69,12 @@ int main() {
   
     FASTERIO; 
      
-  int sum = 7 + 6 / 3 + 14 * 2;
-  cout<<sum<<endl;
+  int x=22, i;
+  for(i=0; i<x; i+=5){
+    cout<<"Real ";
+    if(i==5 || i == 15) continue;
+    cout<<"Madrid ";
+  }
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
