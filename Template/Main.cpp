@@ -15,26 +15,22 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-    int dp[101][101]={0};
-int minFallingPathSum(vector<vector<int>>& matrix) {
-    int n = matrix.size();
-
-    for(int i=0; i<n; i++) dp[0][i] = matrix[0][i];
-
-    for(int i=1; i<n; i++){
-        for(int j=0; j<n; j++){
-            int mn = INT_MAX;
-            if(i-1>=0)mn = min(mn, dp[i-1][j]);
-            if(i-1>=0 && j-1>=0) mn = min(mn, dp[i-1][j-1]);
-            if(i-1>=0 && j+1<n) mn = min(mn, dp[i-1][j+1]);
-
-            dp[i][j] = mn+matrix[i][j];
-        }
+vector<int> findErrorNums(vector<int>&v){
+    // sort(v.begin(), v.end());
+    unordered_map<int,int>m;
+    int duplicate=0;
+    for(int i=0; i<v.size(); i++){
+        m[v[i]]++;
+        if(m[v[i]]>1) duplicate = v[i];
     }
-    int ans = dp[n-1][0];
-    for(int i=1; i<n; i++)ans = min(ans, dp[n-1][i]);
 
-    return ans;
+    int val = 1;
+    for(int i=1; i<v.size(); i++)
+        if(m[i]==0){
+             val = i;
+             break;
+        }
+    return {duplicate, val};
 }
 
 int main() {
