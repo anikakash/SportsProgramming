@@ -46,7 +46,29 @@ struct TreeNode {
         }
     }
 };
+    
 
+void cout_Palindromic_node(TreeNode *root, vector<int>&freq, int &palindromic_node){
+    if(root == NULL)return;
+    freq[root->val]++;
+    cout_Palindromic_node(root->left,freq,palindromic_node);
+    cout_Palindromic_node(root->right,freq,palindromic_node);
+
+    if(root->left == NULL && root->right == NULL){
+        int flg=0;
+        for(int i=1; i<10; i++){
+            if(freq[i]%2!=0)flg++;
+        }
+        if(flg==1 || flg==0)palindromic_node++;
+    }
+    freq[root->val]--;
+}
+int pseudoPalindromicPaths (TreeNode* root) {
+    int palindromic_node = 0;
+    vector<int>freq(10,0);
+    cout_Palindromic_node(root,freq,palindromic_node);
+    return palindromic_node;
+}
 
 
 int main() {
@@ -58,12 +80,8 @@ int main() {
   
     FASTERIO; 
      
-  int x=22, i;
-  for(i=0; i<x; i+=5){
-    cout<<"Real ";
-    if(i==5 || i == 15) continue;
-    cout<<"Madrid ";
-  }
+  TreeNode root = TreeNode({2,3,1,3,1,INT_MIN,1});
+  cout<<pseudoPalindromicPaths(&root)<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);

@@ -15,23 +15,61 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-vector<int> findErrorNums(vector<int>&v){
-    // sort(v.begin(), v.end());
-    unordered_map<int,int>m;
-    int duplicate=0;
-    for(int i=0; i<v.size(); i++){
-        m[v[i]]++;
-        if(m[v[i]]>1) duplicate = v[i];
-    }
 
-    int val = 1;
-    for(int i=1; i<v.size(); i++)
-        if(m[i]==0){
-             val = i;
-             break;
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    // constructor that takes a vector of values and builds a binary tree
+    TreeNode(vector<int> values) {
+        if (values.empty()) return; // empty tree
+        val = values[0]; // root value
+        queue<TreeNode*> q; // queue to store nodes
+        q.push(this); // push root node
+        int i = 1; // index to iterate over values
+        while (!q.empty() && i < values.size()) {
+            TreeNode* node = q.front(); // get the current node
+            q.pop();
+            if (values[i] != INT_MIN) { // check if left child exists
+                node->left = new TreeNode(values[i]); // create left child
+                q.push(node->left); // push left child
+            }
+            i++; // increment index
+            if (i < values.size() && values[i] != INT_MIN) { // check if right child exists
+                node->right = new TreeNode(values[i]); // create right child
+                q.push(node->right); // push right child
+            }
+            i++; // increment index
         }
-    return {duplicate, val};
+    }
+};
+    
+
+void cout_Palindromic_node(TreeNode *root, vector<int>&freq, int &palindromic_node){
+    if(root == NULL)return;
+    freq[root->val]++;
+    cout_Palindromic_node(root->left,freq,palindromic_node);
+    cout_Palindromic_node(root->right,freq,palindromic_node);
+
+    if(root->left == NULL && root->right == NULL){
+        int flg=0;
+        for(int i=1; i<10; i++){
+            if(freq[i]%2!=0)flg++;
+        }
+        if(flg==1 || flg==0)palindromic_node++;
+    }
+    freq[root->val]--;
 }
+int pseudoPalindromicPaths (TreeNode* root) {
+    int palindromic_node = 0;
+    vector<int>freq(10,0);
+    cout_Palindromic_node(root,freq,palindromic_node);
+    return palindromic_node;
+}
+
 
 int main() {
 #ifdef anikakash
@@ -41,13 +79,9 @@ int main() {
 #endif
   
     FASTERIO; 
-    vector<vector<int>> matrix = {
-        {2,1,3},
-        {6,5,4},
-        {7,8,9}
-    };
-
-    cout<<minFallingPathSum(matrix)<<endl;
+     
+  TreeNode root = TreeNode({2,3,1,3,1,INT_MIN,1});
+  cout<<pseudoPalindromicPaths(&root)<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
