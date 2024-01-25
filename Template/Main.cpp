@@ -14,28 +14,28 @@ using namespace    std;
 typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
+ int maxLength(vector<string>& arr) {
+        sort(arr.begin(), arr.end(), [](string s1, string s2){return s1.size()>s2.size();});
+        for(auto it: arr)cout<<it<<" ";NL;
+        set<char>st;
+        for(auto it: arr){
+            unordered_set<char>tm;
+            for(auto c : it){
+                if(st.find(c)==st.end()){
+                    tm.insert(c);
+                   
+                }else{
+                    tm.clear(); break;
+                }
+            }
 
-    int dp[101][101]={0};
-int minFallingPathSum(vector<vector<int>>& matrix) {
-    int n = matrix.size();
-
-    for(int i=0; i<n; i++) dp[0][i] = matrix[0][i];
-
-    for(int i=1; i<n; i++){
-        for(int j=0; j<n; j++){
-            int mn = INT_MAX;
-            if(i-1>=0)mn = min(mn, dp[i-1][j]);
-            if(i-1>=0 && j-1>=0) mn = min(mn, dp[i-1][j-1]);
-            if(i-1>=0 && j+1<n) mn = min(mn, dp[i-1][j+1]);
-
-            dp[i][j] = mn+matrix[i][j];
+            if(tm.size()>0 && (tm.size() == it.size())){
+                for(auto x : tm)st.insert(x);
+            }
         }
-    }
-    int ans = dp[n-1][0];
-    for(int i=1; i<n; i++)ans = min(ans, dp[n-1][i]);
-
-    return ans;
+        return st.size();
 }
+
 
 int main() {
 #ifdef anikakash
@@ -45,13 +45,9 @@ int main() {
 #endif
   
     FASTERIO; 
-    vector<vector<int>> matrix = {
-        {2,1,3},
-        {6,5,4},
-        {7,8,9}
-    };
+   vector<string>vs = {"ab","cd","cde","cdef","efg","fgh","abxyz"};
 
-    cout<<minFallingPathSum(matrix)<<endl;
+    cout<<maxLength(vs)<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
