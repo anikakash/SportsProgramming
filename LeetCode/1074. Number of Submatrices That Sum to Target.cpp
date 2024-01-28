@@ -1,3 +1,5 @@
+// TLE Solutation Brute Froce:
+
 class Solution {
 public:
     int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
@@ -21,5 +23,37 @@ public:
             }
         }
         return ans;
+    }
+}; 
+
+
+// Optimized Code: TC 0(N^2 * M )
+class Solution {
+public:
+    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int target) {
+        int cols = matrix[0].size(), rows = matrix.size();
+       
+       for(int row = 0; row < rows; row++){
+           for(int col = 1; col < cols; col++){
+               matrix[row][col] += matrix[row][col-1];
+           }
+       }
+
+        int res = 0;
+       for(int startCol = 0; startCol < cols; startCol++){
+           for(int j = startCol; j < cols; j++){
+               unordered_map<int,int>m;
+               m[0]=1;
+               int cumSum = 0;
+               for(int row = 0; row < rows; row++){
+                   cumSum += matrix[row][j] - (startCol>0 ? matrix[row][startCol-1] : 0);
+                   if(m[cumSum-target]){
+                        res += m[cumSum-target];
+                   }
+                   m[cumSum]++;
+               }
+           }
+       }
+       return res;
     }
 }; 
