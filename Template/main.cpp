@@ -15,22 +15,45 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-int dp[51][51][51];
-    int mod = 1e9+7;
-    int dfs(int m, int n, int maxMove, int r, int c){
-        if(r<0 || c<0 || r>=m || c>=n) return 1; // goes out of the matrix using 1 move. 
-        if(maxMove <= 0) return 0;
-        if(dp[r][c][maxMove] != -1) return dp[r][c][maxMove];
-        return dp[r][c][maxMove] = (dfs(m, n, maxMove-1, r+1, c)%mod +
-                                   dfs(m, n, maxMove-1, r-1, c)%mod + 
-                                   dfs(m, n, maxMove-1, r, c+1)%mod + 
-                                   dfs(m, n, maxMove-1, r, c-1)%mod) % mod;
-}
+unordered_set<int> squares; // a set to store the precomputed squares
+    int res; // a variable to store the current best result
     
-int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
-        memset(dp, -1, sizeof(dp));
-        return dfs(m, n, maxMove, startRow, startColumn);
-}
+    void pre_cal() {
+        // precompute all the squares up to 1e4
+        for (int i = 1; i <= 1e4; i++) {
+            squares.insert(i * i);
+        }
+    }
+    
+    int dfs(int n, int sum) {
+        // base case: if n is zero, return the current sum
+        if (n == 0) return sum;
+        // base case: if n is a perfect square, return 1 plus the current sum
+        if (squares.count(n)) return 1+sum;
+        // initialize the minimum value as the current best result minus the current sum
+        int min = INT_MAX;
+
+        // loop over all the possible squares that are smaller than or equal to n
+        for (int i = sqrt(n); i >= 1; i--) {
+            // if the current sum plus 1 is already greater than or equal to the current best result, break the loop
+            if (sum + 1 >= res) break;
+            // otherwise, call dfs on n minus the square, and update the minimum value
+            min = std::min(min, dfs(n - i * i, sum + 1));
+        }
+        // return the minimum value
+        return min;
+    }
+    
+    int numSquares(int n) {
+        // precompute the squares
+        pre_cal();
+        // initialize the current best result as n (worst case: all 1s)
+        res = n;
+        // call dfs on n with zero sum
+        res = dfs(n, 0);
+        // return the current best result
+        return res;
+    }
 
 int main() {
 #ifdef anikakash
@@ -41,7 +64,7 @@ int main() {
   
     FASTERIO; 
      
- cout<<findPaths(8,50,23,5,26)<<endl;
+ cout<<numSquares(61)<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
