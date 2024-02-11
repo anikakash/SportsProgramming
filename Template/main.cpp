@@ -15,45 +15,37 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-unordered_set<int> squares; // a set to store the precomputed squares
-    int res; // a variable to store the current best result
-    
-    void pre_cal() {
-        // precompute all the squares up to 1e4
-        for (int i = 1; i <= 1e4; i++) {
-            squares.insert(i * i);
+int countMatchingSubarrays(vector<int>& nums, vector<int>& pattern) {
+        int cnt=0;
+        
+        for(int i=0; i<nums.size(); i++){
+                bool f = false;
+            for(int k=0; k<pattern.size(); k++){
+                
+                if(pattern[k]==1 && (i + k + 1<nums.size())){
+                    if(nums[i + k + 1] > nums[i + k]){
+                        f = true;
+                    }
+                }
+                else if(pattern[k]==0 && (i + k + 1<nums.size())){
+                    
+                    if(nums[i + k + 1] == nums[i + k])
+                        f = true;
+                }
+                else if(pattern[k]==-1 && (i + k + 1<nums.size())){
+                    
+                    if(nums[i + k + 1] < nums[i + k])
+                        f = true;
+                }
+                else{
+                    f = false;
+                    break;
+                }
+            }
+            if(f==true)cnt++;
         }
-    }
-    
-    int dfs(int n, int sum) {
-        // base case: if n is zero, return the current sum
-        if (n == 0) return sum;
-        // base case: if n is a perfect square, return 1 plus the current sum
-        if (squares.count(n)) return 1+sum;
-        // initialize the minimum value as the current best result minus the current sum
-        int min = INT_MAX;
-
-        // loop over all the possible squares that are smaller than or equal to n
-        for (int i = sqrt(n); i >= 1; i--) {
-            // if the current sum plus 1 is already greater than or equal to the current best result, break the loop
-            if (sum + 1 >= res) break;
-            // otherwise, call dfs on n minus the square, and update the minimum value
-            min = std::min(min, dfs(n - i * i, sum + 1));
-        }
-        // return the minimum value
-        return min;
-    }
-    
-    int numSquares(int n) {
-        // precompute the squares
-        pre_cal();
-        // initialize the current best result as n (worst case: all 1s)
-        res = n;
-        // call dfs on n with zero sum
-        res = dfs(n, 0);
-        // return the current best result
-        return res;
-    }
+        return cnt;
+}
 
 int main() {
 #ifdef anikakash
@@ -63,8 +55,8 @@ int main() {
 #endif
   
     FASTERIO; 
-     
- cout<<numSquares(61)<<endl;
+    vector<int> nums = {1,4,4,1,3,5,5,3}, pattern = {1,0,-1};
+ cout<<countMatchingSubarrays(nums, pattern)<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
