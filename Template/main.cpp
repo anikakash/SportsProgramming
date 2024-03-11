@@ -15,36 +15,27 @@ typedef long long int            ll;
 typedef double                   dl;
 typedef unsigned long long int   ull;
 
-int countMatchingSubarrays(vector<int>& nums, vector<int>& pattern) {
-        int cnt=0;
-        
-        for(int i=0; i<nums.size(); i++){
-                bool f = false;
-            for(int k=0; k<pattern.size(); k++){
-                
-                if(pattern[k]==1 && (i + k + 1<nums.size())){
-                    if(nums[i + k + 1] > nums[i + k]){
-                        f = true;
-                    }
-                }
-                else if(pattern[k]==0 && (i + k + 1<nums.size())){
-                    
-                    if(nums[i + k + 1] == nums[i + k])
-                        f = true;
-                }
-                else if(pattern[k]==-1 && (i + k + 1<nums.size())){
-                    
-                    if(nums[i + k + 1] < nums[i + k])
-                        f = true;
-                }
-                else{
-                    f = false;
-                    break;
+ string customSortString(string order, string str) {
+        unordered_map<char,int>m;
+        for(int i=0; i<str.size(); i++) m[str[i]]++;
+        for(auto it: m)cout<<it.first<<" "<<it.second<<endl;
+        string s = "";
+        for(int i=0; i<order.size(); i++){
+            if(m[order[i]]){
+                int tmp = order[i];
+                while(m[order[i]]){
+                    s+=order[i];
+                    m[order[i]]--;
                 }
             }
-            if(f==true)cnt++;
         }
-        return cnt;
+        for(auto it : m) {
+            if(it.second)s+=it.first; 
+        }
+        cout<<endl;
+        for(auto it: m)cout<<it.first<<" "<<it.second<<endl;
+
+    return s;
 }
 
 int main() {
@@ -55,8 +46,7 @@ int main() {
 #endif
   
     FASTERIO; 
-    vector<int> nums = {1,4,4,1,3,5,5,3}, pattern = {1,0,-1};
- cout<<countMatchingSubarrays(nums, pattern)<<endl;
+    cout<<customSortString("bcafg","abcd")<<endl;
 
 #ifdef anikakash
    fprintf(stderr, "\n>> Runtime: %.10fs\n", (double) (clock() - tStart) / CLOCKS_PER_SEC);
